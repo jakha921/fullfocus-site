@@ -26,7 +26,7 @@ jobs:
         env:
           DATABASE_URL: postgresql://placeholder:placeholder@localhost:5432/placeholder
           NEXTAUTH_SECRET: placeholder-secret-for-build
-          NEXTAUTH_URL: https://site.fullfocus.dev
+          NEXTAUTH_URL: https://fullfocus.dev
 
   deploy:
     needs: build
