@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y openssl
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm install
+RUN npm install --include=dev
 
 COPY . .
 RUN npx prisma generate
