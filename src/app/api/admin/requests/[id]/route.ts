@@ -25,7 +25,7 @@ export async function GET(
 
     return NextResponse.json(contactRequest);
   } catch (_error) {
-    console.error("Get request error:", error);
+    console.error("Get request error:", _error);
     return NextResponse.json(
       { error: "Внутренняя ошибка сервера" },
       { status: 500 }
@@ -59,7 +59,7 @@ export async function PATCH(
 
     return NextResponse.json(updatedRequest);
   } catch (_error) {
-    console.error("Update request error:", error);
+    console.error("Update request error:", _error);
     return NextResponse.json(
       { error: "Внутренняя ошибка сервера" },
       { status: 500 }
@@ -82,7 +82,7 @@ export async function DELETE(
 
     return NextResponse.json({ message: "Заявка удалена" });
   } catch (_error) {
-    console.error("Delete request error:", error);
+    console.error("Delete request error:", _error);
     return NextResponse.json(
       { error: "Внутренняя ошибка сервера" },
       { status: 500 }

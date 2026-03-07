@@ -63,7 +63,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    console.error("Contact form error:", error);
+    console.error("Contact form error:", _error);
     return NextResponse.json(
       { error: "Внутренняя ошибка сервера" },
       { status: 500 }

@@ -39,7 +39,7 @@ export async function GET(
 
     return NextResponse.json(project);
   } catch (_error) {
-    console.error("Get project error:", error);
+    console.error("Get project error:", _error);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
@@ -65,7 +65,7 @@ export async function PATCH(
 
     return NextResponse.json(project);
   } catch (_error) {
-    console.error("Update project error:", error);
+    console.error("Update project error:", _error);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
@@ -85,7 +85,7 @@ export async function DELETE(
 
     return NextResponse.json({ message: "Project deleted" });
   } catch (_error) {
-    console.error("Delete project error:", error);
+    console.error("Delete project error:", _error);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }

@@ -18,7 +18,7 @@ export async function GET() {
       testimonials: testimonialsCount,
     });
   } catch (_error) {
-    console.error("Stats error:", error);
+    console.error("Stats error:", _error);
     return NextResponse.json(
       { error: "Внутренняя ошибка сервера" },
       { status: 500 }

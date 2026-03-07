@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ success: true, id: quizResult.id });
   } catch (_error) {
-    console.error('Quiz submission error:', error);
+    console.error('Quiz submission error:', _error);
     return NextResponse.json({ error: 'Failed to submit' }, { status: 500 });
   }
 }
