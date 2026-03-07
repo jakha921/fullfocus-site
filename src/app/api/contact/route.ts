@@ -56,9 +56,9 @@ export async function POST(request: NextRequest) {
       { status: 201 }
     );
   } catch (_error) {
-    if (error instanceof z.ZodError) {
+    if (_error instanceof z.ZodError) {
       return NextResponse.json(
-        { error: "Ошибка валидации", details: error.errors },
+        { error: "Ошибка валидации", details: _error.errors },
         { status: 400 }
       );
     }
