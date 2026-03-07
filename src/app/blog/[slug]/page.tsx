@@ -69,7 +69,7 @@ const relatedPosts = [
 ];
 
 export default function BlogPostPage({
-  params,
+  params: _params,
 }: {
   params: Promise<{ slug: string }>;
 }) {

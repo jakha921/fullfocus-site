@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
       { message: "Заявка успешно отправлена", id: contactRequest.id },
       { status: 201 }
     );
-  } catch (error) {
+  } catch (_error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(
         { error: "Ошибка валидации", details: error.errors },

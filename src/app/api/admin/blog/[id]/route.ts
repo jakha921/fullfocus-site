@@ -34,7 +34,7 @@ export async function GET(
     }
 
     return NextResponse.json(post);
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
@@ -69,7 +69,7 @@ export async function PATCH(
     });
 
     return NextResponse.json(post);
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
@@ -88,7 +88,7 @@ export async function DELETE(
     await prisma.blogPost.delete({ where: { id } });
 
     return NextResponse.json({ message: "Post deleted" });
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }

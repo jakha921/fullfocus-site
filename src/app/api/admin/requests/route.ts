@@ -32,7 +32,7 @@ export async function GET(request: NextRequest) {
     });
 
     return NextResponse.json(requests);
-  } catch (error) {
+  } catch (_error) {
     console.error("Get requests error:", error);
     return NextResponse.json(
       { error: "Внутренняя ошибка сервера" },

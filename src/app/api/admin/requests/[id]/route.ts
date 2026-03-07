@@ -24,7 +24,7 @@ export async function GET(
     }
 
     return NextResponse.json(contactRequest);
-  } catch (error) {
+  } catch (_error) {
     console.error("Get request error:", error);
     return NextResponse.json(
       { error: "Внутренняя ошибка сервера" },
@@ -58,7 +58,7 @@ export async function PATCH(
     });
 
     return NextResponse.json(updatedRequest);
-  } catch (error) {
+  } catch (_error) {
     console.error("Update request error:", error);
     return NextResponse.json(
       { error: "Внутренняя ошибка сервера" },
@@ -81,7 +81,7 @@ export async function DELETE(
     await prisma.contactRequest.delete({ where: { id } });
 
     return NextResponse.json({ message: "Заявка удалена" });
-  } catch (error) {
+  } catch (_error) {
     console.error("Delete request error:", error);
     return NextResponse.json(
       { error: "Внутренняя ошибка сервера" },

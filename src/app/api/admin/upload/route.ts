@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
       url: `/uploads/${filename}`,
       filename,
     });
-  } catch (error) {
+  } catch (_error) {
     console.error("Upload error:", error);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }

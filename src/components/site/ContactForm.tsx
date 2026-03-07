@@ -68,7 +68,7 @@ export function ContactForm() {
         budget: "",
         message: "",
       });
-    } catch (err) {
+    } catch (_err) {
       setError("Произошла ошибка. Попробуйте ещё раз.");
     } finally {
       setIsLoading(false);

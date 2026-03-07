@@ -8,7 +8,7 @@ import {
   Database,
   ArrowRight,
 } from "lucide-react";
-import { SectionHeading, CTASection } from "@/components/site";
+import { CTASection } from "@/components/site";
 import { Card, Button } from "@/components/ui";
 import Link from "next/link";
 

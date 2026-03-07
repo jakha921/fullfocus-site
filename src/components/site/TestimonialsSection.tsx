@@ -66,7 +66,7 @@ export function TestimonialsSection() {
               <Card glass hover className="h-full flex flex-col">
                 {/* Big quote */}
                 <div className="font-display text-6xl gradient-text opacity-40 leading-none mb-4 select-none">
-                  "
+                  &ldquo;
                 </div>
 
                 {/* Content */}

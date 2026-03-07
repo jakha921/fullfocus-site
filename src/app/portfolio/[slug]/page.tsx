@@ -52,7 +52,7 @@ const relatedProjects = [
 ];
 
 export default function ProjectDetailPage({
-  params,
+  params: _params,
 }: {
   params: Promise<{ slug: string }>;
 }) {

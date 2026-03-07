@@ -3,7 +3,7 @@ export const dynamic = "force-dynamic";
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Calendar, DollarSign, Clock, Mail, Phone, Building, Eye, Trash2 } from "lucide-react";
+import { DollarSign, Clock, Mail, Phone, Building, Eye, Trash2 } from "lucide-react";
 import { AdminHeader } from "@/components/admin/AdminHeader";
 import { Card, Badge, Button, Skeleton } from "@/components/ui";
 import toast from "react-hot-toast";

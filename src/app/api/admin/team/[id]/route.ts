@@ -33,7 +33,7 @@ export async function PATCH(
     const member = await prisma.teamMember.update({ where: { id }, data });
 
     return NextResponse.json(member);
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
@@ -52,7 +52,7 @@ export async function DELETE(
     await prisma.teamMember.delete({ where: { id } });
 
     return NextResponse.json({ message: "Member deleted" });
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }

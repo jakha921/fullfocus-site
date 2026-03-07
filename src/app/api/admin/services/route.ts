@@ -16,7 +16,7 @@ export async function GET() {
     });
 
     return NextResponse.json(services);
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
     const service = await prisma.service.create({ data });
 
     return NextResponse.json(service, { status: 201 });
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }

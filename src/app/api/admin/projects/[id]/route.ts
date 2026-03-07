@@ -38,7 +38,7 @@ export async function GET(
     }
 
     return NextResponse.json(project);
-  } catch (error) {
+  } catch (_error) {
     console.error("Get project error:", error);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
@@ -64,7 +64,7 @@ export async function PATCH(
     });
 
     return NextResponse.json(project);
-  } catch (error) {
+  } catch (_error) {
     console.error("Update project error:", error);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
@@ -84,7 +84,7 @@ export async function DELETE(
     await prisma.project.delete({ where: { id } });
 
     return NextResponse.json({ message: "Project deleted" });
-  } catch (error) {
+  } catch (_error) {
     console.error("Delete project error:", error);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }

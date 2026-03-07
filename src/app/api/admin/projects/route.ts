@@ -16,7 +16,7 @@ export async function GET() {
     });
 
     return NextResponse.json(projects);
-  } catch (error) {
+  } catch (_error) {
     console.error("Get projects error:", error);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
     });
 
     return NextResponse.json(project, { status: 201 });
-  } catch (error) {
+  } catch (_error) {
     console.error("Create project error:", error);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }

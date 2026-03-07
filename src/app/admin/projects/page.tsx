@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Plus, Edit, Trash2, Star, ExternalLink } from "lucide-react";
+import { Plus, Edit, Trash2, Star } from "lucide-react";
 import { AdminHeader } from "@/components/admin/AdminHeader";
 import { Card, Badge, Button, Skeleton } from "@/components/ui";
 import toast from "react-hot-toast";

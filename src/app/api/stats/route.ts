@@ -17,7 +17,7 @@ export async function GET() {
       posts: postsCount,
       testimonials: testimonialsCount,
     });
-  } catch (error) {
+  } catch (_error) {
     console.error("Stats error:", error);
     return NextResponse.json(
       { error: "Внутренняя ошибка сервера" },

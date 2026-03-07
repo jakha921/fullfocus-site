@@ -16,7 +16,7 @@ export async function GET() {
     });
 
     return NextResponse.json(posts);
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
     });
 
     return NextResponse.json(post, { status: 201 });
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }

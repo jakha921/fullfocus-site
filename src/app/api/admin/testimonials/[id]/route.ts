@@ -35,7 +35,7 @@ export async function PATCH(
     });
 
     return NextResponse.json(testimonial);
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
@@ -54,7 +54,7 @@ export async function DELETE(
     await prisma.testimonial.delete({ where: { id } });
 
     return NextResponse.json({ message: "Testimonial deleted" });
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
