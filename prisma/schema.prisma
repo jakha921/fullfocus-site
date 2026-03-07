@@ -1,0 +1,135 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+}
+
+model Service {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  description String   @db.Text
+  icon        String
+  features    String[]
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Project {
+  id           String   @id @default(cuid())
+  title        String
+  slug         String   @unique
+  description  String   @db.Text
+  shortDesc    String?
+  category     String
+  client       String?
+  technologies String[]
+  images       String[]
+  coverImage   String
+  link         String?
+  featured     Boolean  @default(false)
+  isActive     Boolean  @default(true)
+  order        Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model TeamMember {
+  id        String   @id @default(cuid())
+  name      String
+  position  String
+  photo     String?
+  bio       String?  @db.Text
+  linkedin  String?
+  github    String?
+  telegram  String?
+  order     Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model BlogPost {
+  id          String    @id @default(cuid())
+  title       String
+  slug        String    @unique
+  excerpt     String
+  content     String    @db.Text
+  coverImage  String?
+  category    String
+  tags        String[]
+  authorName  String
+  isPublished Boolean   @default(false)
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model ContactRequest {
+  id          String   @id @default(cuid())
+  name        String
+  email       String
+  phone       String?
+  serviceType String?
+  budget      String?
+  message     String   @db.Text
+  status      String   @default("new")
+  notes       String?  @db.Text
+  source      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Testimonial {
+  id         String   @id @default(cuid())
+  clientName String
+  company    String
+  position   String?
+  content    String   @db.Text
+  avatar     String?
+  rating     Int      @default(5)
+  isActive   Boolean  @default(true)
+  order      Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Setting {
+  id    String @id @default(cuid())
+  key   String @unique
+  value String @db.Text
+}
+
+model QuizResult {
+  id               String   @id @default(cuid())
+  name             String
+  email            String
+  phone            String?
+  company          String?
+  projectType      String
+  budget           String
+  timeline         String
+  features         String   @db.Text
+  estimateMin      Int
+  estimateMax      Int
+  estimateWeeksMin Int
+  estimateWeeksMax Int
+  createdAt        DateTime @default(now())
+
+  @@index([email])
+  @@index([createdAt])
+}

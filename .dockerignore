@@ -1,0 +1,16 @@
+node_modules
+.next
+.git
+.env*
+*.jpeg
+*.jpg
+*.png
+.playwright-mcp
+coverage
+npm-debug.log*
+README.md
+ecosystem.config.js
+docker-compose*.yml
+.github
+.vscode
+prisma/dev.db
