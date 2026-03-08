@@ -13,27 +13,24 @@ Production: `https://site.fullfocus.dev`
 ```bash
 # Development
 npm run dev                    # localhost:3000
-PORT=8080 npm run dev          # кастомный порт
 
-# Build & start
+# Build & lint
 npm run build
-npm start
+npm run lint
 
 # Database
 npx prisma generate            # генерировать Prisma Client
-npx prisma migrate dev         # применить миграции
+npx prisma migrate dev         # создать и применить миграцию (dev)
+npx prisma migrate deploy      # применить существующие миграции (prod)
 npx prisma studio              # GUI для БД
-npm run db:seed                # заполнить тестовыми данными (tsx prisma/seed.ts)
-
-# Lint
-npm run lint
+npm run db:seed                # заполнить начальными данными (tsx prisma/seed.ts)
 ```
 
 ## Architecture
 
 ### Tech Stack
-- **Next.js 14** — App Router, Server Actions, `output: "standalone"` для Docker
-- **Prisma** — ORM с PostgreSQL (provider: `postgresql`)
+- **Next.js 14** — App Router, `output: "standalone"` для Docker
+- **Prisma** — ORM с PostgreSQL (`provider: "postgresql"`)
 - **NextAuth.js v4** — JWT-сессии, Credentials Provider, кастомная страница `/login`
 - **next-intl** — i18n через cookie `locale` (en/ru/uz), конфиг в `src/lib/i18n.ts`
 - **Tailwind CSS** — тёмная тема (bg `#0a0a0a`)
@@ -88,10 +85,33 @@ src/
 ```bash
 DATABASE_URL=postgresql://...
 NEXTAUTH_SECRET=...
-NEXTAUTH_URL=https://site.fullfocus.dev   # для прода; локально http://localhost:3000
+NEXTAUTH_URL=https://site.fullfocus.dev   # локально: http://localhost:3000
+TELEGRAM_BOT_TOKEN=                       # опционально — уведомления о заявках
+TELEGRAM_CHAT_ID=                         # опционально
 ```
 
+## ESLint
+
+Используется `.eslintrc.json` (НЕ `eslint.config.mjs`). Next.js 14 с ESLint v8 несовместим с flat config формата ESLint v9. Конфиг:
+```json
+{ "extends": ["next/core-web-vitals", "next/typescript"] }
+```
+Паттерн для неиспользуемых переменных: `_`-префикс (`_error`, `_params`).
+
 ## Docker / Deployment
-- `Dockerfile` — multi-stage build, `output: "standalone"` в `next.config.mjs`
-- `docker-compose.prod.yml` — прод, сеть `coolify` (shared PostgreSQL `shared-postgres`)
-- `ecosystem.config.js` — PM2 конфиг (порт 3000)
+
+- `Dockerfile` — multi-stage build (builder + runner), `node:20-slim`
+- `scripts/start.sh` — запускает `prisma migrate deploy` перед стартом сервера
+- `docker-compose.prod.yml` — прод конфиг, все secrets через `${VAR}` (задаются в Coolify UI), сеть `coolify` (external)
+
+### CI/CD (GitHub Actions → Coolify)
+
+`.github/workflows/deploy.yml` при пуше в `master`:
+1. `npm run lint`
+2. `npm run build` (с placeholder `DATABASE_URL` и `NEXTAUTH_SECRET`)
+3. Триггерит Coolify webhook: `GET /api/v1/deploy?uuid=...` с `Authorization: Bearer $COOLIFY_TOKEN`
+
+GitHub secrets: `COOLIFY_WEBHOOK` (URL) + `COOLIFY_TOKEN` (API токен из Coolify dashboard).
+
+# currentDate
+Today's date is 2026-03-08.
