@@ -3,27 +3,30 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Send, Loader2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Button, Input, Select, Textarea } from "@/components/ui";
 import type { ContactFormData } from "@/types";
 
-const serviceOptions = [
-  { value: "", label: "Выберите услугу" },
-  { value: "web", label: "Веб-разработка" },
-  { value: "mobile", label: "Мобильные приложения" },
-  { value: "design", label: "UI/UX Дизайн" },
-  { value: "erp", label: "ERP/CRM системы" },
-  { value: "other", label: "Другое" },
-];
-
-const budgetOptions = [
-  { value: "", label: "Выберите бюджет" },
-  { value: "small", label: "до $5,000" },
-  { value: "medium", label: "$5,000 - $15,000" },
-  { value: "large", label: "$15,000 - $50,000" },
-  { value: "enterprise", label: "более $50,000" },
-];
-
 export function ContactForm() {
+  const t = useTranslations("form");
+
+  const serviceOptions = [
+    { value: "", label: t("select_service") },
+    { value: "ai-agents", label: t("service_ai") },
+    { value: "automation", label: t("service_automation") },
+    { value: "saas", label: t("service_saas") },
+    { value: "integration", label: t("service_integration") },
+    { value: "other", label: t("service_other") },
+  ];
+
+  const budgetOptions = [
+    { value: "", label: t("select_budget") },
+    { value: "small", label: t("budget_small") },
+    { value: "medium", label: t("budget_medium") },
+    { value: "large", label: t("budget_large") },
+    { value: "enterprise", label: t("budget_enterprise") },
+  ];
+
   const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     email: "",
@@ -56,7 +59,7 @@ export function ContactForm() {
       });
 
       if (!response.ok) {
-        throw new Error("Ошибка отправки");
+        throw new Error("Send error");
       }
 
       setIsSuccess(true);
@@ -69,7 +72,7 @@ export function ContactForm() {
         message: "",
       });
     } catch (_err) {
-      setError("Произошла ошибка. Попробуйте ещё раз.");
+      setError(t("error"));
     } finally {
       setIsLoading(false);
     }
@@ -86,17 +89,17 @@ export function ContactForm() {
           <Send className="w-8 h-8 text-green-500" />
         </div>
         <h3 className="text-2xl font-bold text-white mb-2">
-          Заявка отправлена!
+          {t("success_title")}
         </h3>
         <p className="text-gray-400">
-          Мы свяжемся с вами в ближайшее время
+          {t("success_desc")}
         </p>
         <Button
           variant="secondary"
           className="mt-6"
           onClick={() => setIsSuccess(false)}
         >
-          Отправить ещё заявку
+          {t("send_another")}
         </Button>
       </motion.div>
     );
@@ -106,15 +109,15 @@ export function ContactForm() {
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Input
-          label="Имя *"
+          label={t("name_label")}
           name="name"
           value={formData.name}
           onChange={handleChange}
-          placeholder="Ваше имя"
+          placeholder={t("name")}
           required
         />
         <Input
-          label="Email *"
+          label={t("email_label")}
           name="email"
           type="email"
           value={formData.email}
@@ -126,7 +129,7 @@ export function ContactForm() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Input
-          label="Телефон"
+          label={t("phone_label")}
           name="phone"
           type="tel"
           value={formData.phone}
@@ -134,7 +137,7 @@ export function ContactForm() {
           placeholder="+998 90 123 45 67"
         />
         <Select
-          label="Тип услуги"
+          label={t("service_label")}
           name="serviceType"
           value={formData.serviceType}
           onChange={handleChange}
@@ -143,7 +146,7 @@ export function ContactForm() {
       </div>
 
       <Select
-        label="Бюджет"
+        label={t("budget_label")}
         name="budget"
         value={formData.budget}
         onChange={handleChange}
@@ -151,11 +154,11 @@ export function ContactForm() {
       />
 
       <Textarea
-        label="Описание проекта *"
+        label={t("message_label")}
         name="message"
         value={formData.message}
         onChange={handleChange}
-        placeholder="Расскажите о вашем проекте, целях и сроках..."
+        placeholder={t("message_placeholder")}
         required
       />
 
@@ -172,11 +175,11 @@ export function ContactForm() {
         {isLoading ? (
           <>
             <Loader2 className="w-5 h-5 animate-spin mr-2" />
-            Отправка...
+            {t("submitting")}
           </>
         ) : (
           <>
-            Отправить заявку
+            {t("submit_btn")}
             <Send className="w-4 h-4 ml-2" />
           </>
         )}

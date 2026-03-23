@@ -1,6 +1,7 @@
 "use client";
 
 import { SectionHeading } from "./SectionHeading";
+import { useTranslations } from "next-intl";
 
 const techRow1 = [
   {
@@ -73,9 +74,63 @@ const techRow1 = [
       </svg>
     ),
   },
+  {
+    name: "OpenAI",
+    icon: (
+      <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none">
+        <circle cx="12" cy="12" r="10" fill="#10A37F" opacity="0.2"/>
+        <text x="12" y="16" textAnchor="middle" fill="#10A37F" fontSize="10" fontWeight="bold">AI</text>
+      </svg>
+    ),
+  },
+  {
+    name: "LangChain",
+    icon: (
+      <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none">
+        <circle cx="12" cy="12" r="10" fill="#7C3AED" opacity="0.2"/>
+        <text x="12" y="16" textAnchor="middle" fill="#7C3AED" fontSize="8" fontWeight="bold">LC</text>
+      </svg>
+    ),
+  },
+  {
+    name: "Python",
+    icon: (
+      <svg viewBox="0 0 24 24" className="w-6 h-6" fill="#3776AB">
+        <path d="M11.914 0C5.82 0 6.2 2.656 6.2 2.656l.007 2.752h5.814v.826H3.9S0 5.789 0 11.969c0 6.18 3.403 5.96 3.403 5.96h2.03v-2.867s-.109-3.42 3.35-3.42h5.766s3.24.052 3.24-3.148V3.202S18.28 0 11.914 0zM8.708 1.85c.578 0 1.046.473 1.046 1.057 0 .584-.468 1.057-1.046 1.057-.579 0-1.047-.473-1.047-1.057 0-.584.468-1.057 1.047-1.057z"/>
+        <path d="M12.086 24c6.094 0 5.714-2.656 5.714-2.656l-.007-2.752H11.98v-.826h8.121S24 18.211 24 12.031c0-6.18-3.403-5.96-3.403-5.96h-2.03v2.867s.109 3.42-3.35 3.42H9.451s-3.24-.052-3.24 3.148v5.292S5.72 24 12.086 24zm3.206-1.85c-.578 0-1.046-.473-1.046-1.057 0-.584.468-1.057 1.046-1.057.579 0 1.047.473 1.047 1.057 0 .584-.468 1.057-1.047 1.057z" fill="#FFC331"/>
+      </svg>
+    ),
+  },
+  {
+    name: "Anthropic",
+    icon: (
+      <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none">
+        <circle cx="12" cy="12" r="10" fill="#D97706" opacity="0.2"/>
+        <text x="12" y="16" textAnchor="middle" fill="#D97706" fontSize="8" fontWeight="bold">An</text>
+      </svg>
+    ),
+  },
 ];
 
 const techRow2 = [
+  {
+    name: "n8n",
+    icon: (
+      <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none">
+        <rect width="24" height="24" rx="4" fill="#EA4B71" opacity="0.2"/>
+        <text x="12" y="16" textAnchor="middle" fill="#EA4B71" fontSize="9" fontWeight="bold">n8n</text>
+      </svg>
+    ),
+  },
+  {
+    name: "Supabase",
+    icon: (
+      <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none">
+        <path d="M13.7 21.8c-.4.5-1.3.2-1.3-.5V13h8.4c.8 0 1.3.9.8 1.5L13.7 21.8z" fill="#3ECF8E"/>
+        <path d="M10.3 2.2c.4-.5 1.3-.2 1.3.5V11H3.2c-.8 0-1.3-.9-.8-1.5L10.3 2.2z" fill="#3ECF8E" opacity="0.5"/>
+      </svg>
+    ),
+  },
   {
     name: "Flutter",
     icon: (
@@ -153,6 +208,7 @@ function TechItem({ name, icon }: { name: string; icon: React.ReactNode }) {
 }
 
 export function TechStackSection() {
+  const t = useTranslations("techstack");
   const doubleRow1 = [...techRow1, ...techRow1];
   const doubleRow2 = [...techRow2, ...techRow2];
 
@@ -160,10 +216,10 @@ export function TechStackSection() {
     <section className="py-24 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          badge="Стек"
-          title="Технологии,"
-          highlight="которым доверяем"
-          description="Используем проверенные инструменты для создания надёжных и масштабируемых продуктов"
+          badge={t("badge")}
+          title={t("title")}
+          highlight={t("highlight")}
+          description={t("description")}
         />
       </div>
 

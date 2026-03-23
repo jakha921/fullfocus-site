@@ -1,3 +1,7 @@
+import createNextIntlPlugin from 'next-intl/plugin';
+
+const withNextIntl = createNextIntlPlugin('./src/lib/i18n.ts');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "standalone",
@@ -11,9 +15,9 @@ const nextConfig = {
   },
   experimental: {
     serverActions: {
-      allowedOrigins: ["site.fullfocus.dev"],
+      allowedOrigins: ["fullfocus.dev", "site.fullfocus.dev"],
     },
   },
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

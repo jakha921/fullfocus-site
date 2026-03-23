@@ -6,6 +6,8 @@ import { Providers } from "@/components/Providers";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { PublicOnlyWrapper } from "@/components/site";
+import { getLocale, getMessages } from "next-intl/server";
+import { NextIntlClientProvider } from "next-intl";
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
@@ -20,28 +22,29 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: {
-    default: "FullFocus - IT Solutions",
+    default: "FullFocus - AI Business Automation",
     template: "%s | FullFocus",
   },
   description:
-    "Creating modern IT products that help businesses grow. Web development, mobile apps, UI/UX design, ERP/CRM systems.",
+    "AI-powered business automation agency. We build AI agents, automate processes, and develop SaaS products. 300% ROI in 3-6 months.",
   keywords: [
-    "IT company",
-    "web development",
-    "mobile apps",
-    "UI/UX design",
-    "ERP",
-    "CRM",
+    "AI agents",
+    "business automation",
+    "process automation",
+    "AI chatbots",
+    "SaaS development",
+    "system integration",
+    "Tashkent IT company",
   ],
   authors: [{ name: "FullFocus" }],
   creator: "FullFocus",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://site.fullfocus.dev",
+    url: "https://fullfocus.dev",
     siteName: "FullFocus",
-    title: "FullFocus - IT Solutions",
-    description: "Creating modern IT products that help businesses grow",
+    title: "FullFocus - AI Business Automation",
+    description: "AI-powered business automation. AI agents, process automation, SaaS development.",
   },
   robots: {
     index: true,
@@ -49,30 +52,35 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+  const messages = await getMessages();
+
   return (
-    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
+    <html lang={locale} className={`${inter.variable} ${spaceGrotesk.variable}`}>
       <body className="antialiased bg-[#0a0a0a] text-white min-h-screen">
-        <Providers>
-          <Header />
-          <main className="min-h-screen pt-16">{children}</main>
-          <Footer />
-          <PublicOnlyWrapper />
-          <Toaster
-            position="top-right"
-            toastOptions={{
-              style: {
-                background: "#111",
-                color: "#fff",
-                border: "1px solid #27272a",
-              },
-            }}
-          />
-        </Providers>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <Providers>
+            <Header />
+            <main className="min-h-screen pt-16">{children}</main>
+            <Footer />
+            <PublicOnlyWrapper />
+            <Toaster
+              position="top-right"
+              toastOptions={{
+                style: {
+                  background: "#111",
+                  color: "#fff",
+                  border: "1px solid #27272a",
+                },
+              }}
+            />
+          </Providers>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

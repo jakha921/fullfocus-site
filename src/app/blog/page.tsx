@@ -4,14 +4,8 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { Calendar, ArrowRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui";
-
-const categories = [
-  { value: "all", label: "Все" },
-  { value: "tech", label: "Технологии" },
-  { value: "design", label: "Дизайн" },
-  { value: "tips", label: "Советы" },
-];
 
 const blogPosts = [
   {
@@ -89,7 +83,15 @@ const blogPosts = [
 ];
 
 export default function BlogPage() {
+  const t = useTranslations("blog_page");
   const [activeCategory, setActiveCategory] = useState("all");
+
+  const categoryKeys = [
+    { value: "all", labelKey: "all" },
+    { value: "tech", labelKey: "tech" },
+    { value: "design", labelKey: "design" },
+    { value: "tips", labelKey: "tips" },
+  ] as const;
 
   const filteredPosts =
     activeCategory === "all"
@@ -113,10 +115,10 @@ export default function BlogPage() {
             className="text-center max-w-3xl mx-auto"
           >
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              Наш <span className="gradient-text">блог</span>
+              {t("title")} <span className="gradient-text">{t("highlight")}</span>
             </h1>
             <p className="text-lg text-gray-400 leading-relaxed">
-              Делимся опытом, знаниями и мыслями о разработке и дизайне
+              {t("description")}
             </p>
           </motion.div>
         </div>
@@ -126,7 +128,7 @@ export default function BlogPage() {
       <section className="pb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-3">
-            {categories.map((cat) => (
+            {categoryKeys.map((cat) => (
               <button
                 key={cat.value}
                 onClick={() => setActiveCategory(cat.value)}
@@ -136,7 +138,7 @@ export default function BlogPage() {
                     : "text-gray-400 hover:text-white"
                 }`}
               >
-                {cat.label}
+                {t(cat.labelKey)}
               </button>
             ))}
           </div>

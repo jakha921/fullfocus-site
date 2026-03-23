@@ -3,9 +3,11 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Calculator, MessageCircle } from "lucide-react";
+import { ArrowRight, Gift, Shield, Sparkles } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export function CTASection() {
+  const t = useTranslations("cta");
   const [slots, setSlots] = useState<string | null>(null);
   const [monthName, setMonthName] = useState<string | null>(null);
 
@@ -33,52 +35,53 @@ export function CTASection() {
         >
           <div className="glass-card rounded-2xl p-10 md:p-14 text-center">
             <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-              Готовы начать{" "}
-              <span className="gradient-text">проект</span>?
+              {t("title").split(/(\?|！)/).length > 1 ? (
+                <>
+                  {t("title").replace(/\?$/, "").replace(/автоматизации$/, "")}{" "}
+                  <span className="gradient-text">
+                    {t("title").includes("автоматизации") ? "автоматизации" : "Automation"}
+                  </span>
+                  ?
+                </>
+              ) : (
+                t("title")
+              )}
             </h2>
             <p className="text-lg text-gray-400 mb-10 max-w-2xl mx-auto">
-              Получите бесплатную оценку вашего проекта за 2 минуты или свяжитесь с нами для консультации
+              {t("description")}
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                href="/quiz"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-400 hover:to-teal-400 text-black font-bold rounded-lg transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-green-500/25"
-              >
-                <Calculator className="w-5 h-5" />
-                Получить оценку проекта
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 border border-gray-700 hover:border-gray-500 text-white font-semibold rounded-lg transition-all hover:bg-white/5"
-              >
-                <MessageCircle className="w-5 h-5" />
-                Связаться с нами
-              </Link>
-            </div>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-400 hover:to-teal-400 text-black font-bold rounded-lg transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-green-500/25"
+            >
+              {t("button")}
+              <ArrowRight className="w-5 h-5" />
+            </Link>
 
             {/* Trust badges */}
             <div className="mt-10 flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">
               <span className="flex items-center gap-2">
-                <span className="w-2 h-2 bg-green-500 rounded-full" />
-                Бесплатная консультация
+                <Gift className="w-4 h-4 text-green-400" />
+                {t("free")}
               </span>
               <span className="flex items-center gap-2">
-                <span className="w-2 h-2 bg-teal-500 rounded-full" />
-                Ответим в течение 24 часов
+                <Shield className="w-4 h-4 text-teal-400" />
+                {t("no_obligation")}
               </span>
               <span className="flex items-center gap-2">
-                <span className="w-2 h-2 bg-blue-500 rounded-full" />
-                50+ успешных проектов
+                <Sparkles className="w-4 h-4 text-blue-400" />
+                {t("ai_audit")}
               </span>
             </div>
             {slots && monthName && (
               <div className="mt-4 flex items-center justify-center gap-2 text-sm">
                 <span className="w-2 h-2 bg-orange-400 rounded-full animate-pulse" />
                 <span className="text-orange-400 font-semibold">
-                  Осталось {slots} мест в {monthName}
+                  {t("slots_left")}{" "}
+                  <span className="font-bold">{slots}</span>{" "}
+                  {t("slots")}{" "}
+                  <span className="font-bold">{monthName}</span>
                 </span>
               </div>
             )}

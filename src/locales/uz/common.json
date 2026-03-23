@@ -8,38 +8,47 @@
     "contact": "Aloqa"
   },
   "hero": {
-    "title": "Biznesingizni o'stiruvchi raqamli mahsulotlar yaratamiz",
-    "subtitle": "Biznesingizni zamonaviy IT yechimlar bilan transformatsiya qiling. Veb-ishlab chiqish, mobil ilovalar va korporativ tizimlar.",
-    "cta": "Bepul maslahat olish",
-    "cta_secondary": "Ishlarimizni ko'rish"
+    "title": "Biznesni avtomatlashtiramiz. Siz kengaytirasiz.",
+    "subtitle": "AI agentlar, avtomatlashtirish va biznes uchun SaaS mahsulotlar. 3-6 oyda 300% ROI.",
+    "cta": "Qo'ng'iroqqa yozilish",
+    "badge": "AI asosida biznesni avtomatlashtirish",
+    "title_line1": "Avtomatlashtiramiz",
+    "title_line2": "biznesni.",
+    "title_line3": "Siz kengaytirasiz.",
+    "subtitle_text": "Biznes uchun AI agentlar, avtomatlashtirish va SaaS mahsulotlar.",
+    "subtitle_highlight": "3-6 oyda 300% ROI.",
+    "card_roi": "O'rtacha ROI",
+    "card_hours": "soat/hafta tejash"
   },
   "services": {
-    "title": "Biz nima qilamiz",
-    "subtitle": "Har qanday o'lchamdagi biznes uchun kompleks IT yechimlar",
-    "web_dev": {
-      "title": "Veb-ishlab chiqish",
-      "desc": "Zamonaviy texnologiyalarda korporativ saytlar, veb-ilovalar va e-commerce platformalar"
+    "title": "Biznes o'sishi uchun AI yechimlar",
+    "subtitle": "Jarayonlarni avtomatlashtiramiz, AI agentlar yaratamiz va SaaS mahsulotlar ishlab chiqamiz",
+    "ai_agents": {
+      "title": "AI agentlar va chatbotlar",
+      "desc": "24/7 mijozlarni qo'llab-quvvatlash, sotuvlarni avtomatlashtirish"
     },
-    "mobile_dev": {
-      "title": "Mobil ilovalar",
-      "desc": "iOS va Android uchun nativ va krossplatforma ilovalar"
+    "automation": {
+      "title": "Jarayonlarni avtomatlashtirish",
+      "desc": "Kundalik ishlarni yo'qotish va haftasiga 40+ soat tejash"
     },
-    "ui_ux": {
-      "title": "UI/UX Dizayn",
-      "desc": "Foydalanuvchilarga qulay interfeyslarni loyihalash"
+    "saas": {
+      "title": "SaaS ishlab chiqish",
+      "desc": "MVPdan kengaytiriladigan mahsulotgacha AI funksionallik bilan"
     },
-    "erp_crm": {
-      "title": "ERP/CRM tizimlar",
-      "desc": "Korxona boshqaruvi va mijozlar bilan ishlash tizimlari"
+    "integration": {
+      "title": "Tizim integratsiyasi",
+      "desc": "CRM, ERP, to'lov tizimlari va AI bitta ekotizimda"
     },
-    "ai_ml": {
-      "title": "AI va avtomatlashtirish",
-      "desc": "Sun'iy intellekt asosidagi aqlli yechimlar"
-    },
-    "consulting": {
-      "title": "IT-konsalting",
-      "desc": "Biznes jarayonlarini optimallashtirish bo'yicha strategik maslahat"
-    }
+    "badge": "Xizmatlar",
+    "ai_agents_metric": "24/7 to'xtovsiz",
+    "ai_agents_full_desc": "24/7 mijozlarni qo'llab-quvvatlash, sotish va operatsiyalarni avtomatlashtirish. 24/7 dam olishsiz ishlaydigan AI agentlar.",
+    "automation_metric": "40+ soat/hafta tejash",
+    "automation_full_desc": "Rutin va qo'l mehnatini yo'q qilamiz. Haftasiga 40+ soat tejash uchun n8n, Make va maxsus yechimlar integratsiyasi.",
+    "saas_metric": "6-8 haftada MVP",
+    "saas_full_desc": "MVPdan kengaytiriladigan mahsulotgacha. AI funksionallik bilan SaaS yechimlarini to'liq ishlab chiqish.",
+    "integration_metric": "300% ROI integratsiyalar",
+    "integration_full_desc": "CRM, ERP, to'lov tizimlari va AIni biznesingiz uchun yagona ekotizimga birlashtiramiz.",
+    "more": "Batafsil"
   },
   "stats": {
     "projects": "Tugallangan loyihalar",
@@ -47,10 +56,94 @@
     "experience": "Yillik tajriba",
     "team": "Jamoa a'zolari"
   },
+  "pain": {
+    "title": "Biznesingiz pul yo'qotmoqda",
+    "subtitle": "Avtomatlashtirishsiz har bir kun — yo'qotilgan foyda",
+    "manual": {
+      "title": "Qo'lda jarayonlar",
+      "desc": "Haftasiga 40+ soat oddiy ishlarga"
+    },
+    "support": {
+      "title": "24/7 qo'llab-quvvatlash yo'q",
+      "desc": "Mijozlar javobi yo'q ketadi"
+    },
+    "scaling": {
+      "title": "Kengayish = yollash",
+      "desc": "Avtomatlashtirish o'rniga odamlar orqali o'sish"
+    },
+    "transition": "Yaxshiroq yo'l bor.",
+    "badge": "Muammo",
+    "manual_metric": "40+ soat/hafta",
+    "manual_desc_full": "Jamoangiz haftasiga 40+ soatni avtomatlashtirilishi mumkin bo'lgan rutinaga sarflaydi",
+    "support_metric": "60% mijozlar",
+    "support_desc_full": "Mijozlar ish vaqtidan tashqarida javob olmagani uchun raqobatchilarga ketishadi",
+    "scaling_metric": "x3 xarajatlar",
+    "scaling_desc_full": "O'sish uchun jarayonlarni optimallashtirish o'rniga ko'proq odam yollaysiz"
+  },
+  "pricing": {
+    "title": "Shaffof narxlash",
+    "subtitle": "O'zingizga mos hamkorlik modelini tanlang",
+    "project": {
+      "name": "Loyiha asosida",
+      "price": "$5,000 dan"
+    },
+    "retainer": {
+      "name": "Reteyner",
+      "price": "$3,000/oydan"
+    },
+    "performance": {
+      "name": "Performance",
+      "price": "Natija uchun to'lov"
+    },
+    "cta": "Qo'ng'iroqqa yozilish",
+    "badge": "Ish modellari",
+    "plans": {
+      "0": {
+        "name": "Loyiha asosida",
+        "price": "$5,000 dan",
+        "period": "belgilangan narx",
+        "description": "Aniq belgilangan byudjetli loyihalar uchun ideal",
+        "features": ["Belgilangan narx va muddat", "To'liq ishlab chiqish tsikli", "Natija kafolati", "3 oylik qo'llab-quvvatlash"]
+      },
+      "1": {
+        "name": "Reteyner",
+        "price": "$3,000 dan",
+        "period": "/oy",
+        "description": "Mahsulotingizni doimiy rivojlantirish uchun ajratilgan jamoa",
+        "features": ["Ajratilgan jamoa", "Haftalik sprintlar va demolar", "Ustuvor 24/7 qo'llab-quvvatlash", "Moslashuvchan kengaytirish", "AI-avtomatlashtirish kiritilgan"]
+      },
+      "2": {
+        "name": "Performance",
+        "price": "Natija uchun to'lov",
+        "period": "ROI uchun to'lov",
+        "description": "Biz faqat siz pul ishlaganingizda ishlaymiz",
+        "features": ["To'lov metrikalarga bog'langan", "Siz uchun minimal xavf", "AI asosida optimallashtirish", "Oylik ROI hisobotlari"]
+      }
+    }
+  },
+  "faq": {
+    "title": "Ko'p beriladigan savollar",
+    "subtitle": "Tez-tez so'raladigan savollarga javoblar",
+    "badge": "FAQ",
+    "items": {
+      "0": { "q": "AI-avtomatlashtirishni ishlab chiqish qancha vaqt oladi?", "a": "Birinchi natijalar 2-4 haftada ko'rinadi. AI-agent MVP 4-6 haftada ishga tushiriladi. Tizimlaringiz bilan to'liq integratsiya — 2-3 oy." },
+      "1": { "q": "Boshlash uchun qanday byudjet kerak?", "a": "Minimal avtomatlashtirish loyihasi $5,000 dan boshlanadi. Reteyner — $3,000/oydan. Shuningdek, faqat natija uchun to'lanadigan performance-modelni taklif qilamiz." },
+      "2": { "q": "Qanday texnologiyalardan foydalanasiz?", "a": "AI uchun OpenAI, Anthropic, LangChain. Ishlab chiqish uchun React, Next.js, Django. Avtomatlashtirish uchun n8n va maxsus yechimlar. Ma'lumotlar uchun Supabase, PostgreSQL." },
+      "3": { "q": "Biz texnik kompaniya emasmiz. Bu normal mi?", "a": "Albatta. Mijozlarimizning 70% texnik bo'lmagan kompaniyalar. Biz barcha texnik qismni o'z zimmamizga olamiz va hamma narsani oddiy tilda tushuntiramiz." },
+      "4": { "q": "Ishga tushirilgandan keyingi qo'llab-quvvatlash nimalarni o'z ichiga oladi?", "a": "24/7 monitoring, AI-modellarni yangilash, ishlash samaradorligini optimallashtirish, Telegramda ustuvor qo'llab-quvvatlash. Birinchi 3 oy — bepul." },
+      "5": { "q": "ROI qanday o'lchanadi?", "a": "Loyiha boshlanishidan oldin metrikalarni belgilaymiz: tejalgan soatlar, konversiya o'sishi, xarajatlarni kamaytirish. Haqiqiy raqamlar bilan oylik hisobotlar." }
+    }
+  },
   "cta": {
-    "title": "Loyihangizni boshlashga tayyormisiz?",
-    "subtitle": "Mutaxassislarimizdan bepul maslahat va loyiha bahosini oling",
-    "button": "Bepul baho olish"
+    "title": "Avtomatlashtirishga tayyormisiz?",
+    "subtitle": "30 daqiqalik qo'ng'iroq. Biznesingizda 3+ avtomatlashtirish imkoniyatini topamiz.",
+    "button": "Bepul qo'ng'iroqqa yozilish",
+    "description": "30 daqiqalik qo'ng'iroq. Biznesingizda 3+ avtomatlashtirish imkoniyatini topamiz.",
+    "free": "Bepul",
+    "no_obligation": "Majburiyatsiz",
+    "ai_audit": "AI-audit sovg'a sifatida",
+    "slots_left": "Qoldi",
+    "slots": "o'rin"
   },
   "quiz": {
     "title": "Loyihangiz uchun bepul baho oling",
@@ -119,11 +212,18 @@
     }
   },
   "footer": {
-    "description": "FullFocus — veb-ishlab chiqish, mobil ilovalar va korporativ yechimlar bo'yicha ixtisoslashgan IT kompaniya.",
+    "description": "FullFocus — AI-powered biznes avtomatlashtirish agentligi. AI agentlar, jarayonlarni avtomatlashtirish va SaaS ishlab chiqish.",
     "quick_links": "Tezkor havolalar",
     "services": "Xizmatlar",
     "contact": "Aloqa",
-    "rights": "Barcha huquqlar himoyalangan"
+    "rights": "Barcha huquqlar himoyalangan",
+    "navigation": "Navigatsiya",
+    "ai_agents_service": "AI agentlar va chatbotlar",
+    "automation_service": "Jarayonlarni avtomatlashtirish",
+    "saas_service": "SaaS ishlab chiqish",
+    "integration_service": "Tizim integratsiyasi",
+    "location": "Toshkent, O'zbekiston",
+    "privacy": "Maxfiylik siyosati"
   },
   "form": {
     "name": "Ismingiz",
@@ -132,6 +232,271 @@
     "message": "Xabaringiz",
     "submit": "Yuborish",
     "success": "Xabar muvaffaqiyatli yuborildi!",
-    "error": "Xatolik yuz berdi. Qaytadan urinib ko'ring."
+    "error": "Xatolik yuz berdi. Qaytadan urinib ko'ring.",
+    "name_label": "Ism *",
+    "email_label": "Email *",
+    "phone_label": "Telefon",
+    "service_label": "Xizmat turi",
+    "budget_label": "Byudjet",
+    "message_label": "Loyiha tavsifi *",
+    "message_placeholder": "Loyihangiz, maqsadlaringiz va muddatlar haqida gapirib bering...",
+    "select_service": "Xizmatni tanlang",
+    "service_ai": "AI agentlar va chatbotlar",
+    "service_automation": "Jarayonlarni avtomatlashtirish",
+    "service_saas": "SaaS ishlab chiqish",
+    "service_integration": "Tizim integratsiyasi",
+    "service_other": "Boshqa",
+    "select_budget": "Byudjetni tanlang",
+    "budget_small": "$5,000 gacha",
+    "budget_medium": "$5,000 - $15,000",
+    "budget_large": "$15,000 - $50,000",
+    "budget_enterprise": "$50,000 dan yuqori",
+    "success_title": "Ariza yuborildi!",
+    "success_desc": "Tez orada siz bilan bog'lanamiz",
+    "send_another": "Yana ariza yuborish",
+    "submitting": "Yuborilmoqda...",
+    "submit_btn": "Ariza yuborish"
+  },
+  "socialproof": {
+    "projects": "loyihalar",
+    "clients": "mijozlar",
+    "avg_roi": "o'rtacha ROI"
+  },
+  "process": {
+    "badge": "Jarayon",
+    "title": "Biz qanday",
+    "highlight": "ishlaymiz",
+    "description": "Qo'ng'iroqdan natijagacha — haftalik demo bilan shaffof jarayon",
+    "steps": {
+      "0": { "title": "Discovery Call", "description": "30 daqiqalik qo'ng'iroq. Jarayonlaringizni tahlil qilamiz.", "duration": "30 daq" },
+      "1": { "title": "Strategiya va prototip", "description": "Avtomatlashtirish rejasi, yechim prototipi va ROI prognozini tayyorlaymiz.", "duration": "2 hafta" },
+      "2": { "title": "Ishlab chiqish", "description": "Haftalik demo bilan iterativ ishlab chiqish. Har hafta natijani ko'rasiz.", "duration": "4-8 hafta" },
+      "3": { "title": "Ishga tushirish va kengaytirish", "description": "Prodakshnga chiqaramiz, metrikalarni kuzatamiz va ishlaydigan narsalarni kengaytiramiz.", "duration": "Davomiy" }
+    }
+  },
+  "portfolio": {
+    "badge": "Keyslar",
+    "title": "Haqiqiy",
+    "highlight": "ROI",
+    "description": "O'zlari uchun gapiradigan natijalar",
+    "projects": {
+      "0": { "title": "AI Customer Support Agent", "category": "AI agentlar", "desc": "Mijozlarni qo'llab-quvvatlashni avtomatlashtirish: 500+ so'rov/kun operatorsiz", "roi": "-60% xarajatlar" },
+      "1": { "title": "E-commerce Automation", "category": "Avtomatlashtirish", "desc": "Internet-do'kon operatsiyalarini to'liq avtomatlashtirish", "roi": "+150% daromad" },
+      "2": { "title": "AI Analytics bilan CRM", "category": "SaaS", "desc": "Prediktiv analitika va AI-skoring bilan aqlli CRM", "roi": "+300% konversiya" }
+    },
+    "view_case": "Keysni ko'rish",
+    "view": "Ko'rish",
+    "all_cases": "Barcha keyslar"
+  },
+  "testimonials": {
+    "badge": "Sharhlar",
+    "title": "Mijozlar nima",
+    "highlight": "deyishadi",
+    "description": "Loyihalarini bizga ishonib topshirgan kompaniyalarning fikrlari",
+    "items": {
+      "0": { "name": "Aleksey Petrov", "company": "TechStart", "role": "CEO", "text": "FullFocus jamoasi barcha kutganlarimizdan oshib ketdi. Ular bizga sotuvlarimizni 150% ga oshirgan zamonaviy e-commerce platforma yaratdi." },
+      "1": { "name": "Mariya Ivanova", "company": "FinTech Solutions", "role": "CTO", "text": "Mobil ilova ishlab chiqishga professional yondashuv. Kod sifati va tafsilotlarga e'tibor eng yuqori darajada." },
+      "2": { "name": "Dmitriy Kozlov", "company": "Retail Group", "role": "IT direktori", "text": "CRM tizimini joriy etish muammosiz va o'z vaqtida amalga oshirildi. Texnik yordam tez va samarali ishlaydi." }
+    }
+  },
+  "techstack": {
+    "badge": "Texnologiyalar",
+    "title": "AI va texnologiyalar,",
+    "highlight": "ishonchimiz",
+    "description": "Ishonchli yechimlar yaratish uchun ilg'or AI vositalari va tasdiqlangan texnologiyalardan foydalanamiz"
+  },
+  "ideaauction": {
+    "badge": "AKSIYA",
+    "limited": "Cheklangan taklif",
+    "teaser_title": "G'oyalar auktsioni — eng yaxshi",
+    "teaser_highlight": "g'oyani bepul ishlab chiqish",
+    "teaser_desc": "Mahsulot g'oyangizni tasvirlab bering. Eng yaxshi g'oya",
+    "teaser_desc_bold": "to'liq bepul MVP ishlab chiqishni",
+    "teaser_desc_end": "+ manba kodini topshirishni oladi.",
+    "participate": "Qatnashish",
+    "benefit_mvp": "Bepul MVP ishlab chiqish",
+    "benefit_code": "Kodning to'liq topshirilishi",
+    "benefit_discuss": "Loyiha rivojlanishini muhokama qilish",
+    "wizard_title": "G'oyalar auktsioni",
+    "step_of": "{current} / {total} qadam",
+    "collapse": "Yig'ish",
+    "steps": {
+      "0": { "title": "G'oya", "subtitle": "G'oyangizni tasvirlang" },
+      "1": { "title": "Auditoriya", "subtitle": "Kimga kerak?" },
+      "2": { "title": "Yechim", "subtitle": "Bu qanday ishlaydi?" },
+      "3": { "title": "Biznes", "subtitle": "Qanday pul ishlash?" },
+      "4": { "title": "Kontaktlar", "subtitle": "Qanday bog'lanish?" }
+    },
+    "fields": {
+      "idea_name": "G'oya / mahsulot nomi *",
+      "idea_name_placeholder": "Masalan: Restoranlar uchun AI-yordamchi",
+      "problem": "Qanday muammoni hal qiladi? *",
+      "problem_placeholder": "Hal qilmoqchi bo'lgan muammoni tasvirlang. Qanchalik batafsil — g'olib bo'lish imkoniyati shunchalik yuqori.",
+      "target_audience": "Maqsadli auditoriyangiz kim? *",
+      "target_audience_placeholder": "Kim foydalanadi? Yosh, kasb, muammolar, byudjet...",
+      "market_size": "Bozor ko'lami",
+      "solution_desc": "Mahsulot qanday ishlashi kerak? *",
+      "solution_placeholder": "Foydalanuvchi mahsulot bilan qanday ishlashini tasvirlang. Qanday qadamlar, ekranlar, jarayonlar?",
+      "key_features": "Asosiy funksiyalar (kamida 3) *",
+      "key_features_placeholder": "Albatta bo'lishi kerak bo'lgan asosiy funksiyalarni sanang:\n1. ...\n2. ...\n3. ...",
+      "revenue_model": "Monetizatsiya modeli *",
+      "competitors": "Raqobatchilar / analoglar",
+      "competitors_placeholder": "Kim allaqachon bu muammoni hal qiladi? Nimasi yomon?",
+      "uniqueness": "G'oyangizning noyobligi nimada? *",
+      "uniqueness_placeholder": "Yechimingiz nima uchun mavjudlaridan yaxshiroq? Uni noyob qiladigan nima?",
+      "name": "Ism *",
+      "name_placeholder": "Ismingiz",
+      "email": "Email *",
+      "telegram": "Telegram"
+    },
+    "options": {
+      "market_local": "Mahalliy (shahar/hudud)",
+      "market_national": "Milliy (O'zbekiston)",
+      "market_regional": "Mintaqaviy (Markaziy Osiyo)",
+      "market_global": "Global",
+      "revenue_subscription": "Obuna (SaaS)",
+      "revenue_commission": "Tranzaksiya komissiyasi",
+      "revenue_freemium": "Freemium",
+      "revenue_onetime": "Bir martalik to'lov",
+      "revenue_ads": "Reklama",
+      "revenue_marketplace": "Marketplace",
+      "revenue_undecided": "Hali aniqlanmagan"
+    },
+    "detail_hint": "Qanchalik batafsil — bepul ishlab chiqish imkoniyati shunchalik yuqori",
+    "nav_back": "Orqaga",
+    "nav_next": "Keyingi",
+    "nav_submit": "G'oyani yuborish",
+    "nav_submitting": "Yuborilmoqda...",
+    "success_title": "G'oya yuborildi! 🎉",
+    "success_desc": "Biz G'oyalar auktsionida qatnashish uchun arizangizni oldik.",
+    "success_timeline": "Jamoamiz g'oyani baholaydi va siz bilan bog'lanadi",
+    "success_timeline_bold": "3 ish kuni ichida",
+    "success_telegram": "Telegramda kuzatish",
+    "success_close": "Yopish",
+    "error_send": "Yuborishda xatolik. Qaytadan urinib ko'ring."
+  },
+  "exitintent": {
+    "success_title": "Tayyor!",
+    "success_desc": "Tez orada siz bilan bog'lanamiz",
+    "success_telegram": "Telegramda yozing →",
+    "title": "Biznesingiz uchun bepul AI-audit",
+    "desc": "Emailingizni qoldiring va biznesingiz uchun bepul AI-imkoniyatlar auditini oling",
+    "name_placeholder": "Ismingiz (ixtiyoriy)",
+    "email_placeholder": "Email *",
+    "email_required": "Email kiriting",
+    "submit": "Bepul AI-auditni olish",
+    "submitting": "Yuborilmoqda...",
+    "dismiss": "Yo'q, rahmat",
+    "error": "Yuborishda xatolik. Qaytadan urinib ko'ring."
+  },
+  "stickycta": {
+    "slots_left": "Qoldi",
+    "slots": "o'rin",
+    "in_month": "da",
+    "limited": "Bu oyda cheklangan joylar",
+    "cta": "Qo'ng'iroqqa yozilish"
+  },
+  "common": {
+    "scroll": "Scroll",
+    "popular": "Ommabop",
+    "more": "Batafsil"
+  },
+  "about": {
+    "title": "Kompaniya haqida",
+    "highlight": "FullFocus",
+    "description": "Biz biznesga o'sish va yangi cho'qqilarni zabt etishga yordam beradigan raqamli mahsulotlar yaratadigan professionallar jamoasimiz",
+    "mission_title": "Bizning",
+    "mission_highlight": "missiyamiz",
+    "mission_p1": "Biz texnologiyalar har qanday biznesni o'zgartirishi mumkinligiga ishonamiz. Maqsadimiz — kompaniyalarga raqobat ustunligiga erishish uchun raqamli yechimlar imkoniyatlaridan foydalanishga yordam berish.",
+    "mission_p2": "2019 yildan beri biz turli sohalardagi mijozlar uchun 50 dan ortiq loyihani amalga oshirdik — startaplardan yirik korxonalargacha.",
+    "stats_projects": "Loyihalar",
+    "stats_years": "Yillik tajriba",
+    "stats_clients": "Mijozlar",
+    "stats_specialists": "Mutaxassislar",
+    "values_badge": "Qadriyatlar",
+    "values_title": "Bizning",
+    "values_highlight": "tamoyillarimiz",
+    "values_description": "Ishimiz asosidagi poydevor",
+    "values": {
+      "0": { "title": "Natijaga e'tibor", "description": "Biz mijozlarimizning aniq biznes maqsadlariga erishishga yo'naltirilganmiz" },
+      "1": { "title": "Jamoaviy ish", "description": "Jamoa ichida va mijozlar bilan samarali hamkorlik" },
+      "2": { "title": "Innovatsiyalar", "description": "Muammolarni hal qilish uchun zamonaviy texnologiyalar va yondashuvlardan foydalanamiz" },
+      "3": { "title": "Sifat", "description": "Kod sifati va yakuniy mahsulotni qat'iy nazorat qilamiz" }
+    },
+    "team_badge": "Jamoa",
+    "team_title": "Bizning",
+    "team_highlight": "mutaxassislarimiz",
+    "team_description": "FullFocusni alohida qiladigan odamlar",
+    "team": {
+      "0": { "name": "Ahmad Ruziboyev", "position": "CEO & Founder", "bio": "IT sohasida 10 yildan ortiq tajriba" },
+      "1": { "name": "Bobur Karimov", "position": "CTO", "bio": "Yechimlar arxitektori, cloud texnologiyalar bo'yicha ekspert" },
+      "2": { "name": "Nigora Nazarova", "position": "Lead Designer", "bio": "Xalqaro tajribaga ega UI/UX mutaxassis" },
+      "3": { "name": "Jasur Alimov", "position": "Full-Stack Developer", "bio": "React, Node.js va cloud yechimlar bo'yicha ekspert" }
+    }
+  },
+  "services_page": {
+    "title": "Bizning",
+    "highlight": "xizmatlarimiz",
+    "description": "Biznesingizni raqamli transformatsiya qilish uchun IT-xizmatlarning to'liq spektri",
+    "discuss_project": "Loyihani muhokama qilish",
+    "items": {
+      "0": { "title": "Veb-ishlab chiqish", "description": "Ilg'or texnologiyalar yordamida zamonaviy veb-ilovalar va saytlar yaratamiz", "features": ["React, Next.js, Vue.js", "Node.js, Express, NestJS", "PostgreSQL, MongoDB, Redis", "REST API, GraphQL", "SEO optimallashtirish", "Yuqori ishlash samaradorligi"] },
+      "1": { "title": "Mobil ilovalar", "description": "iOS va Android uchun nativ va krossplatform ilovalar ishlab chiqamiz", "features": ["React Native, Flutter", "Swift, Kotlin", "Push-bildirishnomalar", "Oflayn rejim", "API integratsiyasi", "Storlarda nashr qilish"] },
+      "2": { "title": "UI/UX Dizayn", "description": "Foydalanuvchilar yoqtiradigan intuitiv va chiroyli interfeyslarni loyihalaymiz", "features": ["Foydalanuvchilarni tadqiq qilish", "Wireframlar va prototiplar", "Dizayn tizimlar", "Adaptiv dizayn", "UI kitlar", "Foydalanish qulayligini sinash"] },
+      "3": { "title": "ERP/CRM tizimlar", "description": "Biznes jarayonlarini avtomatlashtirish uchun tizimlarni joriy qilamiz va sozlaymiz", "features": ["1C:Korxona", "Odoo, ERPNext", "Salesforce, HubSpot", "Xizmatlar integratsiyasi", "Ma'lumotlar migratsiyasi", "Texnik qo'llab-quvvatlash"] }
+    }
+  },
+  "contact_page": {
+    "title": "Biz bilan",
+    "highlight": "bog'laning",
+    "description": "Loyihangizni muhokama qilishga tayyormisiz? Formani to'ldiring yoki to'g'ridan-to'g'ri bog'laning",
+    "form_title": "Yuborish",
+    "form_highlight": "ariza",
+    "contact_info": "Aloqa ma'lumotlari",
+    "phone": "Telefon",
+    "address": "Manzil",
+    "address_value": "Toshkent, O'zbekiston",
+    "hours": "Ish vaqti",
+    "hours_value": "Du-Ju: 9:00 - 18:00",
+    "social": "Ijtimoiy tarmoqlarda",
+    "map": "Toshkent, O'zbekiston",
+    "faq_title": "Ko'p beriladigan",
+    "faq_highlight": "savollar",
+    "faq_desc": "Ishimiz haqidagi ommabop savollarga javoblar",
+    "faq": {
+      "0": { "q": "Sayt ishlab chiqish qancha turadi?", "a": "Narx murakkablik va funksionallikka bog'liq. Lending — $500 dan, korporativ sayt — $1500 dan, veb-ilova — $3000 dan. Aniq baho uchun kvizimizni o'ting." },
+      "1": { "q": "Loyihani ishlab chiqish qancha vaqt oladi?", "a": "Muddatlar ish hajmiga bog'liq. Lending — 1-2 hafta, korporativ sayt — 3-4 hafta, murakkab veb-ilovalar — 2-4 oy. Biz doimo kelishilgan muddatlarga rioya qilamiz." },
+      "2": { "q": "Ishga tushirilgandan keyin qo'llab-quvvatlash berasizmi?", "a": "Ha, texnik qo'llab-quvvatlash va loyihalarni kuzatib borishni taklif qilamiz. Xatolarni tuzatish, yangilanishlar va so'rov bo'yicha yangi funksiyalar qo'shishni o'z ichiga oladi." },
+      "3": { "q": "Xorijiy mijozlar bilan ishlaysizmi?", "a": "Ha, butun dunyo bo'ylab mijozlar bilan ishlaymiz. Rus, o'zbek va ingliz tillarida muloqot qilamiz. Turli valyutalarda to'lovlarni qabul qilamiz." },
+      "4": { "q": "Ishlab chiqish jarayoni qanday?", "a": "Bizning jarayon: Tahlil → Dizayn → Ishlab chiqish → Sinash → Ishga tushirish → Qo'llab-quvvatlash. Har bir bosqichda muntazam hisobotlar olasiz va o'zgartirish kiritishingiz mumkin." }
+    }
+  },
+  "portfolio_page": {
+    "title": "Bizning",
+    "highlight": "loyihalarimiz",
+    "description": "Biz faxrlanadigan ishlar namunalari",
+    "all": "Hammasi",
+    "web": "Veb-ishlab chiqish",
+    "mobile": "Mobil",
+    "design": "Dizayn",
+    "erp": "ERP/CRM",
+    "view_project": "Loyihani ko'rish",
+    "projects": {
+      "0": { "title": "E-commerce Platform", "category": "Veb-ishlab chiqish", "desc": "To'lov tizimlari integratsiyasi bilan zamonaviy onlayn savdo platformasi" },
+      "1": { "title": "Mobile Banking App", "category": "Mobil ilovalar", "desc": "Biometrik autentifikatsiya bilan mobil moliya boshqaruv ilovasi" },
+      "2": { "title": "CRM System", "category": "ERP/CRM", "desc": "B2B sotuvlar uchun mijozlar bilan munosabatlarni boshqarish tizimi" },
+      "3": { "title": "SaaS Dashboard", "category": "Veb-ishlab chiqish", "desc": "Real-time metrikalar bilan SaaS mahsulot uchun analitik panel" },
+      "4": { "title": "Food Delivery App", "category": "Mobil ilovalar", "desc": "Tracking tizimi bilan ovqat yetkazib berish ilovasi" },
+      "5": { "title": "Brand Identity", "category": "Dizayn", "desc": "Fintech startap uchun korporativ uslub ishlab chiqish" }
+    }
+  },
+  "blog_page": {
+    "title": "Bizning",
+    "highlight": "blogimiz",
+    "description": "Ishlab chiqish va dizayn haqida tajriba, bilim va fikrlarimiz bilan o'rtoqlashamiz",
+    "all": "Hammasi",
+    "tech": "Texnologiyalar",
+    "design": "Dizayn",
+    "tips": "Maslahatlar"
   }
 }

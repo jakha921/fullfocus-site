@@ -5,37 +5,16 @@ import { useState, useEffect, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { Menu, X, Target, Globe, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslations, useLocale } from "next-intl";
 import { cn } from "@/lib/utils";
 
-const navTranslations = {
-  en: [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/services", label: "Services" },
-    { href: "/portfolio", label: "Portfolio" },
-    { href: "/contact", label: "Contact" },
-  ],
-  ru: [
-    { href: "/", label: "Главная" },
-    { href: "/about", label: "О нас" },
-    { href: "/services", label: "Услуги" },
-    { href: "/portfolio", label: "Портфолио" },
-    { href: "/contact", label: "Контакты" },
-  ],
-  uz: [
-    { href: "/", label: "Bosh sahifa" },
-    { href: "/about", label: "Biz haqimizda" },
-    { href: "/services", label: "Xizmatlar" },
-    { href: "/portfolio", label: "Portfolio" },
-    { href: "/contact", label: "Aloqa" },
-  ],
-};
-
-const ctaTranslations = {
-  en: "Discuss Project",
-  ru: "Обсудить проект",
-  uz: "Loyihani muhokama",
-};
+const navKeys = [
+  { href: "/", key: "home" },
+  { href: "/about", key: "about" },
+  { href: "/services", key: "services" },
+  { href: "/portfolio", key: "portfolio" },
+  { href: "/contact", key: "contact" },
+] as const;
 
 const languages = [
   { code: "en", label: "EN" },
@@ -48,19 +27,12 @@ export function Header() {
   const [isPending, startTransition] = useTransition();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
-  const [currentLang, setCurrentLang] = useState("ru");
+  const locale = useLocale();
+  const [currentLang, setCurrentLang] = useState(locale);
   const [scrolled, setScrolled] = useState(false);
 
-  useEffect(() => {
-    const cookieLang = document.cookie
-      .split("; ")
-      .find((row) => row.startsWith("locale="))
-      ?.split("=")[1];
-
-    if (cookieLang && ["en", "ru", "uz"].includes(cookieLang)) {
-      setCurrentLang(cookieLang);
-    }
-  }, []);
+  const t = useTranslations("nav");
+  const tCta = useTranslations("cta");
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -77,9 +49,6 @@ export function Header() {
       router.refresh();
     });
   };
-
-  const navLinks = navTranslations[currentLang as keyof typeof navTranslations] || navTranslations.ru;
-  const ctaText = ctaTranslations[currentLang as keyof typeof ctaTranslations] || ctaTranslations.ru;
 
   return (
     <header
@@ -104,13 +73,13 @@ export function Header() {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
+            {navKeys.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 className="relative text-sm text-gray-400 hover:text-white transition-colors group"
               >
-                {link.label}
+                {t(link.key)}
                 <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-green-500 to-teal-500 group-hover:w-full transition-all duration-300" />
               </Link>
             ))}
@@ -160,7 +129,7 @@ export function Header() {
               href="/contact"
               className="px-5 py-2 bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-400 hover:to-teal-400 text-black font-bold rounded-lg text-sm transition-all hover:scale-[1.02] active:scale-[0.98] shadow-md shadow-green-500/20"
             >
-              {ctaText}
+              {tCta("button")}
             </Link>
           </div>
 
@@ -184,14 +153,14 @@ export function Header() {
             className="md:hidden bg-black/95 border-b border-white/10"
           >
             <div className="px-4 py-4 space-y-2">
-              {navLinks.map((link) => (
+              {navKeys.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  {link.label}
+                  {t(link.key)}
                 </Link>
               ))}
 
@@ -218,7 +187,7 @@ export function Header() {
                 className="block mt-4 px-4 py-3 bg-gradient-to-r from-green-500 to-teal-500 text-black font-bold rounded-lg text-center"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                {ctaText}
+                {tCta("button")}
               </Link>
             </div>
           </motion.div>

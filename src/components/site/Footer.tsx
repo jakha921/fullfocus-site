@@ -2,25 +2,28 @@
 
 import Link from "next/link";
 import { Target, Mail, Phone, MapPin, Send, Github } from "lucide-react";
+import { useTranslations } from "next-intl";
 
-const footerLinks = {
-  navigation: [
-    { href: "/", label: "Главная" },
-    { href: "/about", label: "О нас" },
-    { href: "/services", label: "Услуги" },
-    { href: "/portfolio", label: "Портфолио" },
-    { href: "/blog", label: "Блог" },
-    { href: "/contact", label: "Контакты" },
-  ],
-  services: [
-    { href: "/services#web", label: "Веб-разработка" },
-    { href: "/services#mobile", label: "Мобильные приложения" },
-    { href: "/services#design", label: "UI/UX Дизайн" },
-    { href: "/services#erp", label: "ERP/CRM системы" },
-  ],
-};
+const navLinks = [
+  { href: "/", key: "home" },
+  { href: "/about", key: "about" },
+  { href: "/services", key: "services" },
+  { href: "/portfolio", key: "portfolio" },
+  { href: "/blog", key: "blog" },
+  { href: "/contact", key: "contact" },
+] as const;
+
+const serviceLinks = [
+  { href: "/services#ai-agents", key: "ai_agents_service" },
+  { href: "/services#automation", key: "automation_service" },
+  { href: "/services#saas", key: "saas_service" },
+  { href: "/services#integration", key: "integration_service" },
+] as const;
 
 export function Footer() {
+  const t = useTranslations("footer");
+  const tNav = useTranslations("nav");
+
   return (
     <footer className="bg-[#0a0a0a] border-t border-gray-800/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -34,8 +37,7 @@ export function Footer() {
               <span className="text-xl font-display font-bold text-white">FullFocus</span>
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Создаём современные IT-продукты, которые помогают бизнесу расти и
-              достигать новых высот в цифровом мире.
+              {t("description")}
             </p>
             <div className="flex items-center gap-3">
               <a
@@ -59,15 +61,15 @@ export function Footer() {
 
           {/* Navigation */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Навигация</h3>
+            <h3 className="text-white font-semibold mb-4">{t("navigation")}</h3>
             <ul className="space-y-2">
-              {footerLinks.navigation.map((link) => (
+              {navLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
                     className="text-gray-400 hover:text-white text-sm transition-colors"
                   >
-                    {link.label}
+                    {tNav(link.key)}
                   </Link>
                 </li>
               ))}
@@ -76,15 +78,15 @@ export function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Услуги</h3>
+            <h3 className="text-white font-semibold mb-4">{t("services")}</h3>
             <ul className="space-y-2">
-              {footerLinks.services.map((link) => (
+              {serviceLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
                     className="text-gray-400 hover:text-white text-sm transition-colors"
                   >
-                    {link.label}
+                    {t(link.key)}
                   </Link>
                 </li>
               ))}
@@ -93,7 +95,7 @@ export function Footer() {
 
           {/* Contacts */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Контакты</h3>
+            <h3 className="text-white font-semibold mb-4">{t("contact")}</h3>
             <ul className="space-y-3">
               <li className="flex items-center gap-3 text-gray-400 text-sm">
                 <Mail className="w-4 h-4 text-green-400" />
@@ -109,7 +111,7 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-3 text-gray-400 text-sm">
                 <MapPin className="w-4 h-4 text-blue-400 mt-0.5" />
-                <span>Ташкент, Узбекистан</span>
+                <span>{t("location")}</span>
               </li>
             </ul>
           </div>
@@ -121,11 +123,11 @@ export function Footer() {
           <div className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-green-500/30 to-transparent -mt-8" />
 
           <p className="text-gray-500 text-sm">
-            © {new Date().getFullYear()} FullFocus. Все права защищены.
+            &copy; {new Date().getFullYear()} FullFocus. {t("rights")}
           </p>
           <div className="flex items-center gap-6 text-sm text-gray-500">
             <Link href="/privacy" className="hover:text-white transition-colors">
-              Политика конфиденциальности
+              {t("privacy")}
             </Link>
           </div>
         </div>

@@ -3,11 +3,13 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 const KEY = "exit_popup_shown_at";
 const COOLDOWN_MS = 24 * 60 * 60 * 1000;
 
 export function ExitIntentPopup() {
+  const t = useTranslations("exitintent");
   const [isOpen, setIsOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [name, setName] = useState("");
@@ -37,7 +39,7 @@ export function ExitIntentPopup() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-    if (!email) { setError("Введите email"); return; }
+    if (!email) { setError(t("email_required")); return; }
     setIsSubmitting(true);
     try {
       const res = await fetch("/api/contact", {
@@ -53,10 +55,10 @@ export function ExitIntentPopup() {
       if (res.ok) {
         setSubmitted(true);
       } else {
-        setError("Ошибка отправки. Попробуйте снова.");
+        setError(t("error"));
       }
     } catch {
-      setError("Ошибка отправки. Попробуйте снова.");
+      setError(t("error"));
     } finally {
       setIsSubmitting(false);
     }
@@ -91,15 +93,15 @@ export function ExitIntentPopup() {
               {submitted ? (
                 <div className="text-center py-4">
                   <div className="text-4xl mb-4">🎉</div>
-                  <h3 className="font-display text-xl font-bold text-white mb-2">Готово!</h3>
-                  <p className="text-gray-400 mb-4">Мы свяжемся с вами в ближайшее время</p>
+                  <h3 className="font-display text-xl font-bold text-white mb-2">{t("success_title")}</h3>
+                  <p className="text-gray-400 mb-4">{t("success_desc")}</p>
                   <a
                     href="https://t.me/fullfocusdev_bot"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-green-400 hover:text-green-300 text-sm underline"
                   >
-                    Написать нам в Telegram →
+                    {t("success_telegram")}
                   </a>
                 </div>
               ) : (
@@ -107,23 +109,23 @@ export function ExitIntentPopup() {
                   <div className="text-center mb-6">
                     <div className="text-3xl mb-3">👋</div>
                     <h3 className="font-display text-xl font-bold text-white mb-2">
-                      Подождите! Специальное предложение
+                      {t("title")}
                     </h3>
                     <p className="text-gray-400 text-sm">
-                      Оставьте email и получите бесплатную консультацию по вашему проекту
+                      {t("desc")}
                     </p>
                   </div>
                   <form onSubmit={handleSubmit} className="space-y-3">
                     <input
                       type="text"
-                      placeholder="Ваше имя (необязательно)"
+                      placeholder={t("name_placeholder")}
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       className="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:border-green-500 focus:outline-none text-sm"
                     />
                     <input
                       type="email"
-                      placeholder="Email *"
+                      placeholder={t("email_placeholder")}
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
@@ -135,14 +137,14 @@ export function ExitIntentPopup() {
                       disabled={isSubmitting}
                       className="w-full py-3 bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-400 hover:to-teal-400 text-black font-bold rounded-lg transition-all disabled:opacity-50"
                     >
-                      {isSubmitting ? "Отправка..." : "Получить бесплатную консультацию"}
+                      {isSubmitting ? t("submitting") : t("submit")}
                     </button>
                     <button
                       type="button"
                       onClick={() => setIsOpen(false)}
                       className="w-full py-2 text-gray-500 hover:text-gray-300 text-sm transition-colors"
                     >
-                      Нет, спасибо
+                      {t("dismiss")}
                     </button>
                   </form>
                 </>

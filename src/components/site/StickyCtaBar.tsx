@@ -4,8 +4,10 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export function StickyCtaBar() {
+  const t = useTranslations("stickycta");
   const [isVisible, setIsVisible] = useState(false);
   const [slots, setSlots] = useState<string | null>(null);
   const [monthName, setMonthName] = useState<string | null>(null);
@@ -48,12 +50,12 @@ export function StickyCtaBar() {
               <span className="text-sm text-white">
                 {slots && monthName ? (
                   <>
-                    Осталось{" "}
-                    <span className="font-bold text-green-400">{slots} мест</span>{" "}
-                    в <span className="font-bold text-green-400">{monthName}</span>
+                    {t("slots_left")}{" "}
+                    <span className="font-bold text-green-400">{slots} {t("slots")}</span>{" "}
+                    {t("in_month")} <span className="font-bold text-green-400">{monthName}</span>
                   </>
                 ) : (
-                  "Ограниченное количество мест в этом месяце"
+                  t("limited")
                 )}
               </span>
             </div>
@@ -62,7 +64,7 @@ export function StickyCtaBar() {
                 href="/contact"
                 className="px-4 py-1.5 bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-400 hover:to-teal-400 text-black font-semibold text-sm rounded-lg transition-all hover:scale-[1.02]"
               >
-                Забронировать место
+                {t("cta")}
               </Link>
               <button
                 onClick={handleDismiss}

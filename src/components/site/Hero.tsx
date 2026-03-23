@@ -4,8 +4,12 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowDown } from "lucide-react";
 import { Badge } from "@/components/ui";
+import { useTranslations } from "next-intl";
 
 export function Hero() {
+  const t = useTranslations("hero");
+  const tc = useTranslations("common");
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden noise-bg">
       {/* Dot pattern */}
@@ -25,7 +29,7 @@ export function Hero() {
               transition={{ delay: 0.1 }}
             >
               <Badge variant="success" pulse>
-                IT Solutions
+                {t("badge")}
               </Badge>
             </motion.div>
 
@@ -35,9 +39,11 @@ export function Hero() {
               transition={{ delay: 0.2 }}
               className="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white leading-none"
             >
-              Creating Digital
+              {t("title_line1")}
               <br />
-              <span className="gradient-text">Excellence</span>
+              <span className="gradient-text">{t("title_line2")}</span>
+              <br />
+              <span className="text-gray-400 text-4xl md:text-5xl lg:text-6xl">{t("title_line3")}</span>
             </motion.h1>
 
             <motion.p
@@ -46,8 +52,8 @@ export function Hero() {
               transition={{ delay: 0.3 }}
               className="max-w-xl mx-auto lg:mx-0 text-lg md:text-xl text-gray-400 leading-relaxed"
             >
-              Мы создаём современные IT-продукты, которые помогают бизнесу расти и
-              достигать новых высот
+              {t("subtitle_text")}{" "}
+              <span className="text-white font-semibold">{t("subtitle_highlight")}</span>
             </motion.p>
 
             <motion.div
@@ -60,14 +66,8 @@ export function Hero() {
                 href="/contact"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-400 hover:to-teal-400 text-black font-bold rounded-lg transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-green-500/25"
               >
-                Обсудить проект
+                {t("cta")}
                 <ArrowRight className="w-5 h-5" />
-              </Link>
-              <Link
-                href="/portfolio"
-                className="inline-flex items-center gap-2 px-8 py-4 border border-gray-700 hover:border-gray-500 text-white rounded-lg transition-all hover:bg-white/5"
-              >
-                Наши работы
               </Link>
             </motion.div>
           </div>
@@ -83,8 +83,8 @@ export function Hero() {
               <div className="flex items-center gap-3">
                 <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
                 <div>
-                  <div className="text-2xl font-display font-bold text-white">50+</div>
-                  <div className="text-xs text-gray-400">Успешных проектов</div>
+                  <div className="text-2xl font-display font-bold text-white">300%</div>
+                  <div className="text-xs text-gray-400">{t("card_roi")}</div>
                 </div>
               </div>
             </motion.div>
@@ -98,8 +98,8 @@ export function Hero() {
               <div className="flex items-center gap-3">
                 <div className="w-3 h-3 rounded-full bg-teal-500 animate-pulse" />
                 <div>
-                  <div className="text-2xl font-display font-bold text-white">5+</div>
-                  <div className="text-xs text-gray-400">Лет опыта</div>
+                  <div className="text-2xl font-display font-bold text-white">40+</div>
+                  <div className="text-xs text-gray-400">{t("card_hours")}</div>
                 </div>
               </div>
             </motion.div>
@@ -114,7 +114,7 @@ export function Hero() {
         transition={{ delay: 1 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
-        <span className="text-xs text-gray-500 tracking-widest uppercase gradient-text">Scroll</span>
+        <span className="text-xs text-gray-500 tracking-widest uppercase gradient-text">{tc("scroll")}</span>
         <ArrowDown className="w-4 h-4 text-gray-500 animate-bounce" />
       </motion.div>
     </section>

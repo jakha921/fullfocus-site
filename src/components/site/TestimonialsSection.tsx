@@ -2,60 +2,51 @@
 
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { SectionHeading } from "./SectionHeading";
 import { Card } from "@/components/ui";
 
-const testimonials = [
+const testimonialsMeta = [
   {
     id: "1",
-    clientName: "Алексей Петров",
-    company: "TechStart",
-    position: "CEO",
-    content:
-      "Команда FullFocus превзошла все наши ожидания. Они создали для нас современную e-commerce платформу, которая увеличила наши продажи на 150%.",
+    index: 0,
     rating: 5,
-    initials: "АП",
+    initials: "AP",
     gradient: "from-green-500 to-teal-500",
   },
   {
     id: "2",
-    clientName: "Мария Иванова",
-    company: "FinTech Solutions",
-    position: "CTO",
-    content:
-      "Профессиональный подход к разработке мобильного приложения. Качество кода и внимание к деталям на высшем уровне.",
+    index: 1,
     rating: 5,
-    initials: "МИ",
+    initials: "MI",
     gradient: "from-teal-500 to-blue-500",
   },
   {
     id: "3",
-    clientName: "Дмитрий Козлов",
-    company: "Retail Group",
-    position: "Директор по IT",
-    content:
-      "Внедрение CRM-системы прошло гладко и в срок. Техническая поддержка работает оперативно и эффективно.",
+    index: 2,
     rating: 5,
-    initials: "ДК",
+    initials: "DK",
     gradient: "from-blue-500 to-green-500",
   },
 ];
 
 export function TestimonialsSection() {
+  const t = useTranslations("testimonials");
+
   return (
     <section className="py-24 relative overflow-hidden">
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] ambient-glow-green rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <SectionHeading
-          badge="Отзывы"
-          title="Что говорят"
-          highlight="клиенты"
-          description="Мнения компаний, которые нам доверили свои проекты"
+          badge={t("badge")}
+          title={t("title")}
+          highlight={t("highlight")}
+          description={t("description")}
         />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {testimonials.map((testimonial, index) => (
+          {testimonialsMeta.map((testimonial, index) => (
             <motion.div
               key={testimonial.id}
               initial={{ opacity: 0, y: 30 }}
@@ -71,7 +62,7 @@ export function TestimonialsSection() {
 
                 {/* Content */}
                 <p className="text-gray-300 leading-relaxed flex-1 mb-6">
-                  {testimonial.content}
+                  {t(`items.${testimonial.index}.text`)}
                 </p>
 
                 {/* Rating */}
@@ -90,10 +81,10 @@ export function TestimonialsSection() {
                   </div>
                   <div>
                     <div className="text-white font-semibold text-sm">
-                      {testimonial.clientName}
+                      {t(`items.${testimonial.index}.name`)}
                     </div>
                     <div className="text-gray-400 text-xs">
-                      {testimonial.position}, {testimonial.company}
+                      {t(`items.${testimonial.index}.role`)}, {t(`items.${testimonial.index}.company`)}
                     </div>
                   </div>
                 </div>
