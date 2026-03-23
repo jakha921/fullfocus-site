@@ -48,7 +48,8 @@
     "saas_full_desc": "From MVP to scalable product. Full cycle SaaS development with AI functionality.",
     "integration_metric": "300% ROI integrations",
     "integration_full_desc": "Unite CRM, ERP, payment systems and AI in a single ecosystem for your business.",
-    "more": "Learn more"
+    "more": "Learn more",
+    "highlight": "business growth"
   },
   "stats": {
     "projects": "Projects Completed",
@@ -78,22 +79,48 @@
     "support_metric": "60% clients",
     "support_desc_full": "Clients leave to competitors because they don't get answers after hours",
     "scaling_metric": "x3 costs",
-    "scaling_desc_full": "To grow, you hire more people instead of optimizing processes"
+    "scaling_desc_full": "To grow, you hire more people instead of optimizing processes",
+    "highlight": "losing money"
   },
   "pricing": {
     "title": "Transparent Pricing",
     "subtitle": "Choose the collaboration model that fits",
     "project": {
       "name": "Project-based",
-      "price": "from $5,000"
+      "price": "from $5,000",
+      "period": "fixed price",
+      "description": "Perfect for well-defined projects with fixed budget",
+      "features": [
+        "Fixed cost and timeline",
+        "Full development cycle",
+        "Result guarantee",
+        "3-month support"
+      ]
     },
     "retainer": {
       "name": "Retainer",
-      "price": "from $3,000/mo"
+      "price": "from $3,000/mo",
+      "period": "/month",
+      "description": "Dedicated team for continuous product development",
+      "features": [
+        "Dedicated team",
+        "Weekly sprints and demos",
+        "Priority 24/7 support",
+        "Flexible scaling",
+        "AI automation included"
+      ]
     },
     "performance": {
       "name": "Performance",
-      "price": "Pay for results"
+      "price": "Pay for results",
+      "period": "pay for ROI",
+      "description": "We earn only when you earn",
+      "features": [
+        "Payment tied to metrics",
+        "Minimal risk for you",
+        "AI-driven optimization",
+        "Monthly ROI reports"
+      ]
     },
     "cta": "Book a Call",
     "badge": "Pricing Models",
@@ -103,35 +130,70 @@
         "price": "from $5,000",
         "period": "fixed price",
         "description": "Perfect for well-defined projects with fixed budget",
-        "features": ["Fixed cost and timeline", "Full development cycle", "Result guarantee", "3-month support"]
+        "features": [
+          "Fixed cost and timeline",
+          "Full development cycle",
+          "Result guarantee",
+          "3-month support"
+        ]
       },
       "1": {
         "name": "Retainer",
         "price": "from $3,000",
         "period": "/month",
         "description": "Dedicated team for continuous product development",
-        "features": ["Dedicated team", "Weekly sprints and demos", "Priority 24/7 support", "Flexible scaling", "AI automation included"]
+        "features": [
+          "Dedicated team",
+          "Weekly sprints and demos",
+          "Priority 24/7 support",
+          "Flexible scaling",
+          "AI automation included"
+        ]
       },
       "2": {
         "name": "Performance",
         "price": "Pay for results",
         "period": "pay for ROI",
         "description": "We earn only when you earn",
-        "features": ["Payment tied to metrics", "Minimal risk for you", "AI-driven optimization", "Monthly ROI reports"]
+        "features": [
+          "Payment tied to metrics",
+          "Minimal risk for you",
+          "AI-driven optimization",
+          "Monthly ROI reports"
+        ]
       }
-    }
+    },
+    "highlight": "pricing"
   },
   "faq": {
     "title": "Frequently Asked Questions",
     "subtitle": "Answers to common questions",
     "badge": "FAQ",
     "items": {
-      "0": { "q": "How long does AI automation development take?", "a": "First results visible in 2-4 weeks. AI agent MVP launches in 4-6 weeks. Full integration with your systems — 2-3 months." },
-      "1": { "q": "What budget is needed to start?", "a": "Minimum automation project starts from $5,000. Retainer — from $3,000/month. We also offer a performance model where you pay only for results." },
-      "2": { "q": "What technologies do you use?", "a": "OpenAI, Anthropic, LangChain for AI. React, Next.js, Django for development. n8n and custom solutions for automation. Supabase, PostgreSQL for data." },
-      "3": { "q": "We're not a technical company. Is that OK?", "a": "Absolutely. 70% of our clients are non-technical companies. We handle all the technical part and explain everything in simple language." },
-      "4": { "q": "What does post-launch support include?", "a": "24/7 monitoring, AI model updates, performance optimization, priority support in Telegram. First 3 months — free." },
-      "5": { "q": "How is ROI measured?", "a": "We set metrics before project start: hours saved, conversion increase, cost reduction. Monthly reports with real numbers." }
+      "0": {
+        "q": "How long does AI automation development take?",
+        "a": "First results visible in 2-4 weeks. AI agent MVP launches in 4-6 weeks. Full integration with your systems — 2-3 months."
+      },
+      "1": {
+        "q": "What budget is needed to start?",
+        "a": "Minimum automation project starts from $5,000. Retainer — from $3,000/month. We also offer a performance model where you pay only for results."
+      },
+      "2": {
+        "q": "What technologies do you use?",
+        "a": "OpenAI, Anthropic, LangChain for AI. React, Next.js, Django for development. n8n and custom solutions for automation. Supabase, PostgreSQL for data."
+      },
+      "3": {
+        "q": "We're not a technical company. Is that OK?",
+        "a": "Absolutely. 70% of our clients are non-technical companies. We handle all the technical part and explain everything in simple language."
+      },
+      "4": {
+        "q": "What does post-launch support include?",
+        "a": "24/7 monitoring, AI model updates, performance optimization, priority support in Telegram. First 3 months — free."
+      },
+      "5": {
+        "q": "How is ROI measured?",
+        "a": "We set metrics before project start: hours saved, conversion increase, cost reduction. Monthly reports with real numbers."
+      }
     }
   },
   "cta": {
@@ -268,10 +330,26 @@
     "highlight": "work",
     "description": "From call to result — transparent process with weekly demos",
     "steps": {
-      "0": { "title": "Discovery Call", "description": "30-minute call. We analyze your processes and find automation points.", "duration": "30 min" },
-      "1": { "title": "Strategy & Prototype", "description": "We prepare an automation plan, solution prototype and ROI forecast.", "duration": "2 weeks" },
-      "2": { "title": "Development", "description": "Iterative development with weekly demos. You see progress every week.", "duration": "4-8 weeks" },
-      "3": { "title": "Launch & Scale", "description": "Launch to production, monitor metrics and scale what works.", "duration": "Ongoing" }
+      "0": {
+        "title": "Discovery Call",
+        "description": "30-minute call. We analyze your processes and find automation points.",
+        "duration": "30 min"
+      },
+      "1": {
+        "title": "Strategy & Prototype",
+        "description": "We prepare an automation plan, solution prototype and ROI forecast.",
+        "duration": "2 weeks"
+      },
+      "2": {
+        "title": "Development",
+        "description": "Iterative development with weekly demos. You see progress every week.",
+        "duration": "4-8 weeks"
+      },
+      "3": {
+        "title": "Launch & Scale",
+        "description": "Launch to production, monitor metrics and scale what works.",
+        "duration": "Ongoing"
+      }
     }
   },
   "portfolio": {
@@ -280,9 +358,24 @@
     "highlight": "ROI",
     "description": "Results that speak for themselves",
     "projects": {
-      "0": { "title": "AI Customer Support Agent", "category": "AI Agents", "desc": "Customer support automation: 500+ requests/day without operators", "roi": "-60% costs" },
-      "1": { "title": "E-commerce Automation", "category": "Automation", "desc": "Full automation of online store operations", "roi": "+150% revenue" },
-      "2": { "title": "CRM с AI Analytics", "category": "SaaS", "desc": "Smart CRM with predictive analytics and AI scoring", "roi": "+300% conversion" }
+      "0": {
+        "title": "AI Customer Support Agent",
+        "category": "AI Agents",
+        "desc": "Customer support automation: 500+ requests/day without operators",
+        "roi": "-60% costs"
+      },
+      "1": {
+        "title": "E-commerce Automation",
+        "category": "Automation",
+        "desc": "Full automation of online store operations",
+        "roi": "+150% revenue"
+      },
+      "2": {
+        "title": "CRM с AI Analytics",
+        "category": "SaaS",
+        "desc": "Smart CRM with predictive analytics and AI scoring",
+        "roi": "+300% conversion"
+      }
     },
     "view_case": "View case",
     "view": "View",
@@ -294,9 +387,24 @@
     "highlight": "clients say",
     "description": "Opinions of companies that entrusted us with their projects",
     "items": {
-      "0": { "name": "Alexey Petrov", "company": "TechStart", "role": "CEO", "text": "The FullFocus team exceeded all our expectations. They created a modern e-commerce platform that increased our sales by 150%." },
-      "1": { "name": "Maria Ivanova", "company": "FinTech Solutions", "role": "CTO", "text": "Professional approach to mobile app development. Code quality and attention to detail at the highest level." },
-      "2": { "name": "Dmitry Kozlov", "company": "Retail Group", "role": "IT Director", "text": "CRM system implementation went smoothly and on time. Technical support works promptly and efficiently." }
+      "0": {
+        "name": "Alexey Petrov",
+        "company": "TechStart",
+        "role": "CEO",
+        "text": "The FullFocus team exceeded all our expectations. They created a modern e-commerce platform that increased our sales by 150%."
+      },
+      "1": {
+        "name": "Maria Ivanova",
+        "company": "FinTech Solutions",
+        "role": "CTO",
+        "text": "Professional approach to mobile app development. Code quality and attention to detail at the highest level."
+      },
+      "2": {
+        "name": "Dmitry Kozlov",
+        "company": "Retail Group",
+        "role": "IT Director",
+        "text": "CRM system implementation went smoothly and on time. Technical support works promptly and efficiently."
+      }
     }
   },
   "techstack": {
@@ -321,11 +429,26 @@
     "step_of": "Step {current} of {total}",
     "collapse": "Collapse",
     "steps": {
-      "0": { "title": "Idea", "subtitle": "Describe your idea" },
-      "1": { "title": "Audience", "subtitle": "Who needs this?" },
-      "2": { "title": "Solution", "subtitle": "How does it work?" },
-      "3": { "title": "Business", "subtitle": "How to monetize?" },
-      "4": { "title": "Contacts", "subtitle": "How to reach you?" }
+      "0": {
+        "title": "Idea",
+        "subtitle": "Describe your idea"
+      },
+      "1": {
+        "title": "Audience",
+        "subtitle": "Who needs this?"
+      },
+      "2": {
+        "title": "Solution",
+        "subtitle": "How does it work?"
+      },
+      "3": {
+        "title": "Business",
+        "subtitle": "How to monetize?"
+      },
+      "4": {
+        "title": "Contacts",
+        "subtitle": "How to reach you?"
+      }
     },
     "fields": {
       "idea_name": "Idea / product name *",
@@ -418,20 +541,48 @@
     "values_highlight": "principles",
     "values_description": "The foundation of our work",
     "values": {
-      "0": { "title": "Focus on results", "description": "We focus on achieving specific business goals of our clients" },
-      "1": { "title": "Teamwork", "description": "Effective collaboration within the team and with clients" },
-      "2": { "title": "Innovation", "description": "We use modern technologies and approaches to solve problems" },
-      "3": { "title": "Quality", "description": "We strictly monitor code quality and the final product" }
+      "0": {
+        "title": "Focus on results",
+        "description": "We focus on achieving specific business goals of our clients"
+      },
+      "1": {
+        "title": "Teamwork",
+        "description": "Effective collaboration within the team and with clients"
+      },
+      "2": {
+        "title": "Innovation",
+        "description": "We use modern technologies and approaches to solve problems"
+      },
+      "3": {
+        "title": "Quality",
+        "description": "We strictly monitor code quality and the final product"
+      }
     },
     "team_badge": "Team",
     "team_title": "Our",
     "team_highlight": "specialists",
     "team_description": "People who make FullFocus special",
     "team": {
-      "0": { "name": "Ahmad Ruziboev", "position": "CEO & Founder", "bio": "Over 10 years of experience in IT industry" },
-      "1": { "name": "Bobur Karimov", "position": "CTO", "bio": "Solutions architect, cloud technology expert" },
-      "2": { "name": "Nigora Nazarova", "position": "Lead Designer", "bio": "UI/UX specialist with international experience" },
-      "3": { "name": "Jasur Alimov", "position": "Full-Stack Developer", "bio": "Expert in React, Node.js and cloud solutions" }
+      "0": {
+        "name": "Ahmad Ruziboev",
+        "position": "CEO & Founder",
+        "bio": "Over 10 years of experience in IT industry"
+      },
+      "1": {
+        "name": "Bobur Karimov",
+        "position": "CTO",
+        "bio": "Solutions architect, cloud technology expert"
+      },
+      "2": {
+        "name": "Nigora Nazarova",
+        "position": "Lead Designer",
+        "bio": "UI/UX specialist with international experience"
+      },
+      "3": {
+        "name": "Jasur Alimov",
+        "position": "Full-Stack Developer",
+        "bio": "Expert in React, Node.js and cloud solutions"
+      }
     }
   },
   "services_page": {
@@ -440,10 +591,54 @@
     "description": "Full range of IT services for digital transformation of your business",
     "discuss_project": "Discuss project",
     "items": {
-      "0": { "title": "Web Development", "description": "We create modern web applications and sites using cutting-edge technologies", "features": ["React, Next.js, Vue.js", "Node.js, Express, NestJS", "PostgreSQL, MongoDB, Redis", "REST API, GraphQL", "SEO optimization", "High performance"] },
-      "1": { "title": "Mobile Applications", "description": "We develop native and cross-platform applications for iOS and Android", "features": ["React Native, Flutter", "Swift, Kotlin", "Push notifications", "Offline mode", "API Integration", "App Store publishing"] },
-      "2": { "title": "UI/UX Design", "description": "We design intuitive and beautiful interfaces that users love", "features": ["User research", "Wireframes & prototypes", "Design systems", "Responsive design", "UI kits", "Usability testing"] },
-      "3": { "title": "ERP/CRM Systems", "description": "We implement and configure systems for business process automation", "features": ["1C:Enterprise", "Odoo, ERPNext", "Salesforce, HubSpot", "Service integration", "Data migration", "Technical support"] }
+      "0": {
+        "title": "Web Development",
+        "description": "We create modern web applications and sites using cutting-edge technologies",
+        "features": [
+          "React, Next.js, Vue.js",
+          "Node.js, Express, NestJS",
+          "PostgreSQL, MongoDB, Redis",
+          "REST API, GraphQL",
+          "SEO optimization",
+          "High performance"
+        ]
+      },
+      "1": {
+        "title": "Mobile Applications",
+        "description": "We develop native and cross-platform applications for iOS and Android",
+        "features": [
+          "React Native, Flutter",
+          "Swift, Kotlin",
+          "Push notifications",
+          "Offline mode",
+          "API Integration",
+          "App Store publishing"
+        ]
+      },
+      "2": {
+        "title": "UI/UX Design",
+        "description": "We design intuitive and beautiful interfaces that users love",
+        "features": [
+          "User research",
+          "Wireframes & prototypes",
+          "Design systems",
+          "Responsive design",
+          "UI kits",
+          "Usability testing"
+        ]
+      },
+      "3": {
+        "title": "ERP/CRM Systems",
+        "description": "We implement and configure systems for business process automation",
+        "features": [
+          "1C:Enterprise",
+          "Odoo, ERPNext",
+          "Salesforce, HubSpot",
+          "Service integration",
+          "Data migration",
+          "Technical support"
+        ]
+      }
     }
   },
   "contact_page": {
@@ -464,11 +659,26 @@
     "faq_highlight": "asked questions",
     "faq_desc": "Answers to popular questions about our work",
     "faq": {
-      "0": { "q": "How much does website development cost?", "a": "Cost depends on complexity and functionality. Landing — from $500, corporate site — from $1500, web app — from $3000. Take our quiz for an accurate estimate." },
-      "1": { "q": "How long does project development take?", "a": "Timelines depend on scope. Landing — 1-2 weeks, corporate site — 3-4 weeks, complex web apps — 2-4 months. We always meet agreed deadlines." },
-      "2": { "q": "Do you provide post-launch support?", "a": "Yes, we offer technical support and project maintenance. Includes bug fixes, updates and adding new features on request." },
-      "3": { "q": "Do you work with international clients?", "a": "Yes, we work with clients worldwide. We communicate in Russian, Uzbek and English. We accept payments in various currencies." },
-      "4": { "q": "What is the development process?", "a": "Our process: Analysis → Design → Development → Testing → Launch → Support. At each stage you receive regular reports and can make changes." }
+      "0": {
+        "q": "How much does website development cost?",
+        "a": "Cost depends on complexity and functionality. Landing — from $500, corporate site — from $1500, web app — from $3000. Take our quiz for an accurate estimate."
+      },
+      "1": {
+        "q": "How long does project development take?",
+        "a": "Timelines depend on scope. Landing — 1-2 weeks, corporate site — 3-4 weeks, complex web apps — 2-4 months. We always meet agreed deadlines."
+      },
+      "2": {
+        "q": "Do you provide post-launch support?",
+        "a": "Yes, we offer technical support and project maintenance. Includes bug fixes, updates and adding new features on request."
+      },
+      "3": {
+        "q": "Do you work with international clients?",
+        "a": "Yes, we work with clients worldwide. We communicate in Russian, Uzbek and English. We accept payments in various currencies."
+      },
+      "4": {
+        "q": "What is the development process?",
+        "a": "Our process: Analysis → Design → Development → Testing → Launch → Support. At each stage you receive regular reports and can make changes."
+      }
     }
   },
   "portfolio_page": {
@@ -482,12 +692,36 @@
     "erp": "ERP/CRM",
     "view_project": "View project",
     "projects": {
-      "0": { "title": "E-commerce Platform", "category": "Web Development", "desc": "Modern online trading platform with payment system integration" },
-      "1": { "title": "Mobile Banking App", "category": "Mobile Applications", "desc": "Mobile finance management app with biometric authentication" },
-      "2": { "title": "CRM System", "category": "ERP/CRM", "desc": "Customer relationship management system for B2B sales" },
-      "3": { "title": "SaaS Dashboard", "category": "Web Development", "desc": "Analytics dashboard for SaaS product with real-time metrics" },
-      "4": { "title": "Food Delivery App", "category": "Mobile Applications", "desc": "Food delivery app with tracking system" },
-      "5": { "title": "Brand Identity", "category": "Design", "desc": "Brand identity design for a fintech startup" }
+      "0": {
+        "title": "E-commerce Platform",
+        "category": "Web Development",
+        "desc": "Modern online trading platform with payment system integration"
+      },
+      "1": {
+        "title": "Mobile Banking App",
+        "category": "Mobile Applications",
+        "desc": "Mobile finance management app with biometric authentication"
+      },
+      "2": {
+        "title": "CRM System",
+        "category": "ERP/CRM",
+        "desc": "Customer relationship management system for B2B sales"
+      },
+      "3": {
+        "title": "SaaS Dashboard",
+        "category": "Web Development",
+        "desc": "Analytics dashboard for SaaS product with real-time metrics"
+      },
+      "4": {
+        "title": "Food Delivery App",
+        "category": "Mobile Applications",
+        "desc": "Food delivery app with tracking system"
+      },
+      "5": {
+        "title": "Brand Identity",
+        "category": "Design",
+        "desc": "Brand identity design for a fintech startup"
+      }
     }
   },
   "blog_page": {
