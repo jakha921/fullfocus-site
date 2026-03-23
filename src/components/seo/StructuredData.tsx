@@ -16,8 +16,8 @@ export function OrganizationJsonLd({ locale }: OrganizationJsonLdProps) {
     "@type": "Organization",
     "name": "FullFocus",
     "alternateName": "FullFocus.dev",
-    "url": "https://site.fullfocus.dev",
-    "logo": "https://site.fullfocus.dev/logo.png",
+    "url": "https://fullfocus.dev",
+    "logo": "https://fullfocus.dev/logo.png",
     "description": description,
     "address": {
       "@type": "PostalAddress",
@@ -62,7 +62,7 @@ export function ServiceJsonLd({ name, description, locale }: ServiceJsonLdProps)
     "provider": {
       "@type": "Organization",
       "name": "FullFocus",
-      "url": "https://site.fullfocus.dev"
+      "url": "https://fullfocus.dev"
     },
     "areaServed": {
       "@type": "Country",
@@ -115,7 +115,7 @@ export function BreadcrumbJsonLd({ items }: BreadcrumbJsonLdProps) {
       "@type": "ListItem",
       "position": index + 1,
       "name": item.name,
-      "item": `https://site.fullfocus.dev${item.url}`
+      "item": `https://fullfocus.dev${item.url}`
     }))
   });
 

@@ -1,29 +1,33 @@
 import {
   Hero,
   ServicesSection,
-  StatsSection,
   PortfolioSection,
   TestimonialsSection,
-  BlogSection,
   CTASection,
   ProcessSection,
   TechStackSection,
-  ClientsSection,
+  SocialProofBar,
+  PainSection,
+  PricingSection,
+  FAQSection,
+  IdeaAuctionSection,
 } from "@/components/site";
 
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <StatsSection />
+      <SocialProofBar />
+      <PainSection />
       <ServicesSection />
+      <PortfolioSection />
       <ProcessSection />
       <TechStackSection />
-      <PortfolioSection />
-      <ClientsSection />
       <TestimonialsSection />
-      <BlogSection />
+      <PricingSection />
+      <FAQSection />
       <CTASection />
+      <IdeaAuctionSection />
     </>
   );
 }

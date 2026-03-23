@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://site.fullfocus.dev';
+  const baseUrl = 'https://fullfocus.dev';
   const locales = ['en', 'ru', 'uz'];
   const pages = ['', '/about', '/services', '/portfolio', '/contact'];
 

@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/admin', '/api/admin', '/api/auth'],
       },
     ],
-    sitemap: 'https://site.fullfocus.dev/sitemap.xml',
+    sitemap: 'https://fullfocus.dev/sitemap.xml',
   };
 }

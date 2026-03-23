@@ -50,7 +50,7 @@ export function generateSEOMetadata({ locale, path = '', title, description, key
     openGraph: {
       type: 'website',
       locale: locale === 'ru' ? 'ru_RU' : locale === 'uz' ? 'uz_UZ' : 'en_US',
-      url: `https://site.fullfocus.dev${path}`,
+      url: `https://fullfocus.dev${path}`,
       siteName: 'FullFocus',
       title: title || content.title,
       description: description || content.description,
@@ -70,11 +70,11 @@ export function generateSEOMetadata({ locale, path = '', title, description, key
       images: ['/og-image.png'],
     },
     alternates: {
-      canonical: `https://site.fullfocus.dev${path}`,
+      canonical: `https://fullfocus.dev${path}`,
       languages: {
-        'en': `https://site.fullfocus.dev/en${path}`,
-        'ru': `https://site.fullfocus.dev/ru${path}`,
-        'uz': `https://site.fullfocus.dev/uz${path}`,
+        'en': `https://fullfocus.dev/en${path}`,
+        'ru': `https://fullfocus.dev/ru${path}`,
+        'uz': `https://fullfocus.dev/uz${path}`,
       },
     },
   };

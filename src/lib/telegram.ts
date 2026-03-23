@@ -40,7 +40,7 @@ export function formatContactMessage(data: {
     `📝 <b>Сообщение:</b> ${data.message.slice(0, 200)}`,
     data.source ? `📌 <b>Источник:</b> ${data.source}` : null,
     ``,
-    `🔗 <a href="https://site.fullfocus.dev/admin/requests/${data.id}">Открыть в панели</a>`,
+    `🔗 <a href="https://fullfocus.dev/admin/requests/${data.id}">Открыть в панели</a>`,
   ]
     .filter((line): line is string => line !== null)
     .join("\n");
@@ -69,7 +69,7 @@ export function formatQuizMessage(data: {
     `⏰ <b>Сроки:</b> ${data.timeline}`,
     `📊 <b>Оценка:</b> $${data.estimateMin.toLocaleString()} – $${data.estimateMax.toLocaleString()}`,
     ``,
-    `🔗 <a href="https://site.fullfocus.dev/admin/quiz-results">Открыть в панели</a>`,
+    `🔗 <a href="https://fullfocus.dev/admin/quiz-results">Открыть в панели</a>`,
   ]
     .filter((line): line is string => line !== null)
     .join("\n");
