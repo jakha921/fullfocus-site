@@ -106,6 +106,18 @@ export default function ServiceLandingPage({ params }: ServicePageProps) {
           availability: "https://schema.org/InStock",
         },
       },
+      {
+        "@type": "FAQPage",
+        "@id": `${pageUrl}#faq`,
+        mainEntity: page.faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.answer,
+          },
+        })),
+      },
     ],
   };
 
@@ -255,6 +267,26 @@ export default function ServiceLandingPage({ params }: ServicePageProps) {
                 </p>
                 <h3 className="mt-6 font-semibold text-white">{step.title}</h3>
                 <p className="mt-3 text-sm leading-6 text-zinc-400">{step.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 py-14 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl">
+          <div className="mb-8">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-teal-300">
+              FAQ
+            </p>
+            <h2 className="font-display text-3xl font-bold">Common questions</h2>
+          </div>
+
+          <div className="space-y-3">
+            {page.faqs.map((faq) => (
+              <div key={faq.question} className="rounded-lg border border-white/10 bg-zinc-950 p-5">
+                <h3 className="font-semibold text-white">{faq.question}</h3>
+                <p className="mt-3 text-sm leading-6 text-zinc-400">{faq.answer}</p>
               </div>
             ))}
           </div>

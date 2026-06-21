@@ -16,6 +16,10 @@ export type ServiceLandingPage = {
     after: string;
     scenario: string;
   };
+  faqs: {
+    question: string;
+    answer: string;
+  }[];
   workflow: {
     title: string;
     description: string;
@@ -65,6 +69,23 @@ export const serviceLandingPages: ServiceLandingPage[] = [
       scenario:
         "Useful for education, clinics, real estate, services, and any business where clients already write in Telegram.",
     },
+    faqs: [
+      {
+        question: "Can a Telegram bot create leads in CRM automatically?",
+        answer:
+          "Yes. The bot can collect contact details, qualify the request, create or update a CRM lead, assign a manager, and send notifications to the right chat.",
+      },
+      {
+        question: "Can the bot answer clients with AI?",
+        answer:
+          "Yes, if there is a clear knowledge base and escalation rule. Common questions can be answered automatically, while complex requests are sent to a manager.",
+      },
+      {
+        question: "How long does Telegram bot automation take?",
+        answer:
+          "A focused MVP usually takes 2-6 weeks depending on integrations, conversation logic, CRM access, and reporting requirements.",
+      },
+    ],
     workflow: [
       {
         title: "Map chat flows",
@@ -130,6 +151,23 @@ export const serviceLandingPages: ServiceLandingPage[] = [
       scenario:
         "Useful for B2B sales, real estate, education, agencies, and service teams with multiple lead sources.",
     },
+    faqs: [
+      {
+        question: "What CRM automation should we start with first?",
+        answer:
+          "Start with lead source capture, owner assignment, next-action reminders, duplicate checks, and a simple pipeline dashboard. These usually create the fastest operational clarity.",
+      },
+      {
+        question: "Can CRM automation work with Telegram and website forms?",
+        answer:
+          "Yes. Website forms, Telegram, WhatsApp, ads, spreadsheets, and email can be connected into one lead flow with source tracking and status updates.",
+      },
+      {
+        question: "Do we need to replace our current CRM?",
+        answer:
+          "Not always. If your current CRM has an API or export/import options, it is usually better to automate around the existing system before replacing it.",
+      },
+    ],
     workflow: [
       {
         title: "Audit the pipeline",
@@ -195,6 +233,23 @@ export const serviceLandingPages: ServiceLandingPage[] = [
       scenario:
         "Useful for product companies, service businesses, marketplaces, education, and support teams with repeat questions.",
     },
+    faqs: [
+      {
+        question: "What does an AI support agent need to answer correctly?",
+        answer:
+          "It needs approved knowledge: FAQs, policies, product or service details, examples of good answers, escalation rules, and a way to track failed questions.",
+      },
+      {
+        question: "Can an AI support agent hand off to a human manager?",
+        answer:
+          "Yes. The agent can summarize the conversation, tag the topic, update CRM or support tools, and send complex requests to a manager.",
+      },
+      {
+        question: "How do you prevent wrong AI answers?",
+        answer:
+          "We use a controlled knowledge base, fallback rules, testing questions, monitoring, and clear limits on what the agent is allowed to answer.",
+      },
+    ],
     workflow: [
       {
         title: "Prepare knowledge",
