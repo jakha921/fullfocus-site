@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       path: `/services/${page.slug}`,
       priority: 0.85,
     })),
+    { path: '/tools/automation-roi-calculator', priority: 0.85 },
     { path: '/quiz', priority: 0.9 },
     { path: '/contact', priority: 0.8 },
     { path: '/portfolio', priority: 0.7 },

@@ -18,6 +18,7 @@ const serviceLinks = [
   { href: "/services/telegram-bot-automation", key: "automation_service" },
   { href: "/services", key: "saas_service" },
   { href: "/services/crm-automation", key: "integration_service" },
+  { href: "/tools/automation-roi-calculator", key: "roi_calculator" },
 ] as const;
 
 export function Footer() {
