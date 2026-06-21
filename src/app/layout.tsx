@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   creator: "FullFocus",
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "uz_UZ",
     url: "https://fullfocus.dev",
     siteName: "FullFocus",
     title: "FullFocus - AI Business Automation",

@@ -30,7 +30,7 @@ export function createPageMetadata({
       description,
       url,
       siteName: "FullFocus",
-      locale: "en_US",
+      locale: "uz_UZ",
       type: "website",
     },
     twitter: {
