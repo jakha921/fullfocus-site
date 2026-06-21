@@ -9,6 +9,13 @@ export type ServiceLandingPage = {
   subhero: string;
   outcomes: string[];
   problems: string[];
+  proof: {
+    metric: string;
+    metricLabel: string;
+    before: string;
+    after: string;
+    scenario: string;
+  };
   workflow: {
     title: string;
     description: string;
@@ -48,6 +55,16 @@ export const serviceLandingPages: ServiceLandingPage[] = [
       "Important requests disappear in group chats.",
       "There is no clean report on lead source, status, SLA, and revenue.",
     ],
+    proof: {
+      metric: "5-15 min",
+      metricLabel: "target first-response time",
+      before:
+        "A client writes in Telegram, waits for a manager, and the lead is copied into CRM later.",
+      after:
+        "The bot qualifies the lead, creates a CRM record, alerts the right manager, and sends the next step instantly.",
+      scenario:
+        "Useful for education, clinics, real estate, services, and any business where clients already write in Telegram.",
+    },
     workflow: [
       {
         title: "Map chat flows",
@@ -103,6 +120,16 @@ export const serviceLandingPages: ServiceLandingPage[] = [
       "Owners do not see a real-time pipeline picture.",
       "Reports are prepared manually at the end of the week or month.",
     ],
+    proof: {
+      metric: "20-40%",
+      metricLabel: "expected reduction in missed follow-ups",
+      before:
+        "Managers update statuses manually, owners ask for reports, and lead sources stay fragmented.",
+      after:
+        "Every lead gets a source, owner, next action, reminder, and visible pipeline status.",
+      scenario:
+        "Useful for B2B sales, real estate, education, agencies, and service teams with multiple lead sources.",
+    },
     workflow: [
       {
         title: "Audit the pipeline",
@@ -158,6 +185,16 @@ export const serviceLandingPages: ServiceLandingPage[] = [
       "Support quality depends too much on individual employees.",
       "There is no searchable source of truth for answers and policies.",
     ],
+    proof: {
+      metric: "24/7",
+      metricLabel: "coverage for routine support questions",
+      before:
+        "Clients wait for a person, and managers repeat the same answers from memory.",
+      after:
+        "The AI agent answers from an approved knowledge base, qualifies the request, and escalates complex cases.",
+      scenario:
+        "Useful for product companies, service businesses, marketplaces, education, and support teams with repeat questions.",
+    },
     workflow: [
       {
         title: "Prepare knowledge",

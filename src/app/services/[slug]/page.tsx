@@ -1,7 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, CheckCircle2, Clock3, DollarSign, Workflow } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowRightLeft,
+  CheckCircle2,
+  Clock3,
+  DollarSign,
+  Workflow,
+} from "lucide-react";
 import Script from "next/script";
 import { createPageMetadata } from "@/lib/seo-metadata";
 import {
@@ -198,6 +205,36 @@ export default function ServiceLandingPage({ params }: ServicePageProps) {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 py-14 sm:px-6 lg:px-8">
+        <div className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-[0.75fr_1.25fr]">
+          <div className="rounded-lg border border-teal-300/20 bg-teal-300/10 p-6">
+            <p className="text-sm font-medium text-teal-200">Expected impact</p>
+            <p className="mt-4 font-display text-5xl font-bold text-white">
+              {page.proof.metric}
+            </p>
+            <p className="mt-2 text-sm text-zinc-300">{page.proof.metricLabel}</p>
+          </div>
+
+          <div className="rounded-lg border border-white/10 bg-zinc-950 p-6">
+            <div className="mb-5 flex items-center gap-3">
+              <ArrowRightLeft className="h-5 w-5 text-teal-300" />
+              <h2 className="font-display text-2xl font-bold">Before and after</h2>
+            </div>
+            <div className="grid gap-4 md:grid-cols-2">
+              <div className="rounded-lg bg-white/[0.03] p-4">
+                <p className="mb-2 text-sm font-semibold text-zinc-500">Before</p>
+                <p className="text-sm leading-6 text-zinc-300">{page.proof.before}</p>
+              </div>
+              <div className="rounded-lg bg-white/[0.03] p-4">
+                <p className="mb-2 text-sm font-semibold text-teal-300">After</p>
+                <p className="text-sm leading-6 text-zinc-300">{page.proof.after}</p>
+              </div>
+            </div>
+            <p className="mt-5 text-sm leading-6 text-zinc-400">{page.proof.scenario}</p>
           </div>
         </div>
       </section>
