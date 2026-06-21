@@ -193,7 +193,7 @@ export default function RequestDetailPage() {
                     <p className="text-white">{request.serviceType || "-"}</p>
                   </div>
                   <div>
-                    <p className="text-gray-400 text-sm">Бюджет</p>
+                    <p className="text-gray-400 text-sm">Масштаб</p>
                     <p className="text-white">{request.budget || "-"}</p>
                   </div>
                 </div>

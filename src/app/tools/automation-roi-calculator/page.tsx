@@ -11,7 +11,7 @@ const faqs = [
   {
     question: "How do I calculate automation ROI?",
     answer:
-      "Estimate monthly labor savings, revenue recovered from faster follow-up, and implementation cost. ROI is the annual impact minus implementation cost, divided by implementation cost.",
+      "Start with monthly manual hours, request volume, expected automation coverage, and current response time. This gives a practical view of operational impact before a private implementation estimate.",
   },
   {
     question: "What processes usually create the fastest automation ROI?",
@@ -63,11 +63,6 @@ export default function AutomationRoiCalculatorPage() {
         url: pageUrl,
         applicationCategory: "BusinessApplication",
         operatingSystem: "Web",
-        offers: {
-          "@type": "Offer",
-          price: 0,
-          priceCurrency: "USD",
-        },
         provider: {
           "@type": "Organization",
           name: "FullFocus",

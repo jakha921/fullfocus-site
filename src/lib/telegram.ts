@@ -54,7 +54,7 @@ export function formatContactMessage(data: {
     `📧 <b>Email:</b> ${escapeHtml(data.email)}`,
     data.phone ? `📱 <b>Телефон:</b> ${escapeHtml(data.phone)}` : null,
     data.serviceType ? `💼 <b>Услуга:</b> ${escapeHtml(data.serviceType)}` : null,
-    data.budget ? `💰 <b>Бюджет:</b> ${escapeHtml(data.budget)}` : null,
+    data.budget ? `📐 <b>Масштаб:</b> ${escapeHtml(data.budget)}` : null,
     `📝 <b>Сообщение:</b> ${escapeHtml(data.message.slice(0, 200))}`,
     data.source ? `📌 <b>Источник:</b> ${escapeHtml(data.source)}` : null,
     ``,
@@ -103,9 +103,8 @@ export function formatQuizMessage(data: {
           : ""
       }`,
       data.volume ? `📦 <b>Объем:</b> ${escapeHtml(labelVolume(data.volume))}` : null,
-      `💰 <b>Бюджет:</b> ${escapeHtml(labelBudget(data.budget))}`,
+      `📐 <b>Масштаб:</b> ${escapeHtml(labelBudget(data.budget))}`,
       `⏰ <b>Срок:</b> ${escapeHtml(labelTimeline(data.timeline))}`,
-      `📊 <b>Оценка:</b> $${data.estimateMin.toLocaleString()} - $${data.estimateMax.toLocaleString()}`,
       data.estimateWeeksMin && data.estimateWeeksMax
         ? `🗓 <b>Срок разработки:</b> ${data.estimateWeeksMin}-${data.estimateWeeksMax} недель`
         : null,
@@ -142,9 +141,8 @@ export function formatQuizMessage(data: {
     data.phone ? `📱 <b>Телефон:</b> ${escapeHtml(data.phone)}` : null,
     data.company ? `🏢 <b>Компания:</b> ${escapeHtml(data.company)}` : null,
     `💼 <b>Тип:</b> ${escapeHtml(data.projectType)}`,
-    `💰 <b>Бюджет:</b> ${escapeHtml(data.budget)}`,
+    `📐 <b>Масштаб:</b> ${escapeHtml(data.budget)}`,
     `⏰ <b>Сроки:</b> ${escapeHtml(data.timeline)}`,
-    `📊 <b>Оценка:</b> $${data.estimateMin.toLocaleString()} – $${data.estimateMax.toLocaleString()}`,
     ``,
     `🔗 <a href="https://fullfocus.dev/admin/quiz-results">Открыть в панели</a>`,
   ]

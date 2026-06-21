@@ -100,10 +100,8 @@ export default async function ReportPage({ params }: { params: { id: string } })
           </div>
           <div className="rounded-lg border border-white/10 bg-white/[0.03] p-5">
             <ShieldCheck className="mb-4 h-5 w-5 text-teal-300" />
-            <p className="text-sm text-zinc-500">Оценка</p>
-            <p className="mt-1 font-semibold">
-              ${result.estimateMin.toLocaleString()} - ${result.estimateMax.toLocaleString()}
-            </p>
+            <p className="text-sm text-zinc-500">Масштаб</p>
+            <p className="mt-1 font-semibold">{labelBudget(result.budget)}</p>
           </div>
         </div>
 
@@ -169,7 +167,7 @@ export default async function ReportPage({ params }: { params: { id: string } })
               <p className="text-sm text-teal-200">Объем: {labelVolume(audit.volume)}</p>
               <h2 className="mt-1 text-xl font-bold">Разобрать это в Telegram</h2>
               <p className="mt-2 text-sm text-zinc-300">
-                Бюджет: {labelBudget(result.budget)} · примерный срок разработки:{" "}
+                Масштаб: {labelBudget(result.budget)} · примерный срок разработки:{" "}
                 {result.estimateWeeksMin}-{result.estimateWeeksMax} недель.
               </p>
             </div>

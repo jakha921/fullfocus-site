@@ -26,7 +26,6 @@ export default function SettingsPage() {
     telegram_chat_id: "",
     sticky_bar_enabled: "false",
     available_slots: "",
-    month_name: "",
   });
 
   useEffect(() => {
@@ -182,13 +181,6 @@ export default function SettingsPage() {
                       value={settings.available_slots}
                       onChange={handleChange}
                       placeholder="3"
-                    />
-                    <Input
-                      label="Название месяца"
-                      name="month_name"
-                      value={settings.month_name}
-                      onChange={handleChange}
-                      placeholder="апрель"
                     />
                   </div>
                 </Card>

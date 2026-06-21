@@ -3,7 +3,7 @@ export const dynamic = "force-dynamic";
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { DollarSign, Clock, Mail, Phone, Building, Eye, Trash2 } from "lucide-react";
+import { Clock, Gauge, Mail, Phone, Building, Eye, Trash2 } from "lucide-react";
 import { AdminHeader } from "@/components/admin/AdminHeader";
 import { Card, Badge, Button, Skeleton } from "@/components/ui";
 import toast from "react-hot-toast";
@@ -52,14 +52,14 @@ const projectTypeLabels: Record<string, string> = {
 };
 
 const budgetLabels: Record<string, { label: string; color: string }> = {
-  starter: { label: "До $2,000", color: "bg-blue-500" },
-  growth: { label: "$2,000 - $7,000", color: "bg-emerald-500" },
-  scale: { label: "$7,000 - $20,000", color: "bg-yellow-500" },
-  small: { label: "До $5,000", color: "bg-blue-500" },
-  medium: { label: "$5,000 - $15,000", color: "bg-emerald-500" },
-  large: { label: "$15,000 - $50,000", color: "bg-yellow-500" },
-  enterprise: { label: "$50,000+", color: "bg-purple-500" },
-  not_sure: { label: "Не определён", color: "bg-gray-500" },
+  starter: { label: "MVP / точечная автоматизация", color: "bg-blue-500" },
+  growth: { label: "Несколько интеграций", color: "bg-emerald-500" },
+  scale: { label: "Процесс отдела", color: "bg-yellow-500" },
+  small: { label: "MVP / точечная задача", color: "bg-blue-500" },
+  medium: { label: "Несколько интеграций", color: "bg-emerald-500" },
+  large: { label: "Процесс отдела", color: "bg-yellow-500" },
+  enterprise: { label: "Комплексная автоматизация", color: "bg-purple-500" },
+  not_sure: { label: "Нужно оценить", color: "bg-gray-500" },
 };
 
 const timelineLabels: Record<string, string> = {
@@ -163,7 +163,7 @@ export default function QuizResultsPage() {
                       </div>
                       <div className="text-right">
                         <p className="text-emerald-400 font-semibold text-sm">
-                          ${result.estimateMin.toLocaleString()} - ${result.estimateMax.toLocaleString()}
+                          {result.estimateWeeksMin}-{result.estimateWeeksMax} недель
                         </p>
                         <p className="text-gray-500 text-xs">
                           {new Date(result.createdAt).toLocaleDateString("ru-RU")}
@@ -227,7 +227,7 @@ export default function QuizResultsPage() {
                       </div>
 
                       <div className="flex items-center justify-between">
-                        <span className="text-gray-400">Бюджет</span>
+                        <span className="text-gray-400">Масштаб</span>
                         <Badge className={budgetLabels[selectedResult.budget]?.color || "bg-gray-500"}>
                           {budgetLabels[selectedResult.budget]?.label || labelBudget(selectedResult.budget)}
                         </Badge>
@@ -283,11 +283,11 @@ export default function QuizResultsPage() {
                       <h3 className="text-emerald-400 font-semibold mb-3">Оценка автоматизации</h3>
                       <div className="grid grid-cols-2 gap-4">
                         <div className="flex items-center gap-2">
-                          <DollarSign className="w-5 h-5 text-emerald-400" />
+                          <Gauge className="w-5 h-5 text-emerald-400" />
                           <div>
-                            <p className="text-gray-400 text-xs">Бюджет</p>
+                            <p className="text-gray-400 text-xs">Масштаб</p>
                             <p className="text-white font-semibold">
-                              ${selectedResult.estimateMin.toLocaleString()} - ${selectedResult.estimateMax.toLocaleString()}
+                              {budgetLabels[selectedResult.budget]?.label || labelBudget(selectedResult.budget)}
                             </p>
                           </div>
                         </div>

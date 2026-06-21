@@ -207,10 +207,12 @@ async function main() {
   const teamMembers = await Promise.all([
     prisma.teamMember.upsert({
       where: { id: "team-1" },
-      update: {},
+      update: {
+        name: "Jakhongir Ruzibaev",
+      },
       create: {
         id: "team-1",
-        name: "Ахмад Рузибоев",
+        name: "Jakhongir Ruzibaev",
         position: "CEO & Founder",
         bio: "Более 10 лет опыта в IT-индустрии. Основатель FullFocus.",
         photo: null,
@@ -460,7 +462,6 @@ async function main() {
     { key: "telegram_chat_id", value: "" },
     { key: "sticky_bar_enabled", value: "false" },
     { key: "available_slots", value: "3" },
-    { key: "month_name", value: "апрель" },
   ];
 
   for (const setting of settings) {

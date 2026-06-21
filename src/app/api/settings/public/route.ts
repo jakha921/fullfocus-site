@@ -5,7 +5,7 @@ export const revalidate = 60;
 
 export async function GET() {
   try {
-    const keys = ["available_slots", "month_name", "sticky_bar_enabled"];
+    const keys = ["available_slots", "sticky_bar_enabled"];
     const settings = await prisma.setting.findMany({
       where: { key: { in: keys } },
     });

@@ -119,8 +119,8 @@ const steps: Step[] = [
   },
   {
     key: 'budget',
-    title: 'Какой бюджет комфортно обсуждать?',
-    eyebrow: 'Бюджет',
+    title: 'Какой масштаб решения комфортно обсуждать?',
+    eyebrow: 'Масштаб',
     type: 'single',
   },
   {
@@ -311,32 +311,32 @@ const options: Record<Exclude<StepKey, 'contact'>, Option[]> = {
   budget: [
     {
       value: 'starter',
-      label: 'До $2,000',
-      description: 'MVP или точечная автоматизация',
+      label: 'MVP / точечная автоматизация',
+      description: 'Один процесс, быстрый запуск',
       icon: WalletCards,
     },
     {
       value: 'growth',
-      label: '$2,000 - $7,000',
-      description: 'Несколько интеграций и отчетность',
+      label: 'Несколько интеграций',
+      description: 'CRM, Telegram, отчеты или уведомления',
       icon: WalletCards,
     },
     {
       value: 'scale',
-      label: '$7,000 - $20,000',
-      description: 'Система под отдел или процесс',
+      label: 'Процесс отдела',
+      description: 'Система под команду или направление',
       icon: WalletCards,
     },
     {
       value: 'enterprise',
-      label: '$20,000+',
-      description: 'Комплексная автоматизация',
+      label: 'Комплексная автоматизация',
+      description: 'Несколько отделов и критичные процессы',
       icon: WalletCards,
     },
     {
       value: 'not_sure',
       label: 'Нужно оценить',
-      description: 'Сначала понять объем работ',
+      description: 'Определим после короткого аудита',
       icon: Bot,
     },
   ],

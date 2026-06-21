@@ -67,9 +67,9 @@ function formatReportMessage(result: {
     `🎯 <b>Фокус:</b> ${escapeHtml(labelAutomationArea(result.projectType))}`,
     `🔥 <b>Score:</b> ${escapeHtml(audit.leadScore ?? 0)}/100 · ${escapeHtml(leadTemperature)}`,
     audit.volume ? `📦 <b>Объем:</b> ${escapeHtml(labelVolume(audit.volume))}` : null,
-    `💰 <b>Бюджет:</b> ${escapeHtml(labelBudget(result.budget))}`,
+    `📐 <b>Масштаб:</b> ${escapeHtml(labelBudget(result.budget))}`,
     `⏰ <b>Срок:</b> ${escapeHtml(labelTimeline(result.timeline))}`,
-    `📊 <b>Оценка:</b> $${result.estimateMin.toLocaleString()} - $${result.estimateMax.toLocaleString()} · ${result.estimateWeeksMin}-${result.estimateWeeksMax} недель`,
+    `🗓 <b>Срок разработки:</b> ${result.estimateWeeksMin}-${result.estimateWeeksMax} недель`,
     ``,
     audit.painPoints.length
       ? `⚠️ <b>Боли:</b> ${escapeHtml(audit.painPoints.map(labelPainPoint).join(", "))}`

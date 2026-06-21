@@ -2,15 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Calculator, DollarSign, Timer, TrendingUp } from "lucide-react";
-
-function formatCurrency(value: number): string {
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    maximumFractionDigits: 0,
-  }).format(value);
-}
+import { ArrowRight, Calculator, Clock3, Timer, TrendingUp } from "lucide-react";
 
 function formatMonths(value: number): string {
   if (!Number.isFinite(value)) return "n/a";
@@ -21,38 +13,27 @@ function formatMonths(value: number): string {
 export function AutomationRoiCalculator() {
   const [teamSize, setTeamSize] = useState(6);
   const [hoursPerPerson, setHoursPerPerson] = useState(8);
-  const [hourlyCost, setHourlyCost] = useState(12);
-  const [monthlyRevenueLeak, setMonthlyRevenueLeak] = useState(3000);
-  const [recoveryRate, setRecoveryRate] = useState(20);
-  const [implementationCost, setImplementationCost] = useState(5000);
+  const [requestVolume, setRequestVolume] = useState(300);
+  const [automationCoverage, setAutomationCoverage] = useState(35);
+  const [responseTimeHours, setResponseTimeHours] = useState(8);
+  const [implementationWeeks, setImplementationWeeks] = useState(6);
 
   const result = useMemo(() => {
-    const monthlyLaborSavings = teamSize * hoursPerPerson * 4.33 * hourlyCost;
-    const monthlyRecoveredRevenue = monthlyRevenueLeak * (recoveryRate / 100);
-    const monthlyImpact = monthlyLaborSavings + monthlyRecoveredRevenue;
-    const annualImpact = monthlyImpact * 12;
-    const paybackMonths = implementationCost / monthlyImpact;
-    const firstYearRoi =
-      implementationCost > 0
-        ? ((annualImpact - implementationCost) / implementationCost) * 100
-        : 0;
+    const monthlyManualHours = teamSize * hoursPerPerson * 4.33;
+    const monthlyHoursRecovered = monthlyManualHours * (automationCoverage / 100);
+    const annualHoursRecovered = monthlyHoursRecovered * 12;
+    const automatedRequests = requestVolume * (automationCoverage / 100);
+    const firstResponseGain = Math.max(0, responseTimeHours - 0.25);
+    const paybackMonths = implementationWeeks / 4.33;
 
     return {
-      monthlyLaborSavings,
-      monthlyRecoveredRevenue,
-      monthlyImpact,
-      annualImpact,
+      monthlyHoursRecovered,
+      annualHoursRecovered,
+      automatedRequests,
+      firstResponseGain,
       paybackMonths,
-      firstYearRoi,
     };
-  }, [
-    hourlyCost,
-    hoursPerPerson,
-    implementationCost,
-    monthlyRevenueLeak,
-    recoveryRate,
-    teamSize,
-  ]);
+  }, [automationCoverage, hoursPerPerson, implementationWeeks, requestVolume, responseTimeHours, teamSize]);
 
   const controls = [
     {
@@ -74,42 +55,40 @@ export function AutomationRoiCalculator() {
       onChange: setHoursPerPerson,
     },
     {
-      label: "Average loaded hourly cost",
-      value: hourlyCost,
-      min: 3,
+      label: "Monthly requests or operations",
+      value: requestVolume,
+      min: 20,
+      max: 3000,
+      step: 20,
+      suffix: "items",
+      onChange: setRequestVolume,
+    },
+    {
+      label: "Expected automation coverage",
+      value: automationCoverage,
+      min: 10,
       max: 80,
-      step: 1,
-      prefix: "$",
-      suffix: "/hour",
-      onChange: setHourlyCost,
-    },
-    {
-      label: "Monthly revenue lost to slow follow-up",
-      value: monthlyRevenueLeak,
-      min: 0,
-      max: 50000,
-      step: 500,
-      prefix: "$",
-      suffix: "/month",
-      onChange: setMonthlyRevenueLeak,
-    },
-    {
-      label: "Expected revenue recovery",
-      value: recoveryRate,
-      min: 0,
-      max: 70,
       step: 5,
       suffix: "%",
-      onChange: setRecoveryRate,
+      onChange: setAutomationCoverage,
     },
     {
-      label: "Estimated automation build cost",
-      value: implementationCost,
-      min: 1000,
-      max: 50000,
-      step: 500,
-      prefix: "$",
-      onChange: setImplementationCost,
+      label: "Current first-response time",
+      value: responseTimeHours,
+      min: 1,
+      max: 72,
+      step: 1,
+      suffix: "hours",
+      onChange: setResponseTimeHours,
+    },
+    {
+      label: "Expected implementation window",
+      value: implementationWeeks,
+      min: 2,
+      max: 16,
+      step: 1,
+      suffix: "weeks",
+      onChange: setImplementationWeeks,
     },
   ];
 
@@ -127,7 +106,6 @@ export function AutomationRoiCalculator() {
               <div className="mb-2 flex items-center justify-between gap-4">
                 <span className="text-sm font-medium text-zinc-300">{control.label}</span>
                 <span className="shrink-0 rounded-lg bg-white/[0.05] px-3 py-1 text-sm font-semibold text-white">
-                  {control.prefix || ""}
                   {control.value.toLocaleString()}
                   {control.suffix ? ` ${control.suffix}` : ""}
                 </span>
@@ -154,43 +132,43 @@ export function AutomationRoiCalculator() {
 
         <div className="grid gap-3 sm:grid-cols-2">
           <div className="rounded-lg bg-black/25 p-4">
-            <DollarSign className="mb-3 h-5 w-5 text-teal-300" />
-            <p className="text-sm text-zinc-400">Monthly impact</p>
+            <Clock3 className="mb-3 h-5 w-5 text-teal-300" />
+            <p className="text-sm text-zinc-400">Monthly hours recovered</p>
             <p className="mt-1 text-2xl font-bold text-white">
-              {formatCurrency(result.monthlyImpact)}
+              {Math.round(result.monthlyHoursRecovered).toLocaleString()} h
             </p>
           </div>
           <div className="rounded-lg bg-black/25 p-4">
             <TrendingUp className="mb-3 h-5 w-5 text-teal-300" />
-            <p className="text-sm text-zinc-400">Annual impact</p>
+            <p className="text-sm text-zinc-400">Annual hours recovered</p>
             <p className="mt-1 text-2xl font-bold text-white">
-              {formatCurrency(result.annualImpact)}
+              {Math.round(result.annualHoursRecovered).toLocaleString()} h
             </p>
           </div>
           <div className="rounded-lg bg-black/25 p-4">
             <Timer className="mb-3 h-5 w-5 text-teal-300" />
-            <p className="text-sm text-zinc-400">Payback period</p>
+            <p className="text-sm text-zinc-400">Planning horizon</p>
             <p className="mt-1 text-2xl font-bold text-white">
               {formatMonths(result.paybackMonths)}
             </p>
           </div>
           <div className="rounded-lg bg-black/25 p-4">
             <Calculator className="mb-3 h-5 w-5 text-teal-300" />
-            <p className="text-sm text-zinc-400">First-year ROI</p>
+            <p className="text-sm text-zinc-400">Automated requests</p>
             <p className="mt-1 text-2xl font-bold text-white">
-              {Math.round(result.firstYearRoi).toLocaleString()}%
+              {Math.round(result.automatedRequests).toLocaleString()}/mo
             </p>
           </div>
         </div>
 
         <div className="mt-5 rounded-lg border border-white/10 bg-black/20 p-4 text-sm leading-6 text-zinc-300">
           <p>
-            Labor savings: {formatCurrency(result.monthlyLaborSavings)}/month.
-            Revenue recovery: {formatCurrency(result.monthlyRecoveredRevenue)}/month.
+            Estimated first-response gain: {result.firstResponseGain.toFixed(1)} hours per request.
+            This helps size the automation opportunity without publishing commercial terms.
           </p>
           <p className="mt-2 text-zinc-400">
-            This is a directional model. A real implementation estimate should include
-            data quality, integrations, approvals, fallback paths, and reporting needs.
+            A real implementation plan should include data quality, integrations,
+            approvals, fallback paths, and reporting needs.
           </p>
         </div>
 

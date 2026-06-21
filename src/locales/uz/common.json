@@ -82,89 +82,6 @@
     "scaling_desc_full": "O'sish uchun jarayonlarni optimallashtirish o'rniga ko'proq odam yollaysiz",
     "highlight": "pul yo'qotmoqda"
   },
-  "pricing": {
-    "title": "Shaffof",
-    "subtitle": "O'zingizga mos hamkorlik modelini tanlang",
-    "project": {
-      "name": "Loyiha asosida",
-      "price": "$5,000 dan",
-      "period": "belgilangan narx",
-      "description": "Aniq belgilangan byudjetli loyihalar uchun ideal",
-      "features": [
-        "Belgilangan narx va muddat",
-        "To'liq ishlab chiqish tsikli",
-        "Natija kafolati",
-        "3 oylik qo'llab-quvvatlash"
-      ]
-    },
-    "retainer": {
-      "name": "Reteyner",
-      "price": "$3,000/oydan",
-      "period": "/oy",
-      "description": "Mahsulotingizni doimiy rivojlantirish uchun ajratilgan jamoa",
-      "features": [
-        "Ajratilgan jamoa",
-        "Haftalik sprintlar va demolar",
-        "Ustuvor 24/7 qo'llab-quvvatlash",
-        "Moslashuvchan kengaytirish",
-        "AI-avtomatlashtirish kiritilgan"
-      ]
-    },
-    "performance": {
-      "name": "Performance",
-      "price": "Natija uchun to'lov",
-      "period": "ROI uchun to'lov",
-      "description": "Biz faqat siz pul ishlaganingizda ishlaymiz",
-      "features": [
-        "To'lov metrikalarga bog'langan",
-        "Siz uchun minimal xavf",
-        "AI asosida optimallashtirish",
-        "Oylik ROI hisobotlari"
-      ]
-    },
-    "cta": "AI-audit olish",
-    "badge": "Ish modellari",
-    "plans": {
-      "0": {
-        "name": "Loyiha asosida",
-        "price": "$5,000 dan",
-        "period": "belgilangan narx",
-        "description": "Aniq belgilangan byudjetli loyihalar uchun ideal",
-        "features": [
-          "Belgilangan narx va muddat",
-          "To'liq ishlab chiqish tsikli",
-          "Natija kafolati",
-          "3 oylik qo'llab-quvvatlash"
-        ]
-      },
-      "1": {
-        "name": "Reteyner",
-        "price": "$3,000 dan",
-        "period": "/oy",
-        "description": "Mahsulotingizni doimiy rivojlantirish uchun ajratilgan jamoa",
-        "features": [
-          "Ajratilgan jamoa",
-          "Haftalik sprintlar va demolar",
-          "Ustuvor 24/7 qo'llab-quvvatlash",
-          "Moslashuvchan kengaytirish",
-          "AI-avtomatlashtirish kiritilgan"
-        ]
-      },
-      "2": {
-        "name": "Performance",
-        "price": "Natija uchun to'lov",
-        "period": "ROI uchun to'lov",
-        "description": "Biz faqat siz pul ishlaganingizda ishlaymiz",
-        "features": [
-          "To'lov metrikalarga bog'langan",
-          "Siz uchun minimal xavf",
-          "AI asosida optimallashtirish",
-          "Oylik ROI hisobotlari"
-        ]
-      }
-    },
-    "highlight": "narxlash"
-  },
   "faq": {
     "title": "Ko'p beriladigan savollar",
     "subtitle": "Tez-tez so'raladigan savollarga javoblar",
@@ -175,8 +92,8 @@
         "a": "Birinchi natijalar 2-4 haftada ko'rinadi. AI-agent MVP 4-6 haftada ishga tushiriladi. Tizimlaringiz bilan to'liq integratsiya — 2-3 oy."
       },
       "1": {
-        "q": "Boshlash uchun qanday byudjet kerak?",
-        "a": "Minimal avtomatlashtirish loyihasi $5,000 dan boshlanadi. Reteyner — $3,000/oydan. Shuningdek, faqat natija uchun to'lanadigan performance-modelni taklif qilamiz."
+        "q": "Tayyor texnik topshiriqsiz boshlasa bo‘ladimi?",
+        "a": "Ha. Avval AI-audit qilamiz, jarayonlar, risklar va MVP hajmini aniqlaymiz. Shundan keyin bosqichlar va shartlarni alohida muhokama qilish mumkin."
       },
       "2": {
         "q": "Qanday texnologiyalardan foydalanasiz?",
@@ -187,8 +104,8 @@
         "a": "Albatta. Mijozlarimizning 70% texnik bo'lmagan kompaniyalar. Biz barcha texnik qismni o'z zimmamizga olamiz va hamma narsani oddiy tilda tushuntiramiz."
       },
       "4": {
-        "q": "Ishga tushirilgandan keyingi qo'llab-quvvatlash nimalarni o'z ichiga oladi?",
-        "a": "24/7 monitoring, AI-modellarni yangilash, ishlash samaradorligini optimallashtirish, Telegramda ustuvor qo'llab-quvvatlash. Birinchi 3 oy — bepul."
+        "q": "Ishga tushirilgandan keyingi qo‘llab-quvvatlash nimani o‘z ichiga oladi?",
+        "a": "Monitoring, AI-modellarni yangilash, unumdorlikni optimallashtirish, Telegram orqali ustuvor aloqa va ishga tushirilgandan keyingi yaxshilash rejasi."
       },
       "5": {
         "q": "ROI qanday o'lchanadi?",
@@ -205,7 +122,8 @@
     "no_obligation": "Majburiyatsiz",
     "ai_audit": "AI-audit sovg'a sifatida",
     "slots_left": "Qoldi",
-    "slots": "o'rin"
+    "slots": "o'rin",
+    "slots_message": "{month} oyida {slots} ta joy qoldi"
   },
   "quiz": {
     "title": "Loyihangiz uchun bepul baho oling",
@@ -216,7 +134,7 @@
     "submit": "Bahoni olish",
     "result": {
       "title": "Loyihangiz bahosi",
-      "range": "Taxminiy byudjet",
+      "range": "Tavsiya etilgan joriy qilish hajmi",
       "timeline": "Bajarish muddati",
       "recommendations": "Tavsiyalar",
       "cta": "Maslahatga yozilish",
@@ -235,12 +153,12 @@
         }
       },
       "budget": {
-        "title": "Taxminiy byudjetingiz qancha?",
+        "title": "Qanday yechim ko‘lami sizga mos?",
         "options": {
-          "small": "Gacha $5,000",
-          "medium": "$5,000 - $15,000",
-          "large": "$15,000 - $50,000",
-          "enterprise": "$50,000 dan yuqori",
+          "small": "MVP / aniq vazifa",
+          "medium": "Bir nechta integratsiya",
+          "large": "Bo‘lim jarayoni",
+          "enterprise": "Kompleks avtomatlashtirish",
           "not_sure": "Hali aniqlanmagan"
         }
       },
@@ -300,7 +218,7 @@
     "email_label": "Email *",
     "phone_label": "Telefon",
     "service_label": "Xizmat turi",
-    "budget_label": "Byudjet",
+    "budget_label": "Loyiha ko‘lami",
     "message_label": "Loyiha tavsifi *",
     "message_placeholder": "Loyihangiz, maqsadlaringiz va muddatlar haqida gapirib bering...",
     "select_service": "Xizmatni tanlang",
@@ -309,11 +227,11 @@
     "service_saas": "SaaS ishlab chiqish",
     "service_integration": "Tizim integratsiyasi",
     "service_other": "Boshqa",
-    "select_budget": "Byudjetni tanlang",
-    "budget_small": "$5,000 gacha",
-    "budget_medium": "$5,000 - $15,000",
-    "budget_large": "$15,000 - $50,000",
-    "budget_enterprise": "$50,000 dan yuqori",
+    "select_budget": "Ko‘lamni tanlang",
+    "budget_small": "MVP / aniq vazifa",
+    "budget_medium": "Bir nechta integratsiya",
+    "budget_large": "Bo‘lim jarayoni",
+    "budget_enterprise": "Kompleks avtomatlashtirish",
     "success_title": "Ariza yuborildi!",
     "success_desc": "Tez orada siz bilan bog'lanamiz",
     "send_another": "Yana ariza yuborish",
@@ -457,7 +375,7 @@
       "problem": "Qanday muammoni hal qiladi? *",
       "problem_placeholder": "Hal qilmoqchi bo'lgan muammoni tasvirlang. Qanchalik batafsil — g'olib bo'lish imkoniyati shunchalik yuqori.",
       "target_audience": "Maqsadli auditoriyangiz kim? *",
-      "target_audience_placeholder": "Kim foydalanadi? Yosh, kasb, muammolar, byudjet...",
+      "target_audience_placeholder": "Kim foydalanadi? Yosh, kasb, muammolar, cheklovlar...",
       "market_size": "Bozor ko'lami",
       "solution_desc": "Mahsulot qanday ishlashi kerak? *",
       "solution_placeholder": "Foydalanuvchi mahsulot bilan qanday ishlashini tasvirlang. Qanday qadamlar, ekranlar, jarayonlar?",
@@ -518,7 +436,8 @@
     "slots": "o'rin",
     "in_month": "da",
     "limited": "Bu oyda cheklangan joylar",
-    "cta": "AI-audit olish"
+    "cta": "AI-audit olish",
+    "slots_message": "{month} oyida {slots} ta joy qoldi"
   },
   "common": {
     "scroll": "Scroll",
@@ -570,8 +489,8 @@
     "team_description": "FullFocusni alohida qiladigan odamlar",
     "team": {
       "0": {
-        "initials": "AR",
-        "name": "Ahmad Ruziboyev",
+        "initials": "JR",
+        "name": "Jakhongir Ruzibaev",
         "position": "CEO & Founder",
         "bio": "IT sohasida 10 yildan ortiq tajriba"
       },
@@ -671,8 +590,8 @@
     "faq_desc": "Ishimiz haqidagi ommabop savollarga javoblar",
     "faq": {
       "0": {
-        "q": "Sayt ishlab chiqish qancha turadi?",
-        "a": "Narx murakkablik va funksionallikka bog'liq. Lending — $500 dan, korporativ sayt — $1500 dan, veb-ilova — $3000 dan. Aniq baho uchun kvizimizni o'ting."
+        "q": "Loyiha hajmini qanday tushunamiz?",
+        "a": "Hajm jarayonlar, integratsiyalar, kontent va ishonchlilik talablariga bog‘liq. Aniq texnik topshiriq va joriy qilish rejasini shakllantirish uchun kviz yoki AI-auditdan o‘ting."
       },
       "1": {
         "q": "Loyihani ishlab chiqish qancha vaqt oladi?",
@@ -684,7 +603,7 @@
       },
       "3": {
         "q": "Xorijiy mijozlar bilan ishlaysizmi?",
-        "a": "Ha, butun dunyo bo'ylab mijozlar bilan ishlaymiz. Rus, o'zbek va ingliz tillarida muloqot qilamiz. Turli valyutalarda to'lovlarni qabul qilamiz."
+        "a": "Ha, butun dunyo bo‘ylab mijozlar bilan ishlaymiz. Rus, o‘zbek va ingliz tillarida muloqot qilamiz va qulay hamkorlik formatini tanlaymiz."
       },
       "4": {
         "q": "Ishlab chiqish jarayoni qanday?",

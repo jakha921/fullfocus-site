@@ -34,8 +34,7 @@ export function OrganizationJsonLd({ locale }: OrganizationJsonLdProps) {
       "https://t.me/fullfocusdev",
       "https://instagram.com/fullfocus.dev",
       "https://linkedin.com/company/fullfocus-dev"
-    ],
-    "priceRange": "$5,000 - $50,000+"
+    ]
   });
 
   return (

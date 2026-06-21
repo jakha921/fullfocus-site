@@ -90,14 +90,14 @@ export const volumeLabels: Record<string, string> = {
 };
 
 export const budgetLabels: Record<string, string> = {
-  starter: "До $2,000",
-  growth: "$2,000 - $7,000",
-  scale: "$7,000 - $20,000",
-  enterprise: "$20,000+",
+  starter: "MVP / точечная автоматизация",
+  growth: "Несколько интеграций",
+  scale: "Процесс отдела",
+  enterprise: "Комплексная автоматизация",
   not_sure: "Нужно оценить",
-  small: "До $5,000",
-  medium: "$5,000 - $15,000",
-  large: "$15,000 - $50,000",
+  small: "MVP / точечная задача",
+  medium: "Несколько интеграций",
+  large: "Процесс отдела",
 };
 
 export const timelineLabels: Record<string, string> = {

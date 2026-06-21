@@ -4,19 +4,20 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Gift, Shield, Sparkles } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { getCurrentMonthName } from "@/lib/current-month";
 
 export function CTASection() {
   const t = useTranslations("cta");
+  const locale = useLocale();
   const [slots, setSlots] = useState<string | null>(null);
-  const [monthName, setMonthName] = useState<string | null>(null);
+  const monthName = getCurrentMonthName(locale);
 
   useEffect(() => {
     fetch("/api/settings/public")
       .then((r) => r.json())
       .then((data) => {
         setSlots(data.available_slots || null);
-        setMonthName(data.month_name || null);
       })
       .catch(() => {});
   }, []);
@@ -64,14 +65,11 @@ export function CTASection() {
                 {t("ai_audit")}
               </span>
             </div>
-            {slots && monthName && (
+            {slots && (
               <div className="mt-4 flex items-center justify-center gap-2 text-sm">
                 <span className="w-2 h-2 bg-orange-400 rounded-full animate-pulse" />
                 <span className="text-orange-400 font-semibold">
-                  {t("slots_left")}{" "}
-                  <span className="font-bold">{slots}</span>{" "}
-                  {t("slots")}{" "}
-                  <span className="font-bold">{monthName}</span>
+                  {t("slots_message", { slots, month: monthName })}
                 </span>
               </div>
             )}

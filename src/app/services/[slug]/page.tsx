@@ -6,7 +6,6 @@ import {
   ArrowRightLeft,
   CheckCircle2,
   Clock3,
-  DollarSign,
   Workflow,
 } from "lucide-react";
 import Script from "next/script";
@@ -98,13 +97,6 @@ export default function ServiceLandingPage({ params }: ServicePageProps) {
         },
         serviceType: page.title,
         description: page.description,
-        offers: {
-          "@type": "Offer",
-          url: pageUrl,
-          priceCurrency: "USD",
-          price: page.startingPriceAmount,
-          availability: "https://schema.org/InStock",
-        },
       },
       {
         "@type": "FAQPage",
@@ -170,9 +162,9 @@ export default function ServiceLandingPage({ params }: ServicePageProps) {
             <p className="mt-1 text-xl font-semibold">{page.timeline}</p>
           </div>
           <div className="rounded-lg border border-white/10 bg-white/[0.03] p-5">
-            <DollarSign className="mb-4 h-5 w-5 text-teal-300" />
-            <p className="text-sm text-zinc-500">Budget</p>
-            <p className="mt-1 text-xl font-semibold">{page.startingPrice}</p>
+            <CheckCircle2 className="mb-4 h-5 w-5 text-teal-300" />
+            <p className="text-sm text-zinc-500">Engagement</p>
+            <p className="mt-1 text-xl font-semibold">{page.engagement}</p>
           </div>
           <div className="rounded-lg border border-white/10 bg-white/[0.03] p-5">
             <Workflow className="mb-4 h-5 w-5 text-teal-300" />
