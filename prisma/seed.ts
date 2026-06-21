@@ -4,19 +4,38 @@ import bcrypt from "bcryptjs";
 const prisma = new PrismaClient();
 
 async function main() {
-  // Create admin user
-  const hashedPassword = await bcrypt.hash("FullFocus2025", 10);
-  const admin = await prisma.user.upsert({
-    where: { email: "admin@fullfocus.dev" },
-    update: {},
-    create: {
-      email: "admin@fullfocus.dev",
-      password: hashedPassword,
-      name: "Admin",
-      role: "admin",
-    },
-  });
-  console.log("Created admin user:", admin.email);
+  // Create admin user only when credentials are explicitly provided.
+  const adminEmail = process.env.ADMIN_EMAIL?.trim().toLowerCase();
+  const adminPassword = process.env.ADMIN_PASSWORD;
+  const adminName = process.env.ADMIN_NAME?.trim() || "Admin";
+
+  if (adminEmail && adminPassword) {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(adminEmail)) {
+      throw new Error("ADMIN_EMAIL must be a valid email address");
+    }
+    if (adminPassword.length < 12) {
+      throw new Error("ADMIN_PASSWORD must be at least 12 characters long");
+    }
+
+    const hashedPassword = await bcrypt.hash(adminPassword, 10);
+    const admin = await prisma.user.upsert({
+      where: { email: adminEmail },
+      update: {
+        password: hashedPassword,
+        name: adminName,
+        role: "admin",
+      },
+      create: {
+        email: adminEmail,
+        password: hashedPassword,
+        name: adminName,
+        role: "admin",
+      },
+    });
+    console.log("Admin user ready:", admin.email);
+  } else {
+    console.log("Skipped admin user seed: set ADMIN_EMAIL and ADMIN_PASSWORD");
+  }
 
   // Create services
   const services = await Promise.all([
