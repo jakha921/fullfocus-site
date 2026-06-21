@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next';
+import { serviceLandingPages } from '@/lib/service-landing-pages';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://fullfocus.dev';
@@ -6,6 +7,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const pages = [
     { path: '', priority: 1 },
     { path: '/services', priority: 0.9 },
+    ...serviceLandingPages.map((page) => ({
+      path: `/services/${page.slug}`,
+      priority: 0.85,
+    })),
     { path: '/quiz', priority: 0.9 },
     { path: '/contact', priority: 0.8 },
     { path: '/portfolio', priority: 0.7 },

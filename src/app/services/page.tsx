@@ -10,7 +10,8 @@ import {
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { CTASection } from "@/components/site";
-import { Card, Button } from "@/components/ui";
+import { Card } from "@/components/ui";
+import { serviceLandingPages } from "@/lib/service-landing-pages";
 import Link from "next/link";
 
 const serviceItems = [
@@ -138,10 +139,12 @@ export default function ServicesPage() {
                             </li>
                           ))}
                         </ul>
-                        <Link href="/contact">
-                          <Button variant="gradient">
-                            {t("discuss_project")} <ArrowRight className="w-4 h-4 ml-2" />
-                          </Button>
+                        <Link
+                          href="/quiz"
+                          className="inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-green-500 to-teal-500 px-5 py-2.5 text-sm font-bold text-black shadow-lg shadow-green-500/25 transition-all hover:scale-[1.02] hover:from-green-400 hover:to-teal-400 active:scale-[0.98]"
+                        >
+                          {t("discuss_project")}
+                          <ArrowRight className="w-4 h-4" />
                         </Link>
                       </div>
 
@@ -154,6 +157,45 @@ export default function ServicesPage() {
               );
             })}
           </motion.div>
+        </div>
+      </section>
+
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-8 max-w-3xl">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-teal-300">
+              SEO landing pages
+            </p>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-white">
+              Automation services by use case
+            </h2>
+            <p className="mt-4 text-gray-400 leading-relaxed">
+              Focused pages for high-intent automation requests. Each page includes
+              problems, workflows, integrations, timeline, and a direct audit CTA.
+            </p>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-3">
+            {serviceLandingPages.map((page) => (
+              <Link
+                key={page.slug}
+                href={`/services/${page.slug}`}
+                className="group rounded-lg border border-white/10 bg-white/[0.03] p-5 transition hover:border-teal-300/40 hover:bg-white/[0.05]"
+              >
+                <p className="text-sm font-medium text-teal-300">{page.badge}</p>
+                <h3 className="mt-4 font-display text-xl font-bold text-white">
+                  {page.title}
+                </h3>
+                <p className="mt-3 text-sm leading-6 text-gray-400">
+                  {page.description}
+                </p>
+                <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-teal-300">
+                  View service
+                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                </span>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
