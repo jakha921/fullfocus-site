@@ -1,7 +1,10 @@
 import { MetadataRoute } from 'next';
 import { serviceLandingPages } from '@/lib/service-landing-pages';
+import { prisma } from '@/lib/prisma';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export const dynamic = 'force-dynamic';
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://fullfocus.dev';
   const lastModified = new Date('2026-06-21T00:00:00.000Z');
   const pages = [
@@ -20,10 +23,34 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/privacy', priority: 0.2 },
   ];
 
-  return pages.map((page) => ({
+  const staticPages = pages.map((page) => ({
     url: `${baseUrl}${page.path}`,
     lastModified,
-    changeFrequency: 'weekly',
+    changeFrequency: 'weekly' as const,
     priority: page.priority,
   }));
+
+  try {
+    const blogPosts = await prisma.blogPost.findMany({
+      where: { isPublished: true },
+      select: {
+        slug: true,
+        updatedAt: true,
+        publishedAt: true,
+      },
+      orderBy: [{ publishedAt: 'desc' }, { createdAt: 'desc' }],
+    });
+
+    return [
+      ...staticPages,
+      ...blogPosts.map((post) => ({
+        url: `${baseUrl}/blog/${post.slug}`,
+        lastModified: post.updatedAt ?? post.publishedAt ?? lastModified,
+        changeFrequency: 'monthly' as const,
+        priority: 0.65,
+      })),
+    ];
+  } catch {
+    return staticPages;
+  }
 }

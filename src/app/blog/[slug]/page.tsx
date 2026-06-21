@@ -1,220 +1,264 @@
-"use client";
-
-import { motion } from "framer-motion";
+/* eslint-disable @next/next/no-img-element */
+import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, Calendar, User, Share2 } from "lucide-react";
-import { Card, Badge, Button } from "@/components/ui";
+import { notFound } from "next/navigation";
+import Script from "next/script";
+import { ArrowLeft, Calendar, Clock3, User } from "lucide-react";
+import { ArticleCta } from "@/components/blog/ArticleCta";
+import {
+  getPlainTextFromHtml,
+  getPublishedBlogPostBySlug,
+  getReadingTimeMinutes,
+  getRelatedBlogPosts,
+  isSafeUrl,
+  sanitizeBlogHtml,
+} from "@/lib/blog";
 
-// Demo post data
-const post = {
-  id: "1",
-  title: "Как выбрать IT-подрядчика для вашего проекта",
-  slug: "how-to-choose-it-contractor",
-  excerpt:
-    "Руководство по выбору надёжного партнёра для разработки программного обеспечения",
-  content: `
-    <p>Выбор правильного IT-подрядчика — критически важное решение, которое может определить успех или провал вашего проекта. В этой статье мы разберём ключевые критерии, на которые стоит обратить внимание.</p>
-    
-    <h2>1. Определите свои потребности</h2>
-    <p>Прежде чем начать поиск подрядчика, чётко сформулируйте требования к проекту:</p>
-    <ul>
-      <li>Какую проблему должен решать продукт?</li>
-      <li>Какой стек технологий вам нужен?</li>
-      <li>Каковы сроки и бюджет проекта?</li>
-    </ul>
-    
-    <h2>2. Изучите портфолио</h2>
-    <p>Портфолио — лучший способ оценить компетенции команды. Обращайте внимание на:</p>
-    <ul>
-      <li>Похожие проекты в вашей отрасли</li>
-      <li>Качество выполненных работ</li>
-      <li>Разнообразие технологий</li>
-    </ul>
-    
-    <h2>3. Проверьте отзывы</h2>
-    <p>Не стесняйтесь просить контакты предыдущих клиентов. Хороший подрядчик охотно поделится рекомендациями.</p>
-    
-    <h2>4. Оцените коммуникацию</h2>
-    <p>Эффективная коммуникация — ключ к успеху проекта. Обратите внимание на:</p>
-    <ul>
-      <li>Скорость ответов на запросы</li>
-      <li>Качество постановки вопросов</li>
-      <li>Готовность объяснять технические детали</li>
-    </ul>
-    
-    <h2>Заключение</h2>
-    <p>Выбор подрядчика — это инвестиция времени, которая окупается качественным результатом. Не торопитесь, проводите тщательную оценку и доверьтесь своей интуиции.</p>
-  `,
-  category: "tips",
-  categoryName: "Советы",
-  tags: ["подрядчик", "разработка", "выбор"],
-  authorName: "Ахмад Рузибоев",
-  createdAt: new Date("2024-01-15"),
-  coverImage: "/images/blog-1.jpg",
+export const dynamic = "force-dynamic";
+
+type BlogPostPageProps = {
+  params: {
+    slug: string;
+  };
 };
 
-const relatedPosts = [
-  {
-    id: "2",
-    title: "Тренды веб-разработки в 2025 году",
-    categoryName: "Технологии",
-    createdAt: new Date("2024-02-01"),
-  },
-  {
-    id: "3",
-    title: "Зачем вашему бизнесу нужен UX-дизайн",
-    categoryName: "Дизайн",
-    createdAt: new Date("2024-02-15"),
-  },
-];
+function formatDate(date: Date | null) {
+  return (date ?? new Date()).toLocaleDateString("uz-UZ", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+}
 
-export default function BlogPostPage({
-  params: _params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const shareUrl = typeof window !== "undefined" ? window.location.href : "";
+function getArticleUrl(slug: string) {
+  return `https://fullfocus.dev/blog/${slug}`;
+}
 
-  const handleShare = async () => {
-    if (navigator.share) {
-      await navigator.share({
-        title: post.title,
-        text: post.excerpt,
-        url: shareUrl,
-      });
-    } else {
-      navigator.clipboard.writeText(shareUrl);
-    }
+export async function generateMetadata({
+  params,
+}: BlogPostPageProps): Promise<Metadata> {
+  const post = await getPublishedBlogPostBySlug(params.slug);
+  if (!post) return {};
+
+  const url = getArticleUrl(post.slug);
+  const image = isSafeUrl(post.coverImage) ? post.coverImage : undefined;
+
+  return {
+    title: post.title,
+    description: post.excerpt,
+    keywords: post.tags,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      url,
+      siteName: "FullFocus",
+      locale: "uz_UZ",
+      type: "article",
+      publishedTime: (post.publishedAt ?? post.createdAt).toISOString(),
+      modifiedTime: post.updatedAt.toISOString(),
+      authors: [post.authorName],
+      tags: post.tags,
+      images: image ? [{ url: image, alt: post.title }] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      images: image ? [image] : undefined,
+    },
+  };
+}
+
+export default async function BlogPostPage({ params }: BlogPostPageProps) {
+  const post = await getPublishedBlogPostBySlug(params.slug);
+  if (!post) notFound();
+
+  const relatedPosts = await getRelatedBlogPosts(post);
+  const articleUrl = getArticleUrl(post.slug);
+  const publishedAt = post.publishedAt ?? post.createdAt;
+  const sanitizedContent = sanitizeBlogHtml(post.content);
+  const readingTime = getReadingTimeMinutes(post.content);
+  const articleBody = getPlainTextFromHtml(post.content);
+  const safeCoverImage = isSafeUrl(post.coverImage) ? post.coverImage : null;
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": `${articleUrl}#article`,
+        headline: post.title,
+        description: post.excerpt,
+        articleBody,
+        url: articleUrl,
+        datePublished: publishedAt.toISOString(),
+        dateModified: post.updatedAt.toISOString(),
+        inLanguage: "uz-UZ",
+        keywords: post.tags.join(", "),
+        image: safeCoverImage ? [safeCoverImage] : undefined,
+        author: {
+          "@type": "Person",
+          name: post.authorName,
+        },
+        publisher: {
+          "@type": "Organization",
+          name: "FullFocus",
+          url: "https://fullfocus.dev",
+        },
+        mainEntityOfPage: {
+          "@type": "WebPage",
+          "@id": articleUrl,
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${articleUrl}#breadcrumb`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: "https://fullfocus.dev",
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Blog",
+            item: "https://fullfocus.dev/blog",
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: post.title,
+            item: articleUrl,
+          },
+        ],
+      },
+    ],
   };
 
   return (
     <>
-      {/* Hero */}
-      <section className="pt-32 pb-8 relative">
+      <Script
+        id={`blog-jsonld-${post.slug}`}
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
+      <section className="relative px-4 pb-8 pt-32 sm:px-6 lg:px-8">
         <div className="absolute inset-0 grid-pattern opacity-30" />
 
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 0, y: 0 }}
+        <div className="relative mx-auto max-w-4xl">
+          <Link
+            href="/blog"
+            className="mb-6 inline-flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-white"
           >
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-6 transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Все статьи
-            </Link>
-          </motion.div>
+            <ArrowLeft className="h-4 w-4" />
+            Barcha maqolalar
+          </Link>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <Badge variant="success">{post.categoryName}</Badge>
-              <span className="text-sm text-gray-500 flex items-center gap-1">
-                <Calendar className="w-4 h-4" />
-                {post.createdAt.toLocaleDateString("ru-RU", {
-                  day: "numeric",
-                  month: "long",
-                  year: "numeric",
-                })}
-              </span>
-            </div>
+          <div className="mb-4 flex flex-wrap items-center gap-3">
+            <span className="rounded-full border border-green-500/30 bg-green-500/10 px-3 py-1 text-sm font-medium text-green-300">
+              {post.category}
+            </span>
+            <span className="flex items-center gap-1 text-sm text-zinc-500">
+              <Calendar className="h-4 w-4" />
+              {formatDate(publishedAt)}
+            </span>
+            <span className="flex items-center gap-1 text-sm text-zinc-500">
+              <Clock3 className="h-4 w-4" />
+              {readingTime} min o&apos;qish
+            </span>
+          </div>
 
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-              {post.title}
-            </h1>
-
-            <div className="flex items-center gap-3 text-gray-400">
-              <User className="w-4 h-4" />
-              <span>{post.authorName}</span>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Cover Image */}
-      <section className="pb-12">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="aspect-video bg-gradient-to-br from-green-500/20 to-gray-800 rounded-xl"
-          />
-        </div>
-      </section>
-
-      {/* Content */}
-      <section className="pb-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-          >
-            <div
-              className="prose prose-invert max-w-none mb-8"
-              dangerouslySetInnerHTML={{ __html: post.content }}
-            />
-
-            {/* Tags */}
-            <div className="flex flex-wrap gap-2 mb-8">
-              {post.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="px-3 py-1 bg-gray-800 text-gray-400 rounded-lg text-sm"
-                >
-                  #{tag}
-                </span>
-              ))}
-            </div>
-
-            {/* Share */}
-            <div className="flex items-center gap-4 pt-8 border-t border-gray-800">
-              <span className="text-gray-400">Поделиться:</span>
-              <Button variant="ghost" size="sm" onClick={handleShare}>
-                <Share2 className="w-4 h-4 mr-2" />
-                Скопировать ссылку
-              </Button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Related Posts */}
-      <section className="py-16 bg-[#0f0f0f]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-white mb-8">
-            Похожие статьи
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {relatedPosts.map((p) => (
-              <Link key={p.id} href={`/blog/${p.id}`}>
-                <Card hover className="group">
-                  <div className="flex items-center gap-3 mb-3">
-                    <Badge variant="outline" className="text-xs">
-                      {p.categoryName}
-                    </Badge>
-                    <span className="text-xs text-gray-500">
-                      {p.createdAt.toLocaleDateString("ru-RU", {
-                        day: "numeric",
-                        month: "short",
-                      })}
-                    </span>
-                  </div>
-                  <h3 className="text-lg font-semibold text-white group-hover:text-green-500 transition-colors">
-                    {p.title}
-                  </h3>
-                </Card>
-              </Link>
-            ))}
+          <h1 className="font-display text-3xl font-bold text-white md:text-5xl">
+            {post.title}
+          </h1>
+          <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-400">
+            {post.excerpt}
+          </p>
+          <div className="mt-6 flex items-center gap-3 text-sm text-zinc-400">
+            <User className="h-4 w-4" />
+            <span>{post.authorName}</span>
           </div>
         </div>
       </section>
+
+      {safeCoverImage ? (
+        <section className="px-4 pb-12 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl overflow-hidden rounded-lg border border-white/10">
+            <img
+              src={safeCoverImage}
+              alt={post.title}
+              className="aspect-video h-full w-full object-cover"
+            />
+          </div>
+        </section>
+      ) : (
+        <section className="px-4 pb-12 sm:px-6 lg:px-8">
+          <div className="mx-auto aspect-video max-w-4xl rounded-lg border border-white/10 bg-gradient-to-br from-green-500/20 via-teal-500/10 to-zinc-900" />
+        </section>
+      )}
+
+      <section className="px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl">
+          <article
+            className="max-w-none text-zinc-300 [&_a]:text-teal-300 [&_a]:underline [&_blockquote]:border-l-2 [&_blockquote]:border-teal-300/60 [&_blockquote]:pl-5 [&_blockquote]:text-zinc-300 [&_code]:rounded [&_code]:bg-white/10 [&_code]:px-1.5 [&_code]:py-0.5 [&_h2]:mb-4 [&_h2]:mt-10 [&_h2]:font-display [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-white [&_h3]:mb-3 [&_h3]:mt-8 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-white [&_li]:mb-2 [&_ol]:mb-6 [&_ol]:list-decimal [&_ol]:pl-6 [&_p]:mb-5 [&_p]:leading-8 [&_pre]:overflow-x-auto [&_pre]:rounded-lg [&_pre]:bg-black/40 [&_pre]:p-4 [&_strong]:text-white [&_table]:my-8 [&_table]:w-full [&_table]:overflow-hidden [&_table]:rounded-lg [&_td]:border [&_td]:border-white/10 [&_td]:p-3 [&_th]:border [&_th]:border-white/10 [&_th]:bg-white/5 [&_th]:p-3 [&_ul]:mb-6 [&_ul]:list-disc [&_ul]:pl-6"
+            dangerouslySetInnerHTML={{ __html: sanitizedContent }}
+          />
+
+          <ArticleCta />
+
+          {post.tags.length > 0 && (
+            <div className="flex flex-wrap gap-2 border-t border-white/10 pt-8">
+              {post.tags.map((tag) => (
+                <Link
+                  key={tag}
+                  href={`/blog?category=${encodeURIComponent(post.category)}`}
+                  className="rounded-lg bg-white/[0.04] px-3 py-1 text-sm text-zinc-400 transition hover:text-white"
+                >
+                  #{tag}
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {relatedPosts.length > 0 && (
+        <section className="bg-[#0f0f0f] px-4 py-16 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            <h2 className="mb-8 font-display text-2xl font-bold text-white">
+              Shu mavzuga yaqin maqolalar
+            </h2>
+            <div className="grid gap-6 md:grid-cols-2">
+              {relatedPosts.map((relatedPost) => (
+                <Link key={relatedPost.id} href={`/blog/${relatedPost.slug}`}>
+                  <article className="rounded-lg border border-white/10 bg-white/[0.03] p-6 transition hover:border-green-500/30 hover:bg-white/[0.06]">
+                    <div className="mb-3 flex flex-wrap items-center gap-3">
+                      <span className="rounded-full border border-white/10 px-3 py-1 text-xs text-zinc-300">
+                        {relatedPost.category}
+                      </span>
+                      <span className="text-xs text-zinc-500">
+                        {formatDate(relatedPost.publishedAt ?? relatedPost.createdAt)}
+                      </span>
+                    </div>
+                    <h3 className="font-display text-lg font-semibold text-white">
+                      {relatedPost.title}
+                    </h3>
+                    <p className="mt-3 line-clamp-2 text-sm leading-6 text-zinc-400">
+                      {relatedPost.excerpt}
+                    </p>
+                  </article>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </>
   );
 }

@@ -340,68 +340,103 @@ async function main() {
   ]);
   console.log(`Created ${testimonials.length} testimonials`);
 
-  // Create blog posts
+  // Hide legacy demo posts that no longer match the automation positioning.
+  await prisma.blogPost.updateMany({
+    where: {
+      slug: {
+        in: [
+          "how-to-choose-it-contractor",
+          "web-development-trends-2025",
+          "why-ux-design-matters",
+        ],
+      },
+    },
+    data: {
+      isPublished: false,
+    },
+  });
+
+  // Create starter SEO articles. Existing posts are not overwritten so admins can edit them.
   const blogPosts = await Promise.all([
     prisma.blogPost.upsert({
-      where: { slug: "how-to-choose-it-contractor" },
+      where: { slug: "biznes-jarayonlarini-avtomatlashtirish" },
       update: {},
       create: {
-        title: "Как выбрать IT-подрядчика для вашего проекта",
-        slug: "how-to-choose-it-contractor",
+        title: "Biznes jarayonlarini avtomatlashtirish: nimadan boshlash kerak",
+        slug: "biznes-jarayonlarini-avtomatlashtirish",
         excerpt:
-          "Руководство по выбору надёжного партнёра для разработки программного обеспечения",
-        content: `<p>Выбор правильного IT-подрядчика — критически важное решение. В этой статье мы разберём ключевые критерии.</p>
-<h2>1. Определите свои потребности</h2>
-<p>Прежде чем начать поиск подрядчика, чётко сформулируйте требования к проекту.</p>
-<h2>2. Изучите портфолио</h2>
-<p>Портфолио — лучший способ оценить компетенции команды.</p>
-<h2>3. Проверьте отзывы</h2>
-<p>Не стесняйтесь просить контакты предыдущих клиентов.</p>`,
-        category: "Советы",
-        tags: ["подрядчик", "разработка", "выбор"],
-        authorName: "Ахмад Рузибоев",
+          "Qaysi jarayonlarni birinchi avtomatlashtirish kerakligini aniqlash uchun amaliy qo'llanma.",
+        content: `<p>Biznes avtomatlashtirishni katta va xavfli loyiha sifatida boshlash shart emas. Eng yaxshi natija odatda takrorlanadigan, o'lchanadigan va mijoz yoki xodim vaqtini ko'p olayotgan jarayonlardan boshlanganda chiqadi.</p>
+<h2>Avval qaysi muammoni tanlash kerak?</h2>
+<p>Bir haftada eng ko'p takrorlanadigan ishlarni yozib chiqing: leadlarni qabul qilish, mijozlarga javob berish, CRM statuslarini yangilash, hisobot tayyorlash, to'lov eslatmalari yoki hujjat yaratish.</p>
+<ul>
+  <li>Jarayon har kuni takrorlanadimi?</li>
+  <li>Xato yoki kechikish pul yo'qotishiga olib keladimi?</li>
+  <li>Natijani raqam bilan o'lchash mumkinmi?</li>
+</ul>
+<h2>Tez ROI beradigan yo'nalishlar</h2>
+<p>Odatda birinchi avtomatlashtirish uchun Telegram lead capture, CRM reminder, manager task flow, Google Sheets hisobotlari va AI support agent yaxshi nomzod bo'ladi.</p>
+<h2>Texnik topshiriq uchun kerakli savollar</h2>
+<p>Har bir jarayon uchun kirish ma'lumoti, qaror qoidalari, kim javobgar ekani, yakuniy status va kerakli hisobotlarni aniqlang. Shu ma'lumotlar aniq bo'lsa, MVP tezroq va arzonroq chiqadi.</p>`,
+        category: "AI automation",
+        tags: ["business automation", "AI audit", "process automation"],
+        authorName: "FullFocus",
         isPublished: true,
-        publishedAt: new Date("2024-01-15"),
+        publishedAt: new Date("2026-06-21"),
       },
     }),
     prisma.blogPost.upsert({
-      where: { slug: "web-development-trends-2025" },
+      where: { slug: "telegram-bot-biznes-avtomatlashtirish" },
       update: {},
       create: {
-        title: "Тренды веб-разработки в 2025 году",
-        slug: "web-development-trends-2025",
+        title: "Telegram bot biznes uchun: lead, CRM va hisobotlarni avtomatlashtirish",
+        slug: "telegram-bot-biznes-avtomatlashtirish",
         excerpt:
-          "Обзор ключевых технологий и подходов, которые будут определять индустрию",
-        content: `<p>Веб-разработка продолжает эволюционировать. Рассмотрим главные тренды 2025 года.</p>
-<h2>Server Components</h2>
-<p>React Server Components меняют подход к рендерингу приложений.</p>
-<h2>AI-интеграции</h2>
-<p>Искусственный интеллект становится неотъемлемой частью веб-приложений.</p>`,
-        category: "Технологии",
-        tags: ["React", "Next.js", "тренды"],
-        authorName: "Бобур Каримов",
+          "Telegram orqali keladigan murojaatlarni yo'qotmaslik va CRMga avtomatik tushirish yo'li.",
+        content: `<p>O'zbekistonda ko'p biznes uchun asosiy aloqa kanali Telegram. Shuning uchun bot faqat savol-javob vositasi emas, balki lead capture, CRM, reminder va mini-hisobot tizimi bo'lishi mumkin.</p>
+<h2>Telegram bot nimani avtomatlashtiradi?</h2>
+<ul>
+  <li>Mijozdan ism, telefon, xizmat turi va budjetni yig'adi.</li>
+  <li>Leadni CRM yoki Google Sheetsga yozadi.</li>
+  <li>Mas'ul managerga Telegram notification yuboradi.</li>
+  <li>Mijozga keyingi qadam va statusni ko'rsatadi.</li>
+</ul>
+<h2>AI agent qayerda yordam beradi?</h2>
+<p>AI agent tez-tez beriladigan savollarga javob beradi, mijoz muammosini aniqlaydi va murakkab holatlarda suhbatni managerga qisqa xulosa bilan uzatadi.</p>
+<h2>Qaysi bizneslarga mos?</h2>
+<p>O'quv markazlari, klinikalar, servis bizneslar, e-commerce, konsalting va B2B sotuvlarda Telegram bot tez natija beradi, chunki leadlar allaqachon chat orqali keladi.</p>`,
+        category: "Telegram bots",
+        tags: ["Telegram bot", "CRM automation", "lead automation"],
+        authorName: "FullFocus",
         isPublished: true,
-        publishedAt: new Date("2024-02-01"),
+        publishedAt: new Date("2026-06-21"),
       },
     }),
     prisma.blogPost.upsert({
-      where: { slug: "why-ux-design-matters" },
+      where: { slug: "crm-avtomatlashtirish-sotuv-voronkasi" },
       update: {},
       create: {
-        title: "Зачем вашему бизнесу нужен UX-дизайн",
-        slug: "why-ux-design-matters",
+        title: "CRM avtomatlashtirish: sotuv voronkasini nazorat qilish",
+        slug: "crm-avtomatlashtirish-sotuv-voronkasi",
         excerpt:
-          "Как качественный дизайн интерфейсов влияет на конверсию и удержание пользователей",
-        content: `<p>UX-дизайн — это не просто красивые картинки, а стратегия бизнеса.</p>
-<h2>Влияние на конверсию</h2>
-<p>Хороший UX может увеличить конверсию на 200-400%.</p>
-<h2>Удержание пользователей</h2>
-<p>Интуитивный интерфейс снижает churn rate.</p>`,
-        category: "Дизайн",
-        tags: ["UX", "дизайн", "конверсия"],
-        authorName: "Нигора Назарова",
+          "Leadlar, manager vazifalari, follow-up va hisobotlar CRM ichida qanday avtomatlashtiriladi.",
+        content: `<p>CRM faqat mijozlar ro'yxati bo'lib qolsa, u biznesga kam foyda beradi. CRM avtomatlashtirishning maqsadi - har bir lead uchun keyingi qadam, mas'ul xodim, muddat va natijani aniq qilish.</p>
+<h2>CRMda birinchi avtomatlashtiriladigan joylar</h2>
+<ul>
+  <li>Sayt, Telegram va reklama formalaridan lead yaratish.</li>
+  <li>Managerga avtomatik tayinlash va reminder berish.</li>
+  <li>Javobsiz qolgan leadlar bo'yicha SLA alert yuborish.</li>
+  <li>Haftalik sotuv hisobotlarini avtomatik tayyorlash.</li>
+</ul>
+<h2>Qanday natija kutish mumkin?</h2>
+<p>To'g'ri sozlangan CRM manager intizomini oshiradi, yo'qolgan leadlar sonini kamaytiradi va egaga real vaqt rejimida sotuv voronkasini ko'rsatadi.</p>
+<h2>Avval audit qiling</h2>
+<p>CRMni almashtirishdan oldin mavjud jarayonni xaritalash kerak. Ba'zan yangi CRM shart emas - mavjud tizim atrofida integratsiya va automation layer qurish yetarli bo'ladi.</p>`,
+        category: "CRM automation",
+        tags: ["CRM automation", "sales funnel", "business process"],
+        authorName: "FullFocus",
         isPublished: true,
-        publishedAt: new Date("2024-02-15"),
+        publishedAt: new Date("2026-06-21"),
       },
     }),
   ]);

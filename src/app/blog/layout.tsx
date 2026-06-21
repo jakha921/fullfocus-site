@@ -3,10 +3,16 @@ import { createPageMetadata } from "@/lib/seo-metadata";
 
 export const metadata = createPageMetadata({
   path: "/blog",
-  title: "AI Automation and Business Systems Blog",
+  title: "AI Automation Blog for Business",
   description:
-    "Practical articles about AI automation, CRM systems, business process optimization, SaaS development, and technology for companies.",
-  keywords: ["AI automation blog", "business process automation", "CRM automation tips"],
+    "Practical articles about AI automation, Telegram bots, CRM automation, lead management, reporting, and business process optimization.",
+  keywords: [
+    "AI automation blog",
+    "business process automation",
+    "CRM automation tips",
+    "Telegram bot automation",
+    "AI agents Uzbekistan",
+  ],
 });
 
 export default function BlogLayout({ children }: { children: ReactNode }) {
