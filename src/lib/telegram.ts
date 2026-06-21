@@ -110,10 +110,10 @@ export function formatQuizMessage(data: {
         : null,
       ``,
       data.painPoints?.length
-        ? `⚠️ <b>Боли:</b> ${escapeHtml(data.painPoints.map(labelPainPoint).join(", "))}`
+        ? `⚠️ <b>Боли:</b> ${escapeHtml(data.painPoints.map((item) => labelPainPoint(item)).join(", "))}`
         : null,
       data.tools?.length
-        ? `🧩 <b>Инструменты:</b> ${escapeHtml(data.tools.map(labelTool).join(", "))}`
+        ? `🧩 <b>Инструменты:</b> ${escapeHtml(data.tools.map((item) => labelTool(item)).join(", "))}`
         : null,
       data.reportSummary ? `📝 <b>Mini-report:</b> ${escapeHtml(data.reportSummary)}` : null,
       data.quickWins?.length

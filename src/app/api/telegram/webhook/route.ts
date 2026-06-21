@@ -72,10 +72,10 @@ function formatReportMessage(result: {
     `🗓 <b>Срок разработки:</b> ${result.estimateWeeksMin}-${result.estimateWeeksMax} недель`,
     ``,
     audit.painPoints.length
-      ? `⚠️ <b>Боли:</b> ${escapeHtml(audit.painPoints.map(labelPainPoint).join(", "))}`
+      ? `⚠️ <b>Боли:</b> ${escapeHtml(audit.painPoints.map((item) => labelPainPoint(item)).join(", "))}`
       : null,
     audit.tools.length
-      ? `🧩 <b>Инструменты:</b> ${escapeHtml(audit.tools.map(labelTool).join(", "))}`
+      ? `🧩 <b>Инструменты:</b> ${escapeHtml(audit.tools.map((item) => labelTool(item)).join(", "))}`
       : null,
     report ? `📝 <b>Вывод:</b> ${escapeHtml(report.summary)}` : null,
     report?.quickWins.length

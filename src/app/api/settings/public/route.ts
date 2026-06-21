@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { logServerError } from "@/lib/server-log";
 
 export const revalidate = 60;
 
@@ -14,7 +15,10 @@ export async function GET() {
       result[s.key] = s.value;
     });
     return NextResponse.json(result);
-  } catch {
+  } catch (error) {
+    logServerError("Public settings fetch failed", error, {
+      route: "/api/settings/public",
+    });
     return NextResponse.json({});
   }
 }

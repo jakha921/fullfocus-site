@@ -8,13 +8,13 @@
     "contact": "Aloqa"
   },
   "hero": {
-    "title": "Biznesni avtomatlashtiramiz. Siz kengaytirasiz.",
+    "title": "Biz jarayonlarni avtomatlashtiramiz. Siz biznesni kengaytirasiz.",
     "subtitle": "AI agentlar, avtomatlashtirish va biznes uchun SaaS mahsulotlar. 3-6 oyda 300% ROI.",
     "cta": "AI-audit olish",
     "badge": "AI asosida biznesni avtomatlashtirish",
-    "title_line1": "Avtomatlashtiramiz",
-    "title_line2": "biznesni.",
-    "title_line3": "Siz kengaytirasiz.",
+    "title_line1": "Jarayonlarni",
+    "title_line2": "avtomatlashtiramiz.",
+    "title_line3": "Siz biznesni kengaytirasiz.",
     "subtitle_text": "Biznes uchun AI agentlar, avtomatlashtirish va SaaS mahsulotlar.",
     "subtitle_highlight": "3-6 oyda 300% ROI.",
     "card_roi": "O'rtacha ROI",
@@ -455,7 +455,7 @@
     "stats_projects": "Loyihalar",
     "stats_projects_value": "50+",
     "stats_years": "Yillik tajriba",
-    "stats_years_value": "5+",
+    "stats_years_value": "{years}+",
     "stats_clients": "Mijozlar",
     "stats_clients_value": "35+",
     "stats_team": "Jamoa",
@@ -492,7 +492,7 @@
         "initials": "JR",
         "name": "Jakhongir Ruzibaev",
         "position": "CEO & Founder",
-        "bio": "IT sohasida 10 yildan ortiq tajriba"
+        "bio": "IT sohasida {years}+ yillik tajriba"
       },
       "1": {
         "initials": "BK",

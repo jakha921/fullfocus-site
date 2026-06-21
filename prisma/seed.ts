@@ -214,7 +214,7 @@ async function main() {
         id: "team-1",
         name: "Jakhongir Ruzibaev",
         position: "CEO & Founder",
-        bio: "Более 10 лет опыта в IT-индустрии. Основатель FullFocus.",
+        bio: "5+ лет опыта в IT-индустрии. Основатель FullFocus.",
         photo: null,
         linkedin: "https://linkedin.com/in/example",
         github: "https://github.com/example",

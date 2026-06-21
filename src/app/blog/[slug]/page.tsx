@@ -1,5 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Script from "next/script";
@@ -10,7 +10,6 @@ import {
   getPublishedBlogPostBySlug,
   getReadingTimeMinutes,
   getRelatedBlogPosts,
-  isSafeUrl,
   sanitizeBlogHtml,
 } from "@/lib/blog";
 
@@ -34,6 +33,12 @@ function getArticleUrl(slug: string) {
   return `https://fullfocus.dev/blog/${slug}`;
 }
 
+function getSafeImageSrc(value: string | null | undefined) {
+  const src = value?.trim();
+  if (!src) return null;
+  return /^(https?:\/\/|\/(?!\/))/i.test(src) ? src : null;
+}
+
 export async function generateMetadata({
   params,
 }: BlogPostPageProps): Promise<Metadata> {
@@ -41,7 +46,7 @@ export async function generateMetadata({
   if (!post) return {};
 
   const url = getArticleUrl(post.slug);
-  const image = isSafeUrl(post.coverImage) ? post.coverImage : undefined;
+  const image = getSafeImageSrc(post.coverImage) || undefined;
 
   return {
     title: post.title,
@@ -82,7 +87,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const sanitizedContent = sanitizeBlogHtml(post.content);
   const readingTime = getReadingTimeMinutes(post.content);
   const articleBody = getPlainTextFromHtml(post.content);
-  const safeCoverImage = isSafeUrl(post.coverImage) ? post.coverImage : null;
+  const safeCoverImage = getSafeImageSrc(post.coverImage);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -189,11 +194,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
       {safeCoverImage ? (
         <section className="px-4 pb-12 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-4xl overflow-hidden rounded-lg border border-white/10">
-            <img
+          <div className="relative mx-auto aspect-video max-w-4xl overflow-hidden rounded-lg border border-white/10">
+            <Image
               src={safeCoverImage}
               alt={post.title}
-              className="aspect-video h-full w-full object-cover"
+              fill
+              priority
+              sizes="(min-width: 1024px) 896px, 100vw"
+              className="object-cover"
             />
           </div>
         </section>

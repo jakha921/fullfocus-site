@@ -10,8 +10,12 @@ import {
   labelTimeline,
   labelTool,
   labelVolume,
+  normalizeAuditLocale,
   type AutomationAuditAnswers,
 } from '@/lib/automation-audit';
+import { logServerError, logServerWarning } from '@/lib/server-log';
+
+const defaultTelegramBotUsername = 'fullfocusdev_bot';
 
 function cleanString(value: unknown): string {
   return typeof value === 'string' ? value.trim() : '';
@@ -32,6 +36,9 @@ function cleanStringArray(value: unknown, limit = 12): string[] {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
+    const locale = normalizeAuditLocale(
+      request.headers.get('x-fullfocus-locale') || body.locale
+    );
     const data: AutomationAuditAnswers = {
       name: cleanString(body.name),
       email: cleanString(body.email).toLowerCase(),
@@ -55,11 +62,11 @@ export async function POST(request: NextRequest) {
       !data.budget ||
       !data.timeline
     ) {
-      return NextResponse.json({ error: 'Заполните обязательные поля' }, { status: 400 });
+      return NextResponse.json({ error: 'Required fields are missing' }, { status: 400 });
     }
 
     const { estimate, leadScore, leadTemperature, report } =
-      createAutomationAuditReport(data);
+      createAutomationAuditReport(data, locale);
 
     const quizResult = await prisma.quizResult.create({
       data: {
@@ -98,7 +105,8 @@ export async function POST(request: NextRequest) {
     const tgBotUsername =
       telegramSettings.find((s) => s.key === 'telegram_bot_username')?.value ||
       process.env.TELEGRAM_BOT_USERNAME ||
-      process.env.NEXT_PUBLIC_TELEGRAM_BOT_USERNAME;
+      process.env.NEXT_PUBLIC_TELEGRAM_BOT_USERNAME ||
+      defaultTelegramBotUsername;
 
     const origin =
       process.env.NEXT_PUBLIC_SITE_URL ||
@@ -106,6 +114,12 @@ export async function POST(request: NextRequest) {
       'https://fullfocus.dev';
     const reportUrl = `${origin.replace(/\/$/, '')}/report/${quizResult.id}`;
     const telegramBotUrl = buildTelegramBotUrl(tgBotUsername, quizResult.id);
+    if (!telegramBotUrl) {
+      logServerWarning('Telegram bot username is not configured for quiz funnel', {
+        route: '/api/quiz',
+        quizResultId: quizResult.id,
+      });
+    }
 
     sendTelegramMessage(
       formatQuizMessage({
@@ -132,7 +146,12 @@ export async function POST(request: NextRequest) {
         telegramBotUrl,
       }),
       { token: tgToken, chatId: tgChatId }
-    ).catch(console.error);
+    ).catch((error) =>
+      logServerError('Telegram quiz notification failed', error, {
+        route: '/api/quiz',
+        quizResultId: quizResult.id,
+      })
+    );
 
     await prisma.contactRequest.create({
       data: {
@@ -144,8 +163,8 @@ export async function POST(request: NextRequest) {
         message: [
           data.company ? `Company: ${data.company}` : null,
           `Automation area: ${labelAutomationArea(data.automationArea)}`,
-          `Pain points: ${data.painPoints.map(labelPainPoint).join(', ')}`,
-          `Tools: ${data.tools.map(labelTool).join(', ')}`,
+          `Pain points: ${data.painPoints.map((item) => labelPainPoint(item)).join(', ')}`,
+          `Tools: ${data.tools.map((item) => labelTool(item)).join(', ')}`,
           `Volume: ${labelVolume(data.volume)}`,
           `Timeline: ${labelTimeline(data.timeline)}`,
           `Lead score: ${leadScore}/100`,
@@ -168,8 +187,8 @@ export async function POST(request: NextRequest) {
       estimate,
       report,
     });
-  } catch (_error) {
-    console.error('Quiz submission error:', _error);
-    return NextResponse.json({ error: 'Failed to submit' }, { status: 500 });
+  } catch (error) {
+    logServerError('Quiz submission failed', error, { route: '/api/quiz' });
+    return NextResponse.json({ error: 'Unable to submit quiz right now' }, { status: 500 });
   }
 }

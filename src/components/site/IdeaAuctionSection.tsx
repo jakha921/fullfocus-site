@@ -158,11 +158,7 @@ export function IdeaAuctionSection() {
       } else {
         const errorData = await res.json().catch(() => null);
         console.error("API error:", errorData);
-        setError(
-          errorData?.details
-            ? errorData.details.map((d: { message: string }) => d.message).join(", ")
-            : t("error_send")
-        );
+        setError(t("error_send"));
       }
     } catch {
       setError(t("error_send"));

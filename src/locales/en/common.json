@@ -455,7 +455,7 @@
     "stats_projects": "Projects",
     "stats_projects_value": "50+",
     "stats_years": "Years of experience",
-    "stats_years_value": "5+",
+    "stats_years_value": "{years}+",
     "stats_clients": "Clients",
     "stats_clients_value": "35+",
     "stats_team": "Team",
@@ -492,7 +492,7 @@
         "initials": "JR",
         "name": "Jakhongir Ruzibaev",
         "position": "CEO & Founder",
-        "bio": "Over 10 years of experience in IT industry"
+        "bio": "{years}+ years of experience in IT industry"
       },
       "1": {
         "initials": "BK",

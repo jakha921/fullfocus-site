@@ -102,7 +102,7 @@ export default function QuizResultsPage() {
 
   const formatFeatures = (featuresJson: string) => {
     const audit = parseAutomationAuditFeatures(featuresJson);
-    return audit.painPoints.map(labelPainPoint).join(", ") || featuresJson;
+    return audit.painPoints.map((item) => labelPainPoint(item)).join(", ") || featuresJson;
   };
 
   const selectedAudit = selectedResult
@@ -252,7 +252,7 @@ export default function QuizResultsPage() {
                           <div>
                             <span className="text-gray-400 block mb-1">Инструменты</span>
                             <p className="text-white text-sm">
-                              {selectedAudit.tools.map(labelTool).join(", ")}
+                              {selectedAudit.tools.map((item) => labelTool(item)).join(", ")}
                             </p>
                           </div>
 

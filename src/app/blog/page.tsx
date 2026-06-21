@@ -1,5 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Calendar } from "lucide-react";
 import { getBlogCategories, getPublishedBlogPosts } from "@/lib/blog";
 
@@ -23,6 +23,12 @@ function categoryHref(category?: string) {
   return category ? `/blog?category=${encodeURIComponent(category)}` : "/blog";
 }
 
+function getSafeImageSrc(value: string | null | undefined) {
+  const src = value?.trim();
+  if (!src) return null;
+  return /^(https?:\/\/|\/(?!\/))/i.test(src) ? src : null;
+}
+
 function getCardGradient(index: number) {
   const gradients = [
     "from-emerald-500/20 to-teal-500/10",
@@ -43,6 +49,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
 
   const featured = posts[0];
   const rest = posts.slice(1);
+  const featuredCoverImage = getSafeImageSrc(featured?.coverImage);
 
   return (
     <>
@@ -100,10 +107,13 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
               <div className="mb-6">
                 <Link href={`/blog/${featured.slug}`}>
                   <article className="glass-card group relative flex min-h-[300px] flex-col justify-end overflow-hidden rounded-lg transition-all duration-300 hover:border-white/15">
-                    {featured.coverImage ? (
-                      <img
-                        src={featured.coverImage}
+                    {featuredCoverImage ? (
+                      <Image
+                        src={featuredCoverImage}
                         alt={featured.title}
+                        fill
+                        sizes="(min-width: 1024px) 896px, 100vw"
+                        priority
                         className="absolute inset-0 h-full w-full object-cover opacity-55"
                       />
                     ) : (
@@ -139,44 +149,49 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
               </div>
 
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {rest.map((post, index) => (
-                  <Link key={post.id} href={`/blog/${post.slug}`}>
-                    <article className="glass-card group relative flex min-h-[220px] flex-col justify-end overflow-hidden rounded-lg transition-all duration-300 hover:border-white/15">
-                      {post.coverImage ? (
-                        <img
-                          src={post.coverImage}
-                          alt={post.title}
-                          className="absolute inset-0 h-full w-full object-cover opacity-45"
-                        />
-                      ) : (
-                        <div
-                          className={`absolute inset-0 bg-gradient-to-br ${getCardGradient(
-                            index + 1
-                          )}`}
-                        />
-                      )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+                {rest.map((post, index) => {
+                  const coverImage = getSafeImageSrc(post.coverImage);
+                  return (
+                    <Link key={post.id} href={`/blog/${post.slug}`}>
+                      <article className="glass-card group relative flex min-h-[220px] flex-col justify-end overflow-hidden rounded-lg transition-all duration-300 hover:border-white/15">
+                        {coverImage ? (
+                          <Image
+                            src={coverImage}
+                            alt={post.title}
+                            fill
+                            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                            className="absolute inset-0 h-full w-full object-cover opacity-45"
+                          />
+                        ) : (
+                          <div
+                            className={`absolute inset-0 bg-gradient-to-br ${getCardGradient(
+                              index + 1
+                            )}`}
+                          />
+                        )}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
 
-                      <div className="relative z-10 p-5">
-                        <div className="mb-3 flex flex-wrap items-center gap-2">
-                          <span className="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-1 text-xs font-medium text-emerald-300">
-                            {post.category}
-                          </span>
-                          <span className="flex items-center gap-1 text-xs text-zinc-500">
-                            <Calendar className="h-3 w-3" />
-                            {formatDate(post.publishedAt ?? post.createdAt)}
-                          </span>
+                        <div className="relative z-10 p-5">
+                          <div className="mb-3 flex flex-wrap items-center gap-2">
+                            <span className="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-1 text-xs font-medium text-emerald-300">
+                              {post.category}
+                            </span>
+                            <span className="flex items-center gap-1 text-xs text-zinc-500">
+                              <Calendar className="h-3 w-3" />
+                              {formatDate(post.publishedAt ?? post.createdAt)}
+                            </span>
+                          </div>
+                          <h3 className="font-display text-lg font-semibold text-white transition-colors group-hover:text-emerald-300">
+                            {post.title}
+                          </h3>
+                          <p className="mt-3 line-clamp-2 text-sm leading-6 text-zinc-400">
+                            {post.excerpt}
+                          </p>
                         </div>
-                        <h3 className="font-display text-lg font-semibold text-white transition-colors group-hover:text-emerald-300">
-                          {post.title}
-                        </h3>
-                        <p className="mt-3 line-clamp-2 text-sm leading-6 text-zinc-400">
-                          {post.excerpt}
-                        </p>
-                      </div>
-                    </article>
-                  </Link>
-                ))}
+                      </article>
+                    </Link>
+                  );
+                })}
               </div>
             </>
           ) : (

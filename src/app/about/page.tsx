@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { Target, Users, Lightbulb, Award } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -36,6 +37,7 @@ const itemVariants = {
 
 export default function AboutPage() {
   const t = useTranslations("about");
+  const yearsExperience = Math.max(1, new Date().getFullYear() - 2021);
 
   return (
     <>
@@ -93,7 +95,7 @@ export default function AboutPage() {
                   {(["projects", "years", "clients", "team"] as const).map((statKey) => (
                     <div key={statKey} className="text-center p-4">
                       <div className="text-4xl font-display font-bold gradient-text mb-1">
-                        {t(`stats_${statKey}_value`)}
+                        {t(`stats_${statKey}_value`, { years: yearsExperience })}
                       </div>
                       <div className="text-sm text-gray-400 uppercase tracking-wider">
                         {t(`stats_${statKey}`)}
@@ -171,14 +173,25 @@ export default function AboutPage() {
                   >
                     {t(`team.${index}.initials`)}
                   </div>
-                  <h3 className="font-display text-lg font-semibold text-white">
-                    {t(`team.${index}.name`)}
-                  </h3>
+                  {index === 0 ? (
+                    <Link
+                      href="https://ruzibaev.uz"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-display text-lg font-semibold text-white transition-colors hover:text-emerald-300"
+                    >
+                      {t(`team.${index}.name`)}
+                    </Link>
+                  ) : (
+                    <h3 className="font-display text-lg font-semibold text-white">
+                      {t(`team.${index}.name`)}
+                    </h3>
+                  )}
                   <p className="text-emerald-400 text-sm mb-2">
                     {t(`team.${index}.position`)}
                   </p>
                   <p className="text-gray-400 text-sm">
-                    {t(`team.${index}.bio`)}
+                    {t(`team.${index}.bio`, { years: yearsExperience })}
                   </p>
                 </Card>
               </motion.div>
