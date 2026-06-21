@@ -10,7 +10,7 @@
   "hero": {
     "title": "Biznesni avtomatlashtiramiz. Siz kengaytirasiz.",
     "subtitle": "AI agentlar, avtomatlashtirish va biznes uchun SaaS mahsulotlar. 3-6 oyda 300% ROI.",
-    "cta": "Qo'ng'iroqqa yozilish",
+    "cta": "AI-audit olish",
     "badge": "AI asosida biznesni avtomatlashtirish",
     "title_line1": "Avtomatlashtiramiz",
     "title_line2": "biznesni.",
@@ -21,7 +21,7 @@
     "card_hours": "soat/hafta tejash"
   },
   "services": {
-    "title": "Biznes o'sishi uchun AI yechimlar",
+    "title": "Biznes o'sishi uchun",
     "subtitle": "Jarayonlarni avtomatlashtiramiz, AI agentlar yaratamiz va SaaS mahsulotlar ishlab chiqamiz",
     "ai_agents": {
       "title": "AI agentlar va chatbotlar",
@@ -49,7 +49,7 @@
     "integration_metric": "300% ROI integratsiyalar",
     "integration_full_desc": "CRM, ERP, to'lov tizimlari va AIni biznesingiz uchun yagona ekotizimga birlashtiramiz.",
     "more": "Batafsil",
-    "highlight": "biznes o'sishi"
+    "highlight": "AI yechimlar"
   },
   "stats": {
     "projects": "Tugallangan loyihalar",
@@ -58,7 +58,7 @@
     "team": "Jamoa a'zolari"
   },
   "pain": {
-    "title": "Biznesingiz pul yo'qotmoqda",
+    "title": "Biznesingiz",
     "subtitle": "Avtomatlashtirishsiz har bir kun — yo'qotilgan foyda",
     "manual": {
       "title": "Qo'lda jarayonlar",
@@ -83,7 +83,7 @@
     "highlight": "pul yo'qotmoqda"
   },
   "pricing": {
-    "title": "Shaffof narxlash",
+    "title": "Shaffof",
     "subtitle": "O'zingizga mos hamkorlik modelini tanlang",
     "project": {
       "name": "Loyiha asosida",
@@ -122,7 +122,7 @@
         "Oylik ROI hisobotlari"
       ]
     },
-    "cta": "Qo'ng'iroqqa yozilish",
+    "cta": "AI-audit olish",
     "badge": "Ish modellari",
     "plans": {
       "0": {
@@ -199,7 +199,7 @@
   "cta": {
     "title": "Avtomatlashtirishga tayyormisiz?",
     "subtitle": "30 daqiqalik qo'ng'iroq. Biznesingizda 3+ avtomatlashtirish imkoniyatini topamiz.",
-    "button": "Bepul qo'ng'iroqqa yozilish",
+    "button": "AI-audit olish",
     "description": "30 daqiqalik qo'ng'iroq. Biznesingizda 3+ avtomatlashtirish imkoniyatini topamiz.",
     "free": "Bepul",
     "no_obligation": "Majburiyatsiz",
@@ -517,7 +517,7 @@
     "slots": "o'rin",
     "in_month": "da",
     "limited": "Bu oyda cheklangan joylar",
-    "cta": "Qo'ng'iroqqa yozilish"
+    "cta": "AI-audit olish"
   },
   "common": {
     "scroll": "Scroll",
@@ -533,8 +533,13 @@
     "mission_p1": "Biz texnologiyalar har qanday biznesni o'zgartirishi mumkinligiga ishonamiz. Maqsadimiz — kompaniyalarga raqobat ustunligiga erishish uchun raqamli yechimlar imkoniyatlaridan foydalanishga yordam berish.",
     "mission_p2": "2019 yildan beri biz turli sohalardagi mijozlar uchun 50 dan ortiq loyihani amalga oshirdik — startaplardan yirik korxonalargacha.",
     "stats_projects": "Loyihalar",
+    "stats_projects_value": "50+",
     "stats_years": "Yillik tajriba",
+    "stats_years_value": "5+",
     "stats_clients": "Mijozlar",
+    "stats_clients_value": "35+",
+    "stats_team": "Jamoa",
+    "stats_team_value": "8+",
     "stats_specialists": "Mutaxassislar",
     "values_badge": "Qadriyatlar",
     "values_title": "Bizning",
@@ -564,21 +569,25 @@
     "team_description": "FullFocusni alohida qiladigan odamlar",
     "team": {
       "0": {
+        "initials": "AR",
         "name": "Ahmad Ruziboyev",
         "position": "CEO & Founder",
         "bio": "IT sohasida 10 yildan ortiq tajriba"
       },
       "1": {
+        "initials": "BK",
         "name": "Bobur Karimov",
         "position": "CTO",
         "bio": "Yechimlar arxitektori, cloud texnologiyalar bo'yicha ekspert"
       },
       "2": {
+        "initials": "NN",
         "name": "Nigora Nazarova",
         "position": "Lead Designer",
         "bio": "Xalqaro tajribaga ega UI/UX mutaxassis"
       },
       "3": {
+        "initials": "JA",
         "name": "Jasur Alimov",
         "position": "Full-Stack Developer",
         "bio": "React, Node.js va cloud yechimlar bo'yicha ekspert"
@@ -648,6 +657,7 @@
     "form_title": "Yuborish",
     "form_highlight": "ariza",
     "contact_info": "Aloqa ma'lumotlari",
+    "email": "Email",
     "phone": "Telefon",
     "address": "Manzil",
     "address_value": "Toshkent, O'zbekiston",

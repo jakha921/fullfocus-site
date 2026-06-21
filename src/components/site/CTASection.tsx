@@ -35,24 +35,14 @@ export function CTASection() {
         >
           <div className="glass-card rounded-2xl p-10 md:p-14 text-center">
             <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-              {t("title").split(/(\?|！)/).length > 1 ? (
-                <>
-                  {t("title").replace(/\?$/, "").replace(/автоматизации$/, "")}{" "}
-                  <span className="gradient-text">
-                    {t("title").includes("автоматизации") ? "автоматизации" : "Automation"}
-                  </span>
-                  ?
-                </>
-              ) : (
-                t("title")
-              )}
+              {t("title")}
             </h2>
             <p className="text-lg text-gray-400 mb-10 max-w-2xl mx-auto">
               {t("description")}
             </p>
 
             <Link
-              href="/contact"
+              href="/quiz"
               className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-400 hover:to-teal-400 text-black font-bold rounded-lg transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-green-500/25"
             >
               {t("button")}

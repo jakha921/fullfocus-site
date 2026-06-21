@@ -61,7 +61,7 @@ export function StickyCtaBar() {
             </div>
             <div className="flex items-center gap-2 flex-shrink-0">
               <Link
-                href="/contact"
+                href="/quiz"
                 className="px-4 py-1.5 bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-400 hover:to-teal-400 text-black font-semibold text-sm rounded-lg transition-all hover:scale-[1.02]"
               >
                 {t("cta")}

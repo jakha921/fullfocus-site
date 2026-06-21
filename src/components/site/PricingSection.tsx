@@ -90,7 +90,7 @@ export function PricingSection() {
                   </ul>
 
                   <Link
-                    href="/contact"
+                    href="/quiz"
                     className={`inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-all hover:scale-[1.02] active:scale-[0.98] ${
                       isPopular
                         ? "bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-400 hover:to-teal-400 text-black shadow-lg shadow-green-500/25"

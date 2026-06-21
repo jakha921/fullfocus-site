@@ -39,9 +39,9 @@ export function Hero() {
               transition={{ delay: 0.2 }}
               className="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white leading-none"
             >
-              {t("title_line1")}
+              {t("title_line1")}{" "}
               <br />
-              <span className="gradient-text">{t("title_line2")}</span>
+              <span className="gradient-text">{t("title_line2")}</span>{" "}
               <br />
               <span className="text-gray-400 text-4xl md:text-5xl lg:text-6xl">{t("title_line3")}</span>
             </motion.h1>
@@ -63,7 +63,7 @@ export function Hero() {
               className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2"
             >
               <Link
-                href="/contact"
+                href="/quiz"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-400 hover:to-teal-400 text-black font-bold rounded-lg transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-green-500/25"
               >
                 {t("cta")}

@@ -10,7 +10,7 @@
   "hero": {
     "title": "We Automate Business. You Scale.",
     "subtitle": "AI agents, automations, and SaaS products for business. 300% ROI in 3-6 months.",
-    "cta": "Book a Call",
+    "cta": "Get AI Audit",
     "badge": "AI-Powered Business Automation",
     "title_line1": "We automate",
     "title_line2": "business.",
@@ -21,7 +21,7 @@
     "card_hours": "hrs/week saved"
   },
   "services": {
-    "title": "AI Solutions for Business Growth",
+    "title": "AI Solutions for",
     "subtitle": "We automate processes, build AI agents, and develop SaaS products",
     "ai_agents": {
       "title": "AI Agents & Chatbots",
@@ -58,7 +58,7 @@
     "team": "Team Members"
   },
   "pain": {
-    "title": "Your Business Is Losing Money",
+    "title": "Your Business Is",
     "subtitle": "Every day without automation is lost profit",
     "manual": {
       "title": "Manual Processes",
@@ -83,7 +83,7 @@
     "highlight": "losing money"
   },
   "pricing": {
-    "title": "Transparent Pricing",
+    "title": "Transparent",
     "subtitle": "Choose the collaboration model that fits",
     "project": {
       "name": "Project-based",
@@ -122,7 +122,7 @@
         "Monthly ROI reports"
       ]
     },
-    "cta": "Book a Call",
+    "cta": "Get AI Audit",
     "badge": "Pricing Models",
     "plans": {
       "0": {
@@ -199,7 +199,7 @@
   "cta": {
     "title": "Ready for Automation?",
     "subtitle": "30-min call. We'll find 3+ automation opportunities in your business.",
-    "button": "Book a Free Call",
+    "button": "Get AI Audit",
     "description": "30-minute call. We'll find 3+ automation opportunities in your business.",
     "free": "Free",
     "no_obligation": "No obligations",
@@ -517,7 +517,7 @@
     "slots": "spots",
     "in_month": "in",
     "limited": "Limited spots this month",
-    "cta": "Book a call"
+    "cta": "Get AI audit"
   },
   "common": {
     "scroll": "Scroll",
@@ -533,8 +533,13 @@
     "mission_p1": "We believe that technology can transform any business. Our goal is to help companies harness the potential of digital solutions for competitive advantage.",
     "mission_p2": "Since 2019, we have completed over 50 projects for clients across various industries — from startups to large enterprises.",
     "stats_projects": "Projects",
+    "stats_projects_value": "50+",
     "stats_years": "Years of experience",
+    "stats_years_value": "5+",
     "stats_clients": "Clients",
+    "stats_clients_value": "35+",
+    "stats_team": "Team",
+    "stats_team_value": "8+",
     "stats_specialists": "Specialists",
     "values_badge": "Values",
     "values_title": "Our",
@@ -564,21 +569,25 @@
     "team_description": "People who make FullFocus special",
     "team": {
       "0": {
+        "initials": "AR",
         "name": "Ahmad Ruziboev",
         "position": "CEO & Founder",
         "bio": "Over 10 years of experience in IT industry"
       },
       "1": {
+        "initials": "BK",
         "name": "Bobur Karimov",
         "position": "CTO",
         "bio": "Solutions architect, cloud technology expert"
       },
       "2": {
+        "initials": "NN",
         "name": "Nigora Nazarova",
         "position": "Lead Designer",
         "bio": "UI/UX specialist with international experience"
       },
       "3": {
+        "initials": "JA",
         "name": "Jasur Alimov",
         "position": "Full-Stack Developer",
         "bio": "Expert in React, Node.js and cloud solutions"
@@ -648,6 +657,7 @@
     "form_title": "Submit",
     "form_highlight": "application",
     "contact_info": "Contact information",
+    "email": "Email",
     "phone": "Phone",
     "address": "Address",
     "address_value": "Tashkent, Uzbekistan",

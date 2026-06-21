@@ -126,7 +126,7 @@ export function Header() {
             </div>
 
             <Link
-              href="/contact"
+              href="/quiz"
               className="px-5 py-2 bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-400 hover:to-teal-400 text-black font-bold rounded-lg text-sm transition-all hover:scale-[1.02] active:scale-[0.98] shadow-md shadow-green-500/20"
             >
               {tCta("button")}
@@ -183,7 +183,7 @@ export function Header() {
               </div>
 
               <Link
-                href="/contact"
+                href="/quiz"
                 className="block mt-4 px-4 py-3 bg-gradient-to-r from-green-500 to-teal-500 text-black font-bold rounded-lg text-center"
                 onClick={() => setIsMobileMenuOpen(false)}
               >

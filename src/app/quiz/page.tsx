@@ -1,9 +1,13 @@
 import { LeadQuiz } from '@/components/quiz';
+import { createPageMetadata } from '@/lib/seo-metadata';
 
-export const metadata = {
-  title: 'Оценка проекта | FullFocus',
-  description: 'Ответьте на несколько вопросов и получите персональную оценку проекта с рекомендациями по срокам и бюджету.',
-};
+export const metadata = createPageMetadata({
+  path: '/quiz',
+  title: 'AI Automation Audit',
+  description:
+    'Answer a short diagnostic quiz and get automation ideas for sales, support, marketing, operations, reporting, and analytics.',
+  keywords: ['AI automation audit', 'business automation quiz', 'automation estimate'],
+});
 
 export default function QuizPage() {
   return (
@@ -16,10 +20,10 @@ export default function QuizPage() {
       <div className="max-w-2xl mx-auto relative">
         <div className="text-center mb-8">
           <h1 className="font-display text-3xl md:text-4xl font-bold text-white mb-4">
-            Оценка <span className="gradient-text">проекта</span>
+            AI-аудит <span className="gradient-text">автоматизации</span>
           </h1>
           <p className="text-zinc-400 text-lg">
-            Ответьте на несколько вопросов и получите персональную оценку
+            Оставьте контакты, ответьте на вопросы и получите мини-отчет
           </p>
         </div>
         <LeadQuiz />

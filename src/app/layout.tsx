@@ -8,6 +8,7 @@ import { Footer } from "@/components/site/Footer";
 import { PublicOnlyWrapper } from "@/components/site";
 import { getLocale, getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
+import { OrganizationJsonLd } from "@/components/seo";
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
@@ -21,6 +22,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://fullfocus.dev"),
   title: {
     default: "FullFocus - AI Business Automation",
     template: "%s | FullFocus",
@@ -50,6 +52,9 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  alternates: {
+    canonical: "https://fullfocus.dev/",
+  },
 };
 
 export default async function RootLayout({
@@ -69,6 +74,7 @@ export default async function RootLayout({
             <main className="min-h-screen pt-16">{children}</main>
             <Footer />
             <PublicOnlyWrapper />
+            <OrganizationJsonLd locale={locale} />
             <Toaster
               position="top-right"
               toastOptions={{

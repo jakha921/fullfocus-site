@@ -2,27 +2,22 @@ import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://fullfocus.dev';
-  const locales = ['en', 'ru', 'uz'];
-  const pages = ['', '/about', '/services', '/portfolio', '/contact'];
+  const lastModified = new Date('2026-06-21T00:00:00.000Z');
+  const pages = [
+    { path: '', priority: 1 },
+    { path: '/services', priority: 0.9 },
+    { path: '/quiz', priority: 0.9 },
+    { path: '/contact', priority: 0.8 },
+    { path: '/portfolio', priority: 0.7 },
+    { path: '/about', priority: 0.7 },
+    { path: '/blog', priority: 0.6 },
+    { path: '/privacy', priority: 0.2 },
+  ];
 
-  const urls: MetadataRoute.Sitemap = [];
-
-  // Generate URLs for all locales and pages
-  locales.forEach(locale => {
-    pages.forEach(page => {
-      urls.push({
-        url: `${baseUrl}/${locale}${page}`,
-        lastModified: new Date(),
-        changeFrequency: 'weekly',
-        priority: page === '' ? 1 : 0.8,
-        alternates: {
-          languages: Object.fromEntries(
-            locales.map(l => [l, `${baseUrl}/${l}${page}`])
-          ),
-        },
-      });
-    });
-  });
-
-  return urls;
+  return pages.map((page) => ({
+    url: `${baseUrl}${page.path}`,
+    lastModified,
+    changeFrequency: 'weekly',
+    priority: page.priority,
+  }));
 }
