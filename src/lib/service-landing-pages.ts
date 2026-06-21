@@ -16,6 +16,7 @@ export type ServiceLandingPage = {
   integrations: string[];
   timeline: string;
   startingPrice: string;
+  startingPriceAmount: number;
 };
 
 export const serviceLandingPages: ServiceLandingPage[] = [
@@ -72,6 +73,7 @@ export const serviceLandingPages: ServiceLandingPage[] = [
     integrations: ["Telegram", "CRM", "Google Sheets", "Website forms", "OpenAI", "Payments"],
     timeline: "2-6 weeks",
     startingPrice: "from $1,800",
+    startingPriceAmount: 1800,
   },
   {
     slug: "crm-automation",
@@ -126,6 +128,7 @@ export const serviceLandingPages: ServiceLandingPage[] = [
     integrations: ["CRM", "Telegram", "WhatsApp", "Website forms", "Google Sheets", "Email"],
     timeline: "3-8 weeks",
     startingPrice: "from $2,500",
+    startingPriceAmount: 2500,
   },
   {
     slug: "ai-support-agent",
@@ -180,6 +183,7 @@ export const serviceLandingPages: ServiceLandingPage[] = [
     integrations: ["OpenAI", "Telegram", "Website chat", "CRM", "Knowledge base", "Analytics"],
     timeline: "3-7 weeks",
     startingPrice: "from $2,200",
+    startingPriceAmount: 2200,
   },
 ];
 

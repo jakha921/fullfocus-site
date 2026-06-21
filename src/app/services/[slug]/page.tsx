@@ -35,27 +35,71 @@ export default function ServiceLandingPage({ params }: ServicePageProps) {
   const page = getServiceLandingPage(params.slug);
   if (!page) notFound();
 
+  const pageUrl = `https://fullfocus.dev/services/${page.slug}`;
   const serviceJsonLd = {
     "@context": "https://schema.org",
-    "@type": "Service",
-    name: page.metaTitle,
-    provider: {
-      "@type": "Organization",
-      name: "FullFocus",
-      url: "https://fullfocus.dev",
-    },
-    areaServed: {
-      "@type": "Country",
-      name: "Uzbekistan",
-    },
-    serviceType: page.title,
-    description: page.description,
-    offers: {
-      "@type": "Offer",
-      priceCurrency: "USD",
-      price: page.startingPrice,
-      availability: "https://schema.org/InStock",
-    },
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": `${pageUrl}#webpage`,
+        url: pageUrl,
+        name: page.metaTitle,
+        description: page.description,
+        isPartOf: {
+          "@type": "WebSite",
+          name: "FullFocus",
+          url: "https://fullfocus.dev",
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${pageUrl}#breadcrumb`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: "https://fullfocus.dev",
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Services",
+            item: "https://fullfocus.dev/services",
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: page.title,
+            item: pageUrl,
+          },
+        ],
+      },
+      {
+        "@type": "Service",
+        "@id": `${pageUrl}#service`,
+        name: page.metaTitle,
+        url: pageUrl,
+        provider: {
+          "@type": "Organization",
+          name: "FullFocus",
+          url: "https://fullfocus.dev",
+        },
+        areaServed: {
+          "@type": "Country",
+          name: "Uzbekistan",
+        },
+        serviceType: page.title,
+        description: page.description,
+        offers: {
+          "@type": "Offer",
+          url: pageUrl,
+          priceCurrency: "USD",
+          price: page.startingPriceAmount,
+          availability: "https://schema.org/InStock",
+        },
+      },
+    ],
   };
 
   return (
