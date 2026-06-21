@@ -61,7 +61,7 @@ const statusLabels: Record<string, { label: string; variant: "success" | "warnin
   rejected: { label: "Отклонена", variant: "error" },
 };
 
-const PIE_COLORS = ["#22c55e", "#14b8a6", "#3b82f6", "#f59e0b", "#8b5cf6"];
+const PIE_COLORS = ["#10b981", "#14b8a6", "#2563eb", "#f59e0b", "#8b5cf6"];
 
 export default function AdminDashboard() {
   const [stats, setStats] = useState<Stats | null>(null);
@@ -104,7 +104,7 @@ export default function AdminDashboard() {
       value: stats?.requests ?? 0,
       icon: Inbox,
       href: "/admin/requests",
-      gradient: "from-green-500 to-emerald-600",
+      gradient: "from-emerald-500 to-emerald-600",
     },
     {
       title: "Проекты",
@@ -144,7 +144,7 @@ export default function AdminDashboard() {
               transition={{ delay: index * 0.1 }}
             >
               <Link href={stat.href}>
-                <div className="glass-card rounded-xl p-5 flex items-center gap-4 hover:border-green-500/20 transition-all cursor-pointer">
+                <div className="glass-card rounded-xl p-5 flex items-center gap-4 hover:border-emerald-500/20 transition-all cursor-pointer">
                   <div
                     className={`p-3 rounded-xl bg-gradient-to-br ${stat.gradient} shadow-lg`}
                   >
@@ -183,7 +183,7 @@ export default function AdminDashboard() {
                 <BarChart data={chartData} barSize={24}>
                   <defs>
                     <linearGradient id="barGrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#22c55e" />
+                      <stop offset="0%" stopColor="#10b981" />
                       <stop offset="100%" stopColor="#14b8a6" />
                     </linearGradient>
                   </defs>
@@ -319,7 +319,7 @@ export default function AdminDashboard() {
             </h2>
             <Link
               href="/admin/requests"
-              className="text-sm text-green-500 hover:text-green-400"
+              className="text-sm text-emerald-500 hover:text-emerald-400"
             >
               Все заявки →
             </Link>
@@ -348,7 +348,7 @@ export default function AdminDashboard() {
                   key={r.id}
                   className="glass-card rounded-xl p-4 flex items-center gap-4 hover:border-white/15 transition-all"
                 >
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-500 to-teal-500 flex items-center justify-center text-black font-bold text-sm flex-shrink-0">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center text-black font-bold text-sm flex-shrink-0">
                     {r.name.charAt(0).toUpperCase()}
                   </div>
                   <div className="flex-1 min-w-0">
@@ -362,7 +362,7 @@ export default function AdminDashboard() {
                   </Badge>
                   <Link
                     href={`/admin/requests/${r.id}`}
-                    className="text-gray-600 hover:text-green-500 flex-shrink-0"
+                    className="text-gray-600 hover:text-emerald-500 flex-shrink-0"
                   >
                     <ArrowUpRight className="w-4 h-4" />
                   </Link>

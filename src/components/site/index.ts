@@ -14,6 +14,5 @@ export { ExitIntentPopup } from "./ExitIntentPopup";
 export { PublicOnlyWrapper } from "./PublicOnlyWrapper";
 export { SocialProofBar } from "./SocialProofBar";
 export { PainSection } from "./PainSection";
-export { PricingSection } from "./PricingSection";
 export { FAQSection } from "./FAQSection";
 export { IdeaAuctionSection } from "./IdeaAuctionSection";

@@ -99,7 +99,7 @@ export function ExitIntentPopup() {
                     href="https://t.me/fullfocusdev_bot"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-green-400 hover:text-green-300 text-sm underline"
+                    className="text-emerald-400 hover:text-emerald-300 text-sm underline"
                   >
                     {t("success_telegram")}
                   </a>
@@ -121,7 +121,7 @@ export function ExitIntentPopup() {
                       placeholder={t("name_placeholder")}
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:border-green-500 focus:outline-none text-sm"
+                      className="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:border-emerald-500 focus:outline-none text-sm"
                     />
                     <input
                       type="email"
@@ -129,13 +129,13 @@ export function ExitIntentPopup() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      className="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:border-green-500 focus:outline-none text-sm"
+                      className="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:border-emerald-500 focus:outline-none text-sm"
                     />
                     {error && <p className="text-red-400 text-xs">{error}</p>}
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full py-3 bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-400 hover:to-teal-400 text-black font-bold rounded-lg transition-all disabled:opacity-50"
+                      className="w-full py-3 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-black font-bold rounded-lg transition-all disabled:opacity-50"
                     >
                       {isSubmitting ? t("submitting") : t("submit")}
                     </button>

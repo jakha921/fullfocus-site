@@ -26,7 +26,6 @@ export default function SettingsPage() {
     telegram_chat_id: "",
     sticky_bar_enabled: "false",
     available_slots: "",
-    month_name: "",
   });
 
   useEffect(() => {
@@ -165,7 +164,7 @@ export default function SettingsPage() {
                         type="button"
                         onClick={() => handleToggle("sticky_bar_enabled")}
                         className={`relative w-11 h-6 rounded-full transition-colors ${
-                          settings.sticky_bar_enabled === "true" ? "bg-green-500" : "bg-gray-700"
+                          settings.sticky_bar_enabled === "true" ? "bg-emerald-500" : "bg-gray-700"
                         }`}
                       >
                         <span
@@ -182,13 +181,6 @@ export default function SettingsPage() {
                       value={settings.available_slots}
                       onChange={handleChange}
                       placeholder="3"
-                    />
-                    <Input
-                      label="Название месяца"
-                      name="month_name"
-                      value={settings.month_name}
-                      onChange={handleChange}
-                      placeholder="апрель"
                     />
                   </div>
                 </Card>

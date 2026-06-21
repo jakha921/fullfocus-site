@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { Target, Users, Lightbulb, Award } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -8,17 +9,17 @@ import { Card } from "@/components/ui";
 
 const valueIcons = [Target, Users, Lightbulb, Award];
 const valueGradients = [
-  "from-green-500/20 to-teal-500/10",
+  "from-emerald-500/20 to-teal-500/10",
   "from-teal-500/20 to-blue-500/10",
-  "from-blue-500/20 to-green-500/10",
-  "from-green-500/20 to-blue-500/10",
+  "from-blue-500/20 to-emerald-500/10",
+  "from-emerald-500/20 to-blue-500/10",
 ];
 
 const teamGradients = [
-  "from-green-500 to-teal-500",
+  "from-emerald-500 to-teal-500",
   "from-teal-500 to-blue-500",
   "from-blue-500 to-purple-500",
-  "from-purple-500 to-green-500",
+  "from-purple-500 to-emerald-500",
 ];
 
 const containerVariants = {
@@ -36,6 +37,7 @@ const itemVariants = {
 
 export default function AboutPage() {
   const t = useTranslations("about");
+  const yearsExperience = Math.max(1, new Date().getFullYear() - 2021);
 
   return (
     <>
@@ -93,7 +95,7 @@ export default function AboutPage() {
                   {(["projects", "years", "clients", "team"] as const).map((statKey) => (
                     <div key={statKey} className="text-center p-4">
                       <div className="text-4xl font-display font-bold gradient-text mb-1">
-                        {t(`stats_${statKey}_value`)}
+                        {t(`stats_${statKey}_value`, { years: yearsExperience })}
                       </div>
                       <div className="text-sm text-gray-400 uppercase tracking-wider">
                         {t(`stats_${statKey}`)}
@@ -171,14 +173,25 @@ export default function AboutPage() {
                   >
                     {t(`team.${index}.initials`)}
                   </div>
-                  <h3 className="font-display text-lg font-semibold text-white">
-                    {t(`team.${index}.name`)}
-                  </h3>
-                  <p className="text-green-400 text-sm mb-2">
+                  {index === 0 ? (
+                    <Link
+                      href="https://ruzibaev.uz"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-display text-lg font-semibold text-white transition-colors hover:text-emerald-300"
+                    >
+                      {t(`team.${index}.name`)}
+                    </Link>
+                  ) : (
+                    <h3 className="font-display text-lg font-semibold text-white">
+                      {t(`team.${index}.name`)}
+                    </h3>
+                  )}
+                  <p className="text-emerald-400 text-sm mb-2">
                     {t(`team.${index}.position`)}
                   </p>
                   <p className="text-gray-400 text-sm">
-                    {t(`team.${index}.bio`)}
+                    {t(`team.${index}.bio`, { years: yearsExperience })}
                   </p>
                 </Card>
               </motion.div>

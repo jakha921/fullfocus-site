@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { z } from "zod";
 import { sendTelegramMessage, formatContactMessage } from "@/lib/telegram";
+import { logServerError } from "@/lib/server-log";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Имя должно содержать минимум 2 символа"),
@@ -49,23 +50,29 @@ export async function POST(request: NextRequest) {
         source: validatedData.source || "website",
       }),
       { token: tgToken, chatId: tgChatId }
-    ).catch(console.error);
+    ).catch((error) =>
+      logServerError("Telegram contact notification failed", error, {
+        route: "/api/contact",
+        contactRequestId: contactRequest.id,
+      })
+    );
 
     return NextResponse.json(
       { message: "Заявка успешно отправлена", id: contactRequest.id },
       { status: 201 }
     );
-  } catch (_error) {
-    if (_error instanceof z.ZodError) {
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      logServerError("Contact validation failed", error, { route: "/api/contact" });
       return NextResponse.json(
-        { error: "Ошибка валидации", details: _error.errors },
+        { error: "Invalid request" },
         { status: 400 }
       );
     }
 
-    console.error("Contact form error:", _error);
+    logServerError("Contact form failed", error, { route: "/api/contact" });
     return NextResponse.json(
-      { error: "Внутренняя ошибка сервера" },
+      { error: "Unable to send request right now" },
       { status: 500 }
     );
   }

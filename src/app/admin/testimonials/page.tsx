@@ -51,7 +51,7 @@ export default function TestimonialsPage() {
           <div className="space-y-4">
             {testimonials.map((t) => (
               <Card key={t.id} className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-black font-bold">
+                <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-full flex items-center justify-center text-black font-bold">
                   {t.clientName.charAt(0)}
                 </div>
                 <div className="flex-1">

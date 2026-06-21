@@ -6,10 +6,10 @@ import { Building2 } from "lucide-react";
 const clients = [
   { name: "Uzum", color: "from-purple-500/20 to-pink-500/20" },
   { name: "EPAM", color: "from-blue-500/20 to-cyan-500/20" },
-  { name: "IT Park", color: "from-green-500/20 to-teal-500/20" },
+  { name: "IT Park", color: "from-emerald-500/20 to-teal-500/20" },
   { name: "UZCARD", color: "from-orange-500/20 to-red-500/20" },
   { name: "Click", color: "from-cyan-500/20 to-blue-500/20" },
-  { name: "Payme", color: "from-teal-500/20 to-green-500/20" },
+  { name: "Payme", color: "from-teal-500/20 to-emerald-500/20" },
 ];
 
 export function ClientsSection() {

@@ -8,10 +8,10 @@ import { SectionHeading } from "./SectionHeading";
 import { Card } from "@/components/ui";
 
 const serviceItems = [
-  { number: "01", icon: Bot, key: "ai_agents", href: "/services#ai-agents" },
-  { number: "02", icon: Workflow, key: "automation", href: "/services#automation" },
-  { number: "03", icon: Code2, key: "saas", href: "/services#saas" },
-  { number: "04", icon: Plug, key: "integration", href: "/services#integration" },
+  { number: "01", icon: Bot, key: "ai_agents", href: "/services/ai-support-agent" },
+  { number: "02", icon: Workflow, key: "automation", href: "/services/telegram-bot-automation" },
+  { number: "03", icon: Code2, key: "saas", href: "/services" },
+  { number: "04", icon: Plug, key: "integration", href: "/services/crm-automation" },
 ] as const;
 
 const containerVariants = {
@@ -59,21 +59,21 @@ export function ServicesSection() {
                     </div>
 
                     <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-green-500/20 to-teal-500/10 flex items-center justify-center flex-shrink-0 group-hover:from-green-500/30 group-hover:to-teal-500/20 transition-all">
-                        <Icon className="w-6 h-6 text-green-400 group-hover:-translate-y-1 transition-transform duration-300" />
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-500/20 to-teal-500/10 flex items-center justify-center flex-shrink-0 group-hover:from-emerald-500/30 group-hover:to-teal-500/20 transition-all">
+                        <Icon className="w-6 h-6 text-emerald-400 group-hover:-translate-y-1 transition-transform duration-300" />
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-xl font-display font-semibold text-white mb-2 group-hover:text-green-400 transition-colors">
+                        <h3 className="text-xl font-display font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors">
                           {t(`${service.key}.title`)}
                         </h3>
                         <p className="text-gray-400 text-sm leading-relaxed mb-3">
                           {t(`${service.key}_full_desc`)}
                         </p>
                         <div className="flex items-center justify-between">
-                          <span className="text-xs font-bold text-green-400/80 bg-green-500/10 px-3 py-1 rounded-full">
+                          <span className="text-xs font-bold text-emerald-400/80 bg-emerald-500/10 px-3 py-1 rounded-full">
                             {t(`${service.key}_metric`)}
                           </span>
-                          <span className="inline-flex items-center gap-1 text-sm text-green-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                          <span className="inline-flex items-center gap-1 text-sm text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity">
                             {t("more")} <ArrowRight className="w-4 h-4" />
                           </span>
                         </div>

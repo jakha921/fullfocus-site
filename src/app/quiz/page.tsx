@@ -1,11 +1,20 @@
 import { LeadQuiz } from '@/components/quiz';
+import { quizCopy, resolveQuizLocale } from '@/components/quiz/quiz-content';
+import { createPageMetadata } from '@/lib/seo-metadata';
+import { getLocale } from 'next-intl/server';
 
-export const metadata = {
-  title: 'Оценка проекта | FullFocus',
-  description: 'Ответьте на несколько вопросов и получите персональную оценку проекта с рекомендациями по срокам и бюджету.',
-};
+export const metadata = createPageMetadata({
+  path: '/quiz',
+  title: 'AI Automation Audit',
+  description:
+    'Answer a short diagnostic quiz and get automation ideas for sales, support, marketing, operations, reporting, and analytics.',
+  keywords: ['AI automation audit', 'business automation quiz', 'automation estimate'],
+});
 
-export default function QuizPage() {
+export default async function QuizPage() {
+  const locale = resolveQuizLocale(await getLocale());
+  const copy = quizCopy[locale];
+
   return (
     <div className="min-h-screen bg-[#0a0a0a] pt-24 pb-16 px-4 relative overflow-hidden">
       {/* Background decorations */}
@@ -16,10 +25,10 @@ export default function QuizPage() {
       <div className="max-w-2xl mx-auto relative">
         <div className="text-center mb-8">
           <h1 className="font-display text-3xl md:text-4xl font-bold text-white mb-4">
-            Оценка <span className="gradient-text">проекта</span>
+            {copy.pageTitle} <span className="gradient-text">{copy.pageHighlight}</span>
           </h1>
           <p className="text-zinc-400 text-lg">
-            Ответьте на несколько вопросов и получите персональную оценку
+            {copy.pageDescription}
           </p>
         </div>
         <LeadQuiz />

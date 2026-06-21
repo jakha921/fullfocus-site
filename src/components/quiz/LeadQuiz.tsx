@@ -1,298 +1,420 @@
 'use client';
 
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Check, ChevronRight, ChevronLeft, Send } from 'lucide-react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import type { LucideIcon } from 'lucide-react';
+import {
+  ArrowLeft,
+  ArrowRight,
+  BarChart3,
+  Bot,
+  Boxes,
+  Building2,
+  Check,
+  CheckCircle2,
+  Clock3,
+  FileText,
+  Headphones,
+  LineChart,
+  MessageSquare,
+  Send,
+  ShoppingCart,
+  Sparkles,
+  Timer,
+  UserRound,
+  WalletCards,
+  Workflow,
+  Zap,
+} from 'lucide-react';
+import { useLocale } from 'next-intl';
+import type { MiniAutomationReport } from '@/lib/automation-audit';
+import {
+  quizCopy,
+  quizStepOrder,
+  quizStepTypes,
+  resolveQuizLocale,
+  type StepKey,
+} from './quiz-content';
 
 interface QuizData {
-  projectType: string;
-  budget: string;
-  timeline: string;
-  features: string[];
   name: string;
   email: string;
   phone: string;
   company: string;
+  automationArea: string;
+  painPoints: string[];
+  tools: string[];
+  volume: string;
+  budget: string;
+  timeline: string;
 }
 
+interface SubmitResult {
+  id: string;
+  reportUrl: string;
+  telegramBotUrl: string | null;
+  leadScore: number;
+  leadTemperature: string;
+  report: MiniAutomationReport;
+}
+
+type Step = {
+  key: StepKey;
+  title: string;
+  eyebrow: string;
+  type: 'form' | 'single' | 'multi';
+};
+
+type Option = {
+  value: string;
+  label: string;
+  description: string;
+  icon: LucideIcon;
+};
+
 const initialData: QuizData = {
-  projectType: '',
-  budget: '',
-  timeline: '',
-  features: [],
   name: '',
   email: '',
   phone: '',
   company: '',
+  automationArea: '',
+  painPoints: [],
+  tools: [],
+  volume: '',
+  budget: '',
+  timeline: '',
 };
 
-const projectEstimates: Record<string, { min: number; max: number; weeks: { min: number; max: number } }> = {
-  website: { min: 2000, max: 8000, weeks: { min: 2, max: 6 } },
-  webapp: { min: 8000, max: 30000, weeks: { min: 6, max: 16 } },
-  mobile: { min: 10000, max: 40000, weeks: { min: 8, max: 20 } },
-  ecommerce: { min: 5000, max: 20000, weeks: { min: 4, max: 12 } },
-  erp: { min: 15000, max: 80000, weeks: { min: 12, max: 36 } },
-  other: { min: 3000, max: 20000, weeks: { min: 4, max: 12 } },
+const optionIcons: Record<string, LucideIcon> = {
+  sales: LineChart,
+  support: Headphones,
+  marketing: Sparkles,
+  operations: Workflow,
+  finance: WalletCards,
+  analytics: BarChart3,
+  ecommerce: ShoppingCart,
+  hr: UserRound,
+  manual_entry: FileText,
+  missed_leads: Zap,
+  slow_response: MessageSquare,
+  reports: BarChart3,
+  duplicate_data: Boxes,
+  no_visibility: Clock3,
+  human_errors: CheckCircle2,
+  documents: FileText,
+  telegram: MessageSquare,
+  whatsapp: MessageSquare,
+  instagram: Sparkles,
+  crm: Workflow,
+  sheets: BarChart3,
+  onec: WalletCards,
+  website: Building2,
+  no_system: Bot,
+  low: Clock3,
+  medium: Workflow,
+  high: LineChart,
+  enterprise: Boxes,
+  starter: WalletCards,
+  growth: WalletCards,
+  scale: WalletCards,
+  not_sure: Bot,
+  urgent: Zap,
+  normal: Clock3,
+  relaxed: Workflow,
+  flexible: CheckCircle2,
 };
 
-const featureMultipliers: Record<string, number> = {
-  auth: 1.2,
-  payment: 1.3,
-  admin: 1.15,
-  api: 1.1,
-  analytics: 1.05,
-  multilang: 1.2,
-};
+function formatTimer(totalSeconds: number) {
+  const minutes = Math.floor(totalSeconds / 60).toString().padStart(2, '0');
+  const seconds = (totalSeconds % 60).toString().padStart(2, '0');
+  return `${minutes}:${seconds}`;
+}
+
+function buildStepOptions(copy: (typeof quizCopy)['uz'], stepKey: Exclude<StepKey, 'contact'>): Option[] {
+  return copy.options[stepKey].map((option) => ({
+    ...option,
+    icon: optionIcons[option.value] || Bot,
+  }));
+}
 
 export function LeadQuiz() {
+  const quizRef = useRef<HTMLDivElement>(null);
+  const didMountRef = useRef(false);
+  const openedTelegramRef = useRef<string | null>(null);
+  const locale = resolveQuizLocale(useLocale());
+  const copy = quizCopy[locale];
   const [step, setStep] = useState(0);
   const [data, setData] = useState<QuizData>(initialData);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+  const [result, setResult] = useState<SubmitResult | null>(null);
+  const [secondsLeft, setSecondsLeft] = useState(15 * 60);
 
-  const steps = [
-    { key: 'projectType', title: 'Какой проект нужен?', type: 'single' },
-    { key: 'features', title: 'Какой функционал?', type: 'multi' },
-    { key: 'budget', title: 'Примерный бюджет?', type: 'single' },
-    { key: 'timeline', title: 'Когда нужен проект?', type: 'single' },
-    { key: 'contact', title: 'Ваши контакты', type: 'form' },
-  ];
+  const steps: Step[] = useMemo(
+    () =>
+      quizStepOrder.map((key) => ({
+        key,
+        type: quizStepTypes[key],
+        ...copy.steps[key],
+      })),
+    [copy]
+  );
+  const currentStep = steps[step];
+  const progress = useMemo(() => ((step + 1) / steps.length) * 100, [step, steps.length]);
+  const currentOptions = useMemo(() => {
+    if (currentStep.type === 'form') return [];
+    return buildStepOptions(copy, currentStep.key as Exclude<StepKey, 'contact'>);
+  }, [copy, currentStep.key, currentStep.type]);
 
-  const options: Record<string, Array<{ value: string; label: string; icon: string }>> = {
-    projectType: [
-      { value: 'website', label: 'Сайт', icon: '🌐' },
-      { value: 'webapp', label: 'Веб-приложение', icon: '💻' },
-      { value: 'mobile', label: 'Мобильное приложение', icon: '📱' },
-      { value: 'ecommerce', label: 'Интернет-магазин', icon: '🛒' },
-      { value: 'erp', label: 'ERP/CRM', icon: '📊' },
-      { value: 'other', label: 'Другое', icon: '🔧' },
-    ],
-    features: [
-      { value: 'auth', label: 'Авторизация', icon: '🔐' },
-      { value: 'payment', label: 'Платежи', icon: '💳' },
-      { value: 'admin', label: 'Админ-панель', icon: '⚙️' },
-      { value: 'api', label: 'API интеграция', icon: '🔗' },
-      { value: 'analytics', label: 'Аналитика', icon: '📈' },
-      { value: 'multilang', label: 'Мультиязычность', icon: '🌍' },
-    ],
-    budget: [
-      { value: 'small', label: 'До $5,000', icon: '💰' },
-      { value: 'medium', label: '$5,000 - $15,000', icon: '💰💰' },
-      { value: 'large', label: '$15,000 - $50,000', icon: '💰💰💰' },
-      { value: 'enterprise', label: 'От $50,000', icon: '💰💰💰💰' },
-      { value: 'not_sure', label: 'Не определился', icon: '🤔' },
-    ],
-    timeline: [
-      { value: 'urgent', label: 'Срочно (1 месяц)', icon: '⚡' },
-      { value: 'normal', label: '1-3 месяца', icon: '📅' },
-      { value: 'relaxed', label: '3-6 месяцев', icon: '🗓️' },
-      { value: 'flexible', label: 'Гибкие сроки', icon: '🔄' },
-    ],
+  useEffect(() => {
+    if (!result) return;
+    const interval = window.setInterval(() => {
+      setSecondsLeft((value) => Math.max(0, value - 1));
+    }, 1000);
+    return () => window.clearInterval(interval);
+  }, [result]);
+
+  useEffect(() => {
+    if (!result?.telegramBotUrl || openedTelegramRef.current === result.telegramBotUrl) return;
+    openedTelegramRef.current = result.telegramBotUrl;
+    const timer = window.setTimeout(() => {
+      window.location.href = result.telegramBotUrl as string;
+    }, 2000);
+    return () => window.clearTimeout(timer);
+  }, [result?.telegramBotUrl]);
+
+  useEffect(() => {
+    if (!didMountRef.current) {
+      didMountRef.current = true;
+      return;
+    }
+    quizRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, [step, result]);
+
+  const handleSingleSelect = (key: keyof QuizData, value: string) => {
+    setData((prev) => ({ ...prev, [key]: value }));
   };
 
-  const calculateEstimate = () => {
-    const base = projectEstimates[data.projectType] || projectEstimates.other;
-    let multiplier = 1;
-
-    data.features.forEach(f => {
-      multiplier *= featureMultipliers[f] || 1;
-    });
-
-    return {
-      min: Math.round(base.min * multiplier),
-      max: Math.round(base.max * multiplier),
-      weeks: base.weeks,
-    };
-  };
-
-  const handleSingleSelect = (key: string, value: string) => {
-    setData(prev => ({ ...prev, [key]: value }));
-  };
-
-  const handleMultiSelect = (key: string, value: string) => {
-    setData(prev => {
-      const arr = prev[key as keyof QuizData] as string[];
-      const exists = arr.includes(value);
+  const handleMultiSelect = (key: 'painPoints' | 'tools', value: string) => {
+    setData((prev) => {
+      const exists = prev[key].includes(value);
       return {
         ...prev,
-        [key]: exists ? arr.filter(v => v !== value) : [...arr, value],
+        [key]: exists ? prev[key].filter((item) => item !== value) : [...prev[key], value],
       };
     });
   };
 
-  const handleInputChange = (key: string, value: string) => {
-    setData(prev => ({ ...prev, [key]: value }));
+  const handleInputChange = (key: keyof QuizData, value: string) => {
+    setData((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const canProceed = () => {
+    if (currentStep.type === 'form') {
+      return data.name.trim().length > 1 && /\S+@\S+\.\S+/.test(data.email);
+    }
+    if (currentStep.type === 'multi') {
+      return data[currentStep.key as 'painPoints' | 'tools'].length > 0;
+    }
+    return Boolean(data[currentStep.key as keyof QuizData]);
   };
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
+    setSubmitError('');
 
     try {
       const res = await fetch('/api/quiz', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...data,
-          estimate: calculateEstimate(),
-        }),
+        headers: {
+          'Content-Type': 'application/json',
+          'x-fullfocus-locale': locale,
+        },
+        body: JSON.stringify({ ...data, locale }),
       });
 
-      if (res.ok) {
-        setIsSubmitted(true);
+      const payload = await res.json().catch(() => null);
+      if (!res.ok || !payload?.success) {
+        throw new Error('quiz_submit_failed');
       }
+
+      setResult(payload);
+      setSecondsLeft(15 * 60);
     } catch (error) {
-      console.error('Submit error:', error);
+      console.error('[LeadQuiz] Submit failed', error);
+      setSubmitError(copy.genericError);
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const canProceed = () => {
-    const currentStep = steps[step];
-    const value = data[currentStep.key as keyof QuizData];
+  if (result) {
+    const mainHref = result.telegramBotUrl || result.reportUrl;
 
-    if (currentStep.type === 'single') return !!value;
-    if (currentStep.type === 'multi') return (value as string[]).length > 0;
-    if (currentStep.type === 'form') return data.name && data.email;
-
-    return false;
-  };
-
-  if (isSubmitted) {
     return (
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
+        initial={{ opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-2xl p-8 max-w-lg mx-auto"
+        ref={quizRef}
+        className="mx-auto max-w-2xl scroll-mt-24 rounded-lg border border-white/10 bg-zinc-950/80 p-6 shadow-2xl shadow-black/30 md:p-8"
       >
-        <div className="text-center mb-6">
-          <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Check className="w-8 h-8 text-green-500" />
+        <div className="mb-6 flex items-start gap-4">
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-teal-400/15 text-teal-300">
+            <Check className="h-6 w-6" />
           </div>
-          <h3 className="text-2xl font-bold text-white mb-2">Заявка отправлена!</h3>
-          <p className="text-zinc-400">Спасибо за интерес к FullFocus</p>
-        </div>
-
-        <div className="space-y-4 mb-6">
-          <div className="bg-zinc-800/50 rounded-xl p-4">
-            <p className="text-zinc-400 text-sm mb-2">Что дальше?</p>
-            <ul className="text-sm text-zinc-300 space-y-2">
-              <li className="flex items-start gap-2">
-                <span className="text-green-500">✓</span>
-                Наш менеджер изучит ваш запрос
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-green-500">✓</span>
-                Свяжемся с вами в течение 24 часов
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-green-500">✓</span>
-                Обсудим детали и подготовим предложение
-              </li>
-            </ul>
-          </div>
-
-          <div className="bg-green-500/10 border border-green-500/20 rounded-xl p-4">
-            <p className="text-green-400 text-sm font-medium">
-              📞 Бесплатная консультация включена
-            </p>
+          <div>
+            <h3 className="text-2xl font-bold text-white">{copy.result.title}</h3>
+            <p className="mt-1 text-sm text-zinc-400">{copy.result.description}</p>
+            {result.telegramBotUrl ? (
+              <p className="mt-2 text-xs font-medium text-teal-200">{copy.result.autoOpen}</p>
+            ) : (
+              <p className="mt-2 text-xs font-medium text-amber-200">{copy.result.telegramFallback}</p>
+            )}
           </div>
         </div>
 
-        <a
-          href="/"
-          className="block w-full text-center px-6 py-3 bg-green-600 hover:bg-green-500 rounded-xl text-white font-semibold transition"
-        >
-          Вернуться на главную
-        </a>
+        <div className="mb-6 rounded-lg border border-teal-400/20 bg-teal-400/10 p-4">
+          <div className="mb-3 flex items-center justify-between gap-3">
+            <div className="text-sm font-semibold text-teal-200">
+              {copy.result.score}: {result.leadScore}/100
+            </div>
+            <div className="flex items-center gap-2 text-sm text-teal-200">
+              <Timer className="h-4 w-4" />
+              {formatTimer(secondsLeft)}
+            </div>
+          </div>
+          <p className="text-sm leading-6 text-zinc-200">{result.report.summary}</p>
+        </div>
+
+        <div className="mb-6 space-y-3">
+          <p className="text-sm font-semibold text-white">{copy.result.quickSteps}</p>
+          {result.report.quickWins.slice(0, 3).map((item) => (
+            <div key={item} className="flex gap-3 rounded-lg bg-white/[0.03] p-3 text-sm text-zinc-300">
+              <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-teal-300" />
+              <span>{item}</span>
+            </div>
+          ))}
+        </div>
+
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <a
+            href={mainHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-teal-400 px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-teal-300"
+          >
+            {result.telegramBotUrl ? copy.result.telegramCta : copy.result.reportCta}
+            <ArrowRight className="h-4 w-4" />
+          </a>
+          {result.telegramBotUrl && (
+            <a
+              href={result.reportUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-lg border border-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/5"
+            >
+              {copy.result.webVersion}
+            </a>
+          )}
+        </div>
       </motion.div>
     );
   }
 
   return (
-    <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-2xl p-6 md:p-8 max-w-lg mx-auto">
-      {/* Progress */}
-      <div className="flex gap-2 mb-6">
-        {steps.map((_, i) => (
-          <div
-            key={i}
-            className={`h-1 flex-1 rounded-full transition ${
-              i <= step ? 'bg-green-500' : 'bg-zinc-700'
-            }`}
-          />
-        ))}
+    <div
+      ref={quizRef}
+      className="mx-auto max-w-2xl scroll-mt-24 rounded-lg border border-white/10 bg-zinc-950/80 p-5 shadow-2xl shadow-black/30 md:p-8"
+    >
+      <div className="mb-6">
+        <div className="mb-3 flex items-center justify-between gap-4 text-sm">
+          <span className="font-medium text-teal-300">{currentStep.eyebrow}</span>
+          <span className="text-zinc-500">
+            {step + 1} / {steps.length}
+          </span>
+        </div>
+        <div className="h-1.5 overflow-hidden rounded-full bg-white/10">
+          <div className="h-full rounded-full bg-teal-400 transition-all" style={{ width: `${progress}%` }} />
+        </div>
       </div>
 
-      {/* Step info */}
-      <div className="text-center mb-6">
-        <p className="text-zinc-500 text-sm mb-1">Шаг {step + 1} из {steps.length}</p>
-        <h3 className="text-xl font-bold text-white">{steps[step].title}</h3>
+      <div className="mb-6">
+        <h3 className="text-2xl font-bold leading-tight text-white">{currentStep.title}</h3>
+        {currentStep.type === 'multi' && (
+          <p className="mt-2 text-sm text-zinc-500">{copy.multiHint}</p>
+        )}
       </div>
 
-      {/* Content */}
       <AnimatePresence mode="wait">
         <motion.div
-          key={step}
+          key={currentStep.key}
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -20 }}
-          className="min-h-[280px]"
+          transition={{ duration: 0.2 }}
+          className="min-h-[360px]"
         >
-          {steps[step].type === 'form' ? (
-            <div className="space-y-4">
+          {currentStep.type === 'form' ? (
+            <div className="grid gap-3">
               <input
                 type="text"
-                placeholder="Ваше имя *"
+                placeholder={copy.form.name}
                 value={data.name}
-                onChange={e => handleInputChange('name', e.target.value)}
-                className="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-xl text-white placeholder:text-zinc-500 focus:border-green-500 focus:outline-none"
+                onChange={(event) => handleInputChange('name', event.target.value)}
+                className="h-12 w-full rounded-lg border border-white/10 bg-white/[0.03] px-4 text-white placeholder:text-zinc-600 outline-none transition focus:border-teal-400"
               />
               <input
                 type="email"
-                placeholder="Email *"
+                placeholder={copy.form.email}
                 value={data.email}
-                onChange={e => handleInputChange('email', e.target.value)}
-                className="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-xl text-white placeholder:text-zinc-500 focus:border-green-500 focus:outline-none"
+                onChange={(event) => handleInputChange('email', event.target.value)}
+                className="h-12 w-full rounded-lg border border-white/10 bg-white/[0.03] px-4 text-white placeholder:text-zinc-600 outline-none transition focus:border-teal-400"
               />
               <input
                 type="tel"
-                placeholder="Телефон (WhatsApp/Telegram)"
+                placeholder={copy.form.phone}
                 value={data.phone}
-                onChange={e => handleInputChange('phone', e.target.value)}
-                className="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-xl text-white placeholder:text-zinc-500 focus:border-green-500 focus:outline-none"
+                onChange={(event) => handleInputChange('phone', event.target.value)}
+                className="h-12 w-full rounded-lg border border-white/10 bg-white/[0.03] px-4 text-white placeholder:text-zinc-600 outline-none transition focus:border-teal-400"
               />
               <input
                 type="text"
-                placeholder="Название компании"
+                placeholder={copy.form.company}
                 value={data.company}
-                onChange={e => handleInputChange('company', e.target.value)}
-                className="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-xl text-white placeholder:text-zinc-500 focus:border-green-500 focus:outline-none"
+                onChange={(event) => handleInputChange('company', event.target.value)}
+                className="h-12 w-full rounded-lg border border-white/10 bg-white/[0.03] px-4 text-white placeholder:text-zinc-600 outline-none transition focus:border-teal-400"
               />
             </div>
           ) : (
-            <div className="grid grid-cols-2 gap-3">
-              {options[steps[step].key]?.map(opt => {
-                const isSelected =
-                  steps[step].type === 'single'
-                    ? data[steps[step].key as keyof QuizData] === opt.value
-                    : (data[steps[step].key as keyof QuizData] as string[]).includes(opt.value);
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {currentOptions.map((option) => {
+                const Icon = option.icon;
+                const selected =
+                  currentStep.type === 'single'
+                    ? data[currentStep.key as keyof QuizData] === option.value
+                    : data[currentStep.key as 'painPoints' | 'tools'].includes(option.value);
 
                 return (
                   <button
-                    key={opt.value}
+                    key={option.value}
+                    type="button"
                     onClick={() =>
-                      steps[step].type === 'single'
-                        ? handleSingleSelect(steps[step].key, opt.value)
-                        : handleMultiSelect(steps[step].key, opt.value)
+                      currentStep.type === 'single'
+                        ? handleSingleSelect(currentStep.key as keyof QuizData, option.value)
+                        : handleMultiSelect(currentStep.key as 'painPoints' | 'tools', option.value)
                     }
-                    className={`p-4 rounded-xl border text-left transition ${
-                      isSelected
-                        ? 'border-green-500 bg-green-500/10 text-white'
-                        : 'border-zinc-700 bg-zinc-800/50 text-zinc-300 hover:border-zinc-600'
+                    className={`min-h-[112px] rounded-lg border p-4 text-left transition ${
+                      selected
+                        ? 'border-teal-300 bg-teal-300/10 text-white'
+                        : 'border-white/10 bg-white/[0.03] text-zinc-300 hover:border-white/25 hover:bg-white/[0.05]'
                     }`}
                   >
-                    <span className="text-2xl mb-2 block">{opt.icon}</span>
-                    <span className="text-sm font-medium">{opt.label}</span>
+                    <div className="mb-3 flex items-center justify-between gap-3">
+                      <Icon className={`h-5 w-5 ${selected ? 'text-teal-300' : 'text-zinc-500'}`} />
+                      {selected && <Check className="h-4 w-4 text-teal-300" />}
+                    </div>
+                    <span className="block text-sm font-semibold">{option.label}</span>
+                    <span className="mt-1 block text-xs leading-5 text-zinc-500">{option.description}</span>
                   </button>
                 );
               })}
@@ -301,15 +423,21 @@ export function LeadQuiz() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Navigation */}
-      <div className="flex gap-3 mt-6">
+      {submitError && (
+        <p className="mt-4 rounded-lg border border-red-400/20 bg-red-500/10 px-4 py-3 text-sm text-red-200">
+          {submitError}
+        </p>
+      )}
+
+      <div className="mt-6 flex items-center gap-3">
         {step > 0 && (
           <button
-            onClick={() => setStep(s => s - 1)}
-            className="flex items-center gap-2 px-4 py-3 text-zinc-400 hover:text-white transition"
+            type="button"
+            onClick={() => setStep((value) => value - 1)}
+            className="inline-flex h-11 items-center gap-2 rounded-lg border border-white/10 px-4 text-sm font-medium text-zinc-300 transition hover:bg-white/5 hover:text-white"
           >
-            <ChevronLeft className="w-4 h-4" />
-            Назад
+            <ArrowLeft className="h-4 w-4" />
+            {copy.back}
           </button>
         )}
 
@@ -317,21 +445,23 @@ export function LeadQuiz() {
 
         {step < steps.length - 1 ? (
           <button
-            onClick={() => setStep(s => s + 1)}
+            type="button"
+            onClick={() => setStep((value) => value + 1)}
             disabled={!canProceed()}
-            className="flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-500 disabled:bg-zinc-700 disabled:text-zinc-500 rounded-xl text-white transition"
+            className="inline-flex h-11 items-center gap-2 rounded-lg bg-teal-400 px-5 text-sm font-semibold text-zinc-950 transition hover:bg-teal-300 disabled:cursor-not-allowed disabled:bg-zinc-800 disabled:text-zinc-500"
           >
-            Далее
-            <ChevronRight className="w-4 h-4" />
+            {copy.next}
+            <ArrowRight className="h-4 w-4" />
           </button>
         ) : (
           <button
+            type="button"
             onClick={handleSubmit}
             disabled={!canProceed() || isSubmitting}
-            className="flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-500 disabled:bg-zinc-700 disabled:text-zinc-500 rounded-xl text-white transition"
+            className="inline-flex h-11 items-center gap-2 rounded-lg bg-teal-400 px-5 text-sm font-semibold text-zinc-950 transition hover:bg-teal-300 disabled:cursor-not-allowed disabled:bg-zinc-800 disabled:text-zinc-500"
           >
-            {isSubmitting ? 'Отправка...' : 'Отправить заявку'}
-            <Send className="w-4 h-4" />
+            {isSubmitting ? copy.submitting : copy.submit}
+            <Send className="h-4 w-4" />
           </button>
         )}
       </div>

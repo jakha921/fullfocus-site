@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, ExternalLink, TrendingUp } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -10,10 +11,12 @@ const projectsMeta = [
   {
     id: "1",
     index: 0,
+    image: "/images/project-1.jpg",
+    imageAlt: "AI lead intake and CRM automation dashboard",
     technologies: ["OpenAI", "LangChain", "Next.js"],
-    gradient: "from-green-500/30 to-teal-500/20",
+    gradient: "from-emerald-500/30 to-teal-500/20",
     techColors: {
-      OpenAI: "bg-green-500/20 text-green-400",
+      OpenAI: "bg-emerald-500/20 text-emerald-400",
       LangChain: "bg-purple-500/20 text-purple-400",
       "Next.js": "bg-white/10 text-gray-300",
     } as Record<string, string>,
@@ -21,22 +24,26 @@ const projectsMeta = [
   {
     id: "2",
     index: 1,
+    image: "/images/project-2.jpg",
+    imageAlt: "Telegram bot and workflow automation visual",
     technologies: ["n8n", "Supabase"],
     gradient: "from-teal-500/30 to-blue-500/20",
     techColors: {
       n8n: "bg-orange-500/20 text-orange-400",
-      Supabase: "bg-green-500/20 text-green-400",
+      Supabase: "bg-emerald-500/20 text-emerald-400",
     } as Record<string, string>,
   },
   {
     id: "3",
     index: 2,
+    image: "/images/project-3.jpg",
+    imageAlt: "AI support agent analytics dashboard",
     technologies: ["Django", "React", "OpenAI"],
-    gradient: "from-blue-500/30 to-green-500/20",
+    gradient: "from-blue-500/30 to-emerald-500/20",
     techColors: {
-      Django: "bg-green-700/20 text-green-300",
+      Django: "bg-emerald-700/20 text-emerald-300",
       React: "bg-blue-500/20 text-blue-400",
-      OpenAI: "bg-green-500/20 text-green-400",
+      OpenAI: "bg-emerald-500/20 text-emerald-400",
     } as Record<string, string>,
   },
 ];
@@ -68,15 +75,22 @@ export function PortfolioSection() {
           >
             <Link href={`/portfolio/${first.id}`} className="block h-full">
               <div className="glass-card rounded-2xl overflow-hidden group h-full min-h-[320px] relative flex flex-col justify-end">
-                {/* Background gradient */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${first.gradient}`} />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <Image
+                  src={first.image}
+                  alt={first.imageAlt}
+                  fill
+                  sizes="(min-width: 768px) 66vw, 100vw"
+                  className="absolute inset-0 object-cover opacity-70 transition duration-500 group-hover:scale-[1.03] group-hover:opacity-85"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/20" />
 
                 {/* ROI Badge */}
                 <div className="absolute top-4 right-4 z-10">
-                  <div className="flex items-center gap-1.5 px-3 py-1.5 bg-green-500/20 backdrop-blur-sm border border-green-500/30 rounded-full">
-                    <TrendingUp className="w-3.5 h-3.5 text-green-400" />
-                    <span className="text-sm font-bold text-green-400">{t(`projects.${first.index}.roi`)}</span>
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-500/20 backdrop-blur-sm border border-emerald-500/30 rounded-full">
+                    <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
+                    <span className="text-sm font-bold text-emerald-400">{t(`projects.${first.index}.roi`)}</span>
                   </div>
                 </div>
 
@@ -97,7 +111,7 @@ export function PortfolioSection() {
 
                 {/* Content */}
                 <div className="relative z-10 p-6">
-                  <h3 className="text-2xl font-display font-bold text-white mb-2 group-hover:text-green-400 transition-colors">
+                  <h3 className="text-2xl font-display font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">
                     {t(`projects.${first.index}.title`)}
                   </h3>
                   <p className="text-gray-300 text-sm mb-4">{t(`projects.${first.index}.desc`)}</p>
@@ -128,13 +142,20 @@ export function PortfolioSection() {
               <Link href={`/portfolio/${project.id}`} className="block h-full">
                 <div className="glass-card rounded-2xl overflow-hidden group h-full min-h-[150px] relative flex flex-col justify-end">
                   <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient}`} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <Image
+                    src={project.image}
+                    alt={project.imageAlt}
+                    fill
+                    sizes="(min-width: 768px) 33vw, 100vw"
+                    className="absolute inset-0 object-cover opacity-60 transition duration-500 group-hover:scale-[1.04] group-hover:opacity-80"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent" />
 
                   {/* ROI Badge */}
                   <div className="absolute top-3 right-3 z-10">
-                    <div className="flex items-center gap-1 px-2 py-1 bg-green-500/20 backdrop-blur-sm border border-green-500/30 rounded-full">
-                      <TrendingUp className="w-3 h-3 text-green-400" />
-                      <span className="text-xs font-bold text-green-400">{t(`projects.${project.index}.roi`)}</span>
+                    <div className="flex items-center gap-1 px-2 py-1 bg-emerald-500/20 backdrop-blur-sm border border-emerald-500/30 rounded-full">
+                      <TrendingUp className="w-3 h-3 text-emerald-400" />
+                      <span className="text-xs font-bold text-emerald-400">{t(`projects.${project.index}.roi`)}</span>
                     </div>
                   </div>
 
@@ -153,7 +174,7 @@ export function PortfolioSection() {
                   </div>
 
                   <div className="relative z-10 p-4">
-                    <h3 className="font-display font-bold text-white mb-1 group-hover:text-green-400 transition-colors">
+                    <h3 className="font-display font-bold text-white mb-1 group-hover:text-emerald-400 transition-colors">
                       {t(`projects.${project.index}.title`)}
                     </h3>
                     <div className="flex flex-wrap gap-1">
@@ -182,7 +203,7 @@ export function PortfolioSection() {
         >
           <Link
             href="/portfolio"
-            className="inline-flex items-center gap-2 text-green-400 hover:text-green-300 transition-colors"
+            className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors"
           >
             {t("all_cases")} <ArrowRight className="w-4 h-4" />
           </Link>

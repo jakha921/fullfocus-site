@@ -52,7 +52,7 @@ export default function LoginPage() {
           {/* Logo */}
           <div className="text-center mb-8">
             <Link href="/" className="inline-flex items-center gap-2">
-              <div className="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center">
                 <Target className="w-6 h-6 text-black" />
               </div>
               <span className="text-2xl font-bold text-white">FullFocus</span>

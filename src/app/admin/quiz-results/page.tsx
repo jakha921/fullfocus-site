@@ -3,10 +3,20 @@ export const dynamic = "force-dynamic";
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { DollarSign, Clock, Mail, Phone, Building, Eye, Trash2 } from "lucide-react";
+import { Clock, Gauge, Mail, Phone, Building, Eye, Trash2 } from "lucide-react";
 import { AdminHeader } from "@/components/admin/AdminHeader";
 import { Card, Badge, Button, Skeleton } from "@/components/ui";
 import toast from "react-hot-toast";
+import {
+  labelAutomationArea,
+  labelBudget,
+  labelPainPoint,
+  labelTimeline,
+  labelTool,
+  labelVolume,
+  leadTemperatureLabels,
+  parseAutomationAuditFeatures,
+} from "@/lib/automation-audit";
 
 interface QuizResult {
   id: string;
@@ -26,27 +36,37 @@ interface QuizResult {
 }
 
 const projectTypeLabels: Record<string, string> = {
+  sales: "Продажи и лиды",
+  support: "Поддержка клиентов",
+  marketing: "Маркетинг",
+  operations: "Операции и процессы",
+  finance: "Финансы и документы",
+  hr: "HR и найм",
+  analytics: "Отчеты и аналитика",
+  ecommerce: "E-commerce / интернет-магазин",
   website: "Корпоративный сайт",
   webapp: "Веб-приложение",
   mobile: "Мобильное приложение",
-  ecommerce: "Интернет-магазин",
   erp: "ERP/CRM система",
   other: "Другое",
 };
 
 const budgetLabels: Record<string, { label: string; color: string }> = {
-  small: { label: "До $5,000", color: "bg-blue-500" },
-  medium: { label: "$5,000 - $15,000", color: "bg-green-500" },
-  large: { label: "$15,000 - $50,000", color: "bg-yellow-500" },
-  enterprise: { label: "$50,000+", color: "bg-purple-500" },
-  not_sure: { label: "Не определён", color: "bg-gray-500" },
+  starter: { label: "MVP / точечная автоматизация", color: "bg-blue-500" },
+  growth: { label: "Несколько интеграций", color: "bg-emerald-500" },
+  scale: { label: "Процесс отдела", color: "bg-yellow-500" },
+  small: { label: "MVP / точечная задача", color: "bg-blue-500" },
+  medium: { label: "Несколько интеграций", color: "bg-emerald-500" },
+  large: { label: "Процесс отдела", color: "bg-yellow-500" },
+  enterprise: { label: "Комплексная автоматизация", color: "bg-purple-500" },
+  not_sure: { label: "Нужно оценить", color: "bg-gray-500" },
 };
 
 const timelineLabels: Record<string, string> = {
-  urgent: "Срочно (1 месяц)",
+  urgent: "Нужно в течение месяца",
   normal: "1-3 месяца",
   relaxed: "3-6 месяцев",
-  flexible: "Гибкие сроки",
+  flexible: "Можно поэтапно",
 };
 
 export default function QuizResultsPage() {
@@ -81,25 +101,17 @@ export default function QuizResultsPage() {
   };
 
   const formatFeatures = (featuresJson: string) => {
-    try {
-      const arr = JSON.parse(featuresJson);
-      const labels: Record<string, string> = {
-        auth: "Авторизация",
-        payment: "Платежи",
-        admin: "Админ-панель",
-        api: "API интеграция",
-        analytics: "Аналитика",
-        multilang: "Многоязычность",
-      };
-      return arr.map((f: string) => labels[f] || f).join(", ");
-    } catch {
-      return featuresJson;
-    }
+    const audit = parseAutomationAuditFeatures(featuresJson);
+    return audit.painPoints.map((item) => labelPainPoint(item)).join(", ") || featuresJson;
   };
+
+  const selectedAudit = selectedResult
+    ? parseAutomationAuditFeatures(selectedResult.features)
+    : null;
 
   return (
     <>
-      <AdminHeader title="Результаты опроса" />
+      <AdminHeader title="AI-аудиты" />
       <div className="p-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -126,13 +138,13 @@ export default function QuizResultsPage() {
                 return (
                   <Card
                     key={result.id}
-                    className={`cursor-pointer transition-all hover:border-green-500/50 ${
-                      selectedResult?.id === result.id ? "border-green-500" : ""
+                    className={`cursor-pointer transition-all hover:border-emerald-500/50 ${
+                      selectedResult?.id === result.id ? "border-emerald-500" : ""
                     }`}
                     onClick={() => setSelectedResult(result)}
                   >
                     <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-black font-bold text-sm">
+                      <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-full flex items-center justify-center text-black font-bold text-sm">
                         {result.name.charAt(0).toUpperCase()}
                       </div>
                       <div className="flex-1 min-w-0">
@@ -146,12 +158,12 @@ export default function QuizResultsPage() {
                         </div>
                         <p className="text-gray-400 text-sm truncate">{result.email}</p>
                         <p className="text-gray-500 text-xs mt-1">
-                          {projectTypeLabels[result.projectType] || result.projectType}
+                          {projectTypeLabels[result.projectType] || labelAutomationArea(result.projectType)}
                         </p>
                       </div>
                       <div className="text-right">
-                        <p className="text-green-400 font-semibold text-sm">
-                          ${result.estimateMin.toLocaleString()} - ${result.estimateMax.toLocaleString()}
+                        <p className="text-emerald-400 font-semibold text-sm">
+                          {result.estimateWeeksMin}-{result.estimateWeeksMax} недель
                         </p>
                         <p className="text-gray-500 text-xs">
                           {new Date(result.createdAt).toLocaleDateString("ru-RU")}
@@ -182,14 +194,14 @@ export default function QuizResultsPage() {
                     {/* Contact Info */}
                     <div className="grid grid-cols-2 gap-4">
                       <div className="flex items-center gap-2 text-gray-400">
-                        <Mail className="w-4 h-4 text-green-500" />
+                        <Mail className="w-4 h-4 text-emerald-500" />
                         <a href={`mailto:${selectedResult.email}`} className="hover:text-white">
                           {selectedResult.email}
                         </a>
                       </div>
                       {selectedResult.phone && (
                         <div className="flex items-center gap-2 text-gray-400">
-                          <Phone className="w-4 h-4 text-green-500" />
+                          <Phone className="w-4 h-4 text-emerald-500" />
                           <a href={`tel:${selectedResult.phone}`} className="hover:text-white">
                             {selectedResult.phone}
                           </a>
@@ -197,7 +209,7 @@ export default function QuizResultsPage() {
                       )}
                       {selectedResult.company && (
                         <div className="flex items-center gap-2 text-gray-400 col-span-2">
-                          <Building className="w-4 h-4 text-green-500" />
+                          <Building className="w-4 h-4 text-emerald-500" />
                           {selectedResult.company}
                         </div>
                       )}
@@ -208,51 +220,79 @@ export default function QuizResultsPage() {
                     {/* Project Details */}
                     <div className="space-y-3">
                       <div className="flex items-center justify-between">
-                        <span className="text-gray-400">Тип проекта</span>
+                        <span className="text-gray-400">Фокус</span>
                         <span className="text-white">
-                          {projectTypeLabels[selectedResult.projectType] || selectedResult.projectType}
+                          {projectTypeLabels[selectedResult.projectType] || labelAutomationArea(selectedResult.projectType)}
                         </span>
                       </div>
 
                       <div className="flex items-center justify-between">
-                        <span className="text-gray-400">Бюджет</span>
+                        <span className="text-gray-400">Масштаб</span>
                         <Badge className={budgetLabels[selectedResult.budget]?.color || "bg-gray-500"}>
-                          {budgetLabels[selectedResult.budget]?.label || selectedResult.budget}
+                          {budgetLabels[selectedResult.budget]?.label || labelBudget(selectedResult.budget)}
                         </Badge>
                       </div>
 
                       <div className="flex items-center justify-between">
                         <span className="text-gray-400">Сроки</span>
                         <span className="text-white">
-                          {timelineLabels[selectedResult.timeline] || selectedResult.timeline}
+                          {timelineLabels[selectedResult.timeline] || labelTimeline(selectedResult.timeline)}
                         </span>
                       </div>
 
                       <div>
-                        <span className="text-gray-400 block mb-1">Функционал</span>
+                        <span className="text-gray-400 block mb-1">Проблемы</span>
                         <p className="text-white text-sm">
                           {formatFeatures(selectedResult.features)}
                         </p>
                       </div>
+
+                      {selectedAudit?.version === "automation-audit-v1" && (
+                        <>
+                          <div>
+                            <span className="text-gray-400 block mb-1">Инструменты</span>
+                            <p className="text-white text-sm">
+                              {selectedAudit.tools.map((item) => labelTool(item)).join(", ")}
+                            </p>
+                          </div>
+
+                          <div className="flex items-center justify-between">
+                            <span className="text-gray-400">Объем</span>
+                            <span className="text-white">
+                              {labelVolume(selectedAudit.volume)}
+                            </span>
+                          </div>
+
+                          <div className="flex items-center justify-between">
+                            <span className="text-gray-400">Lead score</span>
+                            <span className="text-white">
+                              {selectedAudit.leadScore || 0}/100
+                              {selectedAudit.leadTemperature
+                                ? ` · ${leadTemperatureLabels[selectedAudit.leadTemperature] || selectedAudit.leadTemperature}`
+                                : ""}
+                            </span>
+                          </div>
+                        </>
+                      )}
                     </div>
 
                     <hr className="border-white/8" />
 
                     {/* Estimate */}
-                    <div className="bg-green-500/10 rounded-lg p-4 border border-green-500/20">
-                      <h3 className="text-green-400 font-semibold mb-3">Оценка проекта</h3>
+                    <div className="bg-emerald-500/10 rounded-lg p-4 border border-emerald-500/20">
+                      <h3 className="text-emerald-400 font-semibold mb-3">Оценка автоматизации</h3>
                       <div className="grid grid-cols-2 gap-4">
                         <div className="flex items-center gap-2">
-                          <DollarSign className="w-5 h-5 text-green-400" />
+                          <Gauge className="w-5 h-5 text-emerald-400" />
                           <div>
-                            <p className="text-gray-400 text-xs">Бюджет</p>
+                            <p className="text-gray-400 text-xs">Масштаб</p>
                             <p className="text-white font-semibold">
-                              ${selectedResult.estimateMin.toLocaleString()} - ${selectedResult.estimateMax.toLocaleString()}
+                              {budgetLabels[selectedResult.budget]?.label || labelBudget(selectedResult.budget)}
                             </p>
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
-                          <Clock className="w-5 h-5 text-green-400" />
+                          <Clock className="w-5 h-5 text-emerald-400" />
                           <div>
                             <p className="text-gray-400 text-xs">Сроки</p>
                             <p className="text-white font-semibold">
@@ -263,11 +303,27 @@ export default function QuizResultsPage() {
                       </div>
                     </div>
 
+                    {selectedAudit?.report && (
+                      <div className="bg-white/5 rounded-lg p-4 border border-white/8">
+                        <h3 className="text-white font-semibold mb-2">Mini-report</h3>
+                        <p className="text-gray-300 text-sm leading-6 mb-3">
+                          {selectedAudit.report.summary}
+                        </p>
+                        <div className="space-y-2">
+                          {selectedAudit.report.quickWins.slice(0, 3).map((item) => (
+                            <p key={item} className="text-gray-400 text-sm">
+                              • {item}
+                            </p>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
                     {/* Actions */}
                     <div className="flex gap-3 pt-2">
                       <a
-                        href={`mailto:${selectedResult.email}?subject=Ответ по проекту&body=Здравствуйте, ${selectedResult.name}!%0D%0A%0D%0AСпасибо за интерес к FullFocus.%0D%0A%0D%0AПо вашему запросу:`}
-                        className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-lg transition-colors"
+                        href={`mailto:${selectedResult.email}?subject=AI-аудит автоматизации&body=Здравствуйте, ${selectedResult.name}!%0D%0A%0D%0AСпасибо за интерес к FullFocus.%0D%0A%0D%0AПо вашему запросу:`}
+                        className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-black font-semibold rounded-lg transition-colors"
                       >
                         <Mail className="w-4 h-4" />
                         Написать Email

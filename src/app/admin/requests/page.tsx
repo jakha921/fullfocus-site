@@ -43,9 +43,9 @@ const kanbanColumns = [
   {
     id: "new",
     label: "Новые",
-    borderColor: "border-green-500/30",
-    headColor: "text-green-400",
-    bgColor: "bg-green-500/5",
+    borderColor: "border-emerald-500/30",
+    headColor: "text-emerald-400",
+    bgColor: "bg-emerald-500/5",
   },
   {
     id: "in_progress",
@@ -247,7 +247,7 @@ export default function RequestsPage() {
               placeholder="Поиск по имени или email..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 bg-white/5 border border-white/8 rounded-lg text-white placeholder-gray-500 focus:border-green-500 focus:outline-none"
+              className="w-full pl-10 pr-4 py-2.5 bg-white/5 border border-white/8 rounded-lg text-white placeholder-gray-500 focus:border-emerald-500 focus:outline-none"
             />
           </div>
           <Select
@@ -265,7 +265,7 @@ export default function RequestsPage() {
                 className={cn(
                   "px-3 py-1.5 rounded-md text-sm font-medium transition-all",
                   viewMode === m
-                    ? "bg-green-500/10 text-green-400 border border-green-500/30"
+                    ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/30"
                     : "text-gray-400 hover:text-white"
                 )}
               >
@@ -361,7 +361,7 @@ export default function RequestsPage() {
                           <td className="px-6 py-4 text-right">
                             <Link
                               href={`/admin/requests/${request.id}`}
-                              className="text-green-500 hover:text-green-400 text-sm"
+                              className="text-emerald-500 hover:text-emerald-400 text-sm"
                             >
                               Подробнее
                             </Link>

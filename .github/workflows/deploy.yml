@@ -1,6 +1,8 @@
 name: Deploy to Coolify
 
 on:
+  pull_request:
+    branches: [master]
   push:
     branches: [master]
 
@@ -29,6 +31,7 @@ jobs:
           NEXTAUTH_URL: https://fullfocus.dev
 
   build-image:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     needs: lint
     runs-on: ubuntu-latest
     steps:
@@ -49,6 +52,7 @@ jobs:
           cache-to: type=gha,mode=max
 
   deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     needs: build-image
     runs-on: ubuntu-latest
     steps:

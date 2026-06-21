@@ -8,7 +8,6 @@ import {
   TechStackSection,
   SocialProofBar,
   PainSection,
-  PricingSection,
   FAQSection,
   IdeaAuctionSection,
 } from "@/components/site";
@@ -24,7 +23,6 @@ export default function HomePage() {
       <ProcessSection />
       <TechStackSection />
       <TestimonialsSection />
-      <PricingSection />
       <FAQSection />
       <CTASection />
       <IdeaAuctionSection />

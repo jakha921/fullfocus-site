@@ -52,27 +52,54 @@ export function Header() {
 
   return (
     <header
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrolled
-          ? "bg-black/90 backdrop-blur-xl border-b border-white/10"
-          : "bg-black/60 backdrop-blur-lg border-b border-gray-800/30"
-      )}
+      className="pointer-events-none fixed left-0 right-0 top-0 z-50 px-3 pt-2 sm:px-4"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+      <div
+        className={cn(
+          "pointer-events-auto mx-auto transition-[max-width] duration-500 ease-out",
+          scrolled ? "max-w-5xl" : "max-w-7xl"
+        )}
+      >
+        <div
+          className={cn(
+            "flex items-center justify-between rounded-xl border px-4 shadow-black/20 backdrop-blur-xl transition-all duration-500 ease-out sm:px-6 lg:px-7",
+            scrolled
+              ? "h-12 border-white/15 bg-black/85 shadow-2xl"
+              : "h-14 border-white/10 bg-black/55 shadow-lg md:h-16"
+          )}
+        >
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-teal-500 rounded-lg flex items-center justify-center shadow-lg shadow-green-500/20">
-              <Target className="w-5 h-5 text-black" />
+            <div
+              className={cn(
+                "flex items-center justify-center rounded-lg bg-gradient-to-br from-emerald-400 to-teal-500 shadow-lg shadow-emerald-500/20 transition-all duration-500",
+                scrolled ? "h-7 w-7" : "h-8 w-8"
+              )}
+            >
+              <Target
+                className={cn(
+                  "text-black transition-all duration-500",
+                  scrolled ? "h-4 w-4" : "h-5 w-5"
+                )}
+              />
             </div>
-            <span className="text-xl font-display font-bold text-white group-hover:text-green-400 transition-colors">
+            <span
+              className={cn(
+                "font-display font-bold text-white transition-all duration-500 group-hover:text-emerald-400",
+                scrolled ? "text-lg" : "text-xl"
+              )}
+            >
               FullFocus
             </span>
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav
+            className={cn(
+              "hidden items-center transition-all duration-500 md:flex",
+              scrolled ? "gap-5" : "gap-8"
+            )}
+          >
             {navKeys.map((link) => (
               <Link
                 key={link.href}
@@ -80,18 +107,26 @@ export function Header() {
                 className="relative text-sm text-gray-400 hover:text-white transition-colors group"
               >
                 {t(link.key)}
-                <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-green-500 to-teal-500 group-hover:w-full transition-all duration-300" />
+                <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-emerald-500 to-teal-500 group-hover:w-full transition-all duration-300" />
               </Link>
             ))}
           </nav>
 
           {/* Right side: Language + CTA */}
-          <div className="hidden md:flex items-center gap-4">
+          <div
+            className={cn(
+              "hidden items-center transition-all duration-500 md:flex",
+              scrolled ? "gap-3" : "gap-4"
+            )}
+          >
             {/* Language Selector */}
             <div className="relative">
               <button
                 onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
-                className="flex items-center gap-2 px-3 py-2 text-gray-400 hover:text-white transition-colors"
+                className={cn(
+                  "flex items-center gap-2 rounded-lg text-gray-400 transition-all hover:bg-white/5 hover:text-white",
+                  scrolled ? "px-2.5 py-1.5" : "px-3 py-2"
+                )}
               >
                 <Globe className={cn("w-4 h-4", isPending && "animate-spin")} />
                 <span className="text-sm font-medium">{currentLang.toUpperCase()}</span>
@@ -114,7 +149,7 @@ export function Header() {
                         onClick={() => handleLanguageChange(lang.code)}
                         className={cn(
                           "flex items-center gap-3 px-4 py-2 w-full text-left hover:bg-white/5 transition-colors",
-                          currentLang === lang.code && "text-green-400"
+                          currentLang === lang.code && "text-emerald-400"
                         )}
                       >
                         <span className="text-sm font-medium">{lang.label}</span>
@@ -126,8 +161,11 @@ export function Header() {
             </div>
 
             <Link
-              href="/contact"
-              className="px-5 py-2 bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-400 hover:to-teal-400 text-black font-bold rounded-lg text-sm transition-all hover:scale-[1.02] active:scale-[0.98] shadow-md shadow-green-500/20"
+              href="/quiz"
+              className={cn(
+                "rounded-lg bg-gradient-to-r from-emerald-500 to-teal-500 text-sm font-bold text-black shadow-md shadow-emerald-500/20 transition-all hover:scale-[1.02] hover:from-emerald-400 hover:to-teal-400 active:scale-[0.98]",
+                scrolled ? "px-4 py-1.5" : "px-5 py-2"
+              )}
             >
               {tCta("button")}
             </Link>
@@ -150,7 +188,7 @@ export function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-black/95 border-b border-white/10"
+            className="pointer-events-auto mx-auto mt-2 max-w-7xl overflow-hidden rounded-xl border border-white/10 bg-black/95 shadow-2xl shadow-black/40 backdrop-blur-xl md:hidden"
           >
             <div className="px-4 py-4 space-y-2">
               {navKeys.map((link) => (
@@ -173,7 +211,7 @@ export function Header() {
                     className={cn(
                       "flex-1 py-2 rounded-lg text-sm font-medium transition-colors",
                       currentLang === lang.code
-                        ? "bg-gradient-to-r from-green-500 to-teal-500 text-black font-bold"
+                        ? "bg-gradient-to-r from-emerald-500 to-teal-500 text-black font-bold"
                         : "bg-white/5 text-gray-300 hover:bg-white/10"
                     )}
                   >
@@ -183,8 +221,8 @@ export function Header() {
               </div>
 
               <Link
-                href="/contact"
-                className="block mt-4 px-4 py-3 bg-gradient-to-r from-green-500 to-teal-500 text-black font-bold rounded-lg text-center"
+                href="/quiz"
+                className="block mt-4 px-4 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-black font-bold rounded-lg text-center"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {tCta("button")}

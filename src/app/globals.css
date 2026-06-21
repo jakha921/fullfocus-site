@@ -3,19 +3,19 @@
 @tailwind utilities;
 
 :root {
-  --background: #0a0a0a;
+  --background: #050807;
   --foreground: #ffffff;
-  --primary: #22c55e;
-  --primary-hover: #16a34a;
+  --primary: #31e6a6;
+  --primary-hover: #5eead4;
   --muted: #9ca3af;
-  --border: #27272a;
-  --card: #111111;
-  --accent-teal: #14b8a6;
-  --accent-blue: #3b82f6;
-  --card-glass-bg: rgba(17, 17, 17, 0.6);
-  --card-glass-border: rgba(255, 255, 255, 0.08);
-  --gradient-primary: linear-gradient(135deg, #22c55e, #14b8a6);
-  --gradient-hero: linear-gradient(135deg, #22c55e 0%, #14b8a6 50%, #3b82f6 100%);
+  --border: #1b2a25;
+  --card: #0a1110;
+  --accent-teal: #5eead4;
+  --accent-blue: #22d3ee;
+  --card-glass-bg: rgba(6, 14, 12, 0.72);
+  --card-glass-border: rgba(94, 234, 212, 0.12);
+  --gradient-primary: linear-gradient(135deg, #31e6a6, #5eead4);
+  --gradient-hero: linear-gradient(135deg, #31e6a6 0%, #5eead4 52%, #22d3ee 100%);
 }
 
 * {
@@ -79,17 +79,17 @@ body {
   position: absolute;
   width: 600px;
   height: 600px;
-  background: radial-gradient(ellipse at center, rgba(34, 197, 94, 0.15), transparent 70%);
+  background: radial-gradient(ellipse at center, rgba(49, 230, 166, 0.15), transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
 
 .ambient-glow-teal {
-  background: radial-gradient(ellipse, rgba(20, 184, 166, 0.12), transparent 70%);
+  background: radial-gradient(ellipse, rgba(94, 234, 212, 0.14), transparent 70%);
 }
 
 .ambient-glow-green {
-  background: radial-gradient(ellipse, rgba(34, 197, 94, 0.12), transparent 70%);
+  background: radial-gradient(ellipse, rgba(49, 230, 166, 0.14), transparent 70%);
 }
 
 .marquee-track {
@@ -143,7 +143,7 @@ body {
 
 /* Selection */
 ::selection {
-  background: rgba(34, 197, 94, 0.3);
+  background: rgba(16, 185, 129, 0.3);
   color: #fff;
 }
 
@@ -162,12 +162,12 @@ body {
 }
 
 .prose a {
-  color: #22c55e;
+  color: #10b981;
   text-decoration: underline;
 }
 
 .prose a:hover {
-  color: #16a34a;
+  color: #059669;
 }
 
 .prose code {
@@ -200,7 +200,7 @@ body {
 }
 
 .prose blockquote {
-  border-left: 4px solid #22c55e;
+  border-left: 4px solid #10b981;
   padding-left: 1rem;
   color: #9ca3af;
   font-style: italic;

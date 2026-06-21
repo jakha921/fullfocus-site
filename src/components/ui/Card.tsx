@@ -20,7 +20,7 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
           hover && glass
             ? "hover:border-white/15 hover:bg-white/5 transition-all duration-300 cursor-pointer"
             : hover
-            ? "hover:border-green-500/30 hover:bg-gray-800/60 transition-all duration-300 cursor-pointer"
+            ? "hover:border-emerald-500/30 hover:bg-gray-800/60 transition-all duration-300 cursor-pointer"
             : "",
           className
         )}

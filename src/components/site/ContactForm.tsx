@@ -85,8 +85,8 @@ export function ContactForm() {
         animate={{ opacity: 1, scale: 1 }}
         className="text-center py-12"
       >
-        <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
-          <Send className="w-8 h-8 text-green-500" />
+        <div className="w-16 h-16 bg-emerald-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+          <Send className="w-8 h-8 text-emerald-500" />
         </div>
         <h3 className="text-2xl font-bold text-white mb-2">
           {t("success_title")}

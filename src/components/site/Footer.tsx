@@ -14,10 +14,11 @@ const navLinks = [
 ] as const;
 
 const serviceLinks = [
-  { href: "/services#ai-agents", key: "ai_agents_service" },
-  { href: "/services#automation", key: "automation_service" },
-  { href: "/services#saas", key: "saas_service" },
-  { href: "/services#integration", key: "integration_service" },
+  { href: "/services/ai-support-agent", key: "ai_agents_service" },
+  { href: "/services/telegram-bot-automation", key: "automation_service" },
+  { href: "/services", key: "saas_service" },
+  { href: "/services/crm-automation", key: "integration_service" },
+  { href: "/tools/automation-roi-calculator", key: "roi_calculator" },
 ] as const;
 
 export function Footer() {
@@ -31,7 +32,7 @@ export function Footer() {
           {/* Company Info */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-teal-500 rounded-lg flex items-center justify-center shadow-lg shadow-green-500/20">
+              <div className="w-8 h-8 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-lg flex items-center justify-center shadow-lg shadow-emerald-500/20">
                 <Target className="w-5 h-5 text-black" />
               </div>
               <span className="text-xl font-display font-bold text-white">FullFocus</span>
@@ -98,7 +99,7 @@ export function Footer() {
             <h3 className="text-white font-semibold mb-4">{t("contact")}</h3>
             <ul className="space-y-3">
               <li className="flex items-center gap-3 text-gray-400 text-sm">
-                <Mail className="w-4 h-4 text-green-400" />
+                <Mail className="w-4 h-4 text-emerald-400" />
                 <a href="mailto:hello@fullfocus.dev" className="hover:text-white transition-colors">
                   hello@fullfocus.dev
                 </a>
@@ -120,7 +121,7 @@ export function Footer() {
         {/* Bottom */}
         <div className="mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           {/* Gradient divider */}
-          <div className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-green-500/30 to-transparent -mt-8" />
+          <div className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent -mt-8" />
 
           <p className="text-gray-500 text-sm">
             &copy; {new Date().getFullYear()} FullFocus. {t("rights")}

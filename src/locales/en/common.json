@@ -10,7 +10,7 @@
   "hero": {
     "title": "We Automate Business. You Scale.",
     "subtitle": "AI agents, automations, and SaaS products for business. 300% ROI in 3-6 months.",
-    "cta": "Book a Call",
+    "cta": "Get AI Audit",
     "badge": "AI-Powered Business Automation",
     "title_line1": "We automate",
     "title_line2": "business.",
@@ -21,7 +21,7 @@
     "card_hours": "hrs/week saved"
   },
   "services": {
-    "title": "AI Solutions for Business Growth",
+    "title": "AI Solutions for",
     "subtitle": "We automate processes, build AI agents, and develop SaaS products",
     "ai_agents": {
       "title": "AI Agents & Chatbots",
@@ -58,7 +58,7 @@
     "team": "Team Members"
   },
   "pain": {
-    "title": "Your Business Is Losing Money",
+    "title": "Your Business Is",
     "subtitle": "Every day without automation is lost profit",
     "manual": {
       "title": "Manual Processes",
@@ -82,89 +82,6 @@
     "scaling_desc_full": "To grow, you hire more people instead of optimizing processes",
     "highlight": "losing money"
   },
-  "pricing": {
-    "title": "Transparent Pricing",
-    "subtitle": "Choose the collaboration model that fits",
-    "project": {
-      "name": "Project-based",
-      "price": "from $5,000",
-      "period": "fixed price",
-      "description": "Perfect for well-defined projects with fixed budget",
-      "features": [
-        "Fixed cost and timeline",
-        "Full development cycle",
-        "Result guarantee",
-        "3-month support"
-      ]
-    },
-    "retainer": {
-      "name": "Retainer",
-      "price": "from $3,000/mo",
-      "period": "/month",
-      "description": "Dedicated team for continuous product development",
-      "features": [
-        "Dedicated team",
-        "Weekly sprints and demos",
-        "Priority 24/7 support",
-        "Flexible scaling",
-        "AI automation included"
-      ]
-    },
-    "performance": {
-      "name": "Performance",
-      "price": "Pay for results",
-      "period": "pay for ROI",
-      "description": "We earn only when you earn",
-      "features": [
-        "Payment tied to metrics",
-        "Minimal risk for you",
-        "AI-driven optimization",
-        "Monthly ROI reports"
-      ]
-    },
-    "cta": "Book a Call",
-    "badge": "Pricing Models",
-    "plans": {
-      "0": {
-        "name": "Project-based",
-        "price": "from $5,000",
-        "period": "fixed price",
-        "description": "Perfect for well-defined projects with fixed budget",
-        "features": [
-          "Fixed cost and timeline",
-          "Full development cycle",
-          "Result guarantee",
-          "3-month support"
-        ]
-      },
-      "1": {
-        "name": "Retainer",
-        "price": "from $3,000",
-        "period": "/month",
-        "description": "Dedicated team for continuous product development",
-        "features": [
-          "Dedicated team",
-          "Weekly sprints and demos",
-          "Priority 24/7 support",
-          "Flexible scaling",
-          "AI automation included"
-        ]
-      },
-      "2": {
-        "name": "Performance",
-        "price": "Pay for results",
-        "period": "pay for ROI",
-        "description": "We earn only when you earn",
-        "features": [
-          "Payment tied to metrics",
-          "Minimal risk for you",
-          "AI-driven optimization",
-          "Monthly ROI reports"
-        ]
-      }
-    },
-    "highlight": "pricing"
-  },
   "faq": {
     "title": "Frequently Asked Questions",
     "subtitle": "Answers to common questions",
@@ -175,8 +92,8 @@
         "a": "First results visible in 2-4 weeks. AI agent MVP launches in 4-6 weeks. Full integration with your systems — 2-3 months."
       },
       "1": {
-        "q": "What budget is needed to start?",
-        "a": "Minimum automation project starts from $5,000. Retainer — from $3,000/month. We also offer a performance model where you pay only for results."
+        "q": "Can we start without a ready technical brief?",
+        "a": "Yes. We start with an AI audit, map the process, risks, and MVP scope. Then we can discuss stages and terms privately."
       },
       "2": {
         "q": "What technologies do you use?",
@@ -188,7 +105,7 @@
       },
       "4": {
         "q": "What does post-launch support include?",
-        "a": "24/7 monitoring, AI model updates, performance optimization, priority support in Telegram. First 3 months — free."
+        "a": "Monitoring, AI model updates, performance optimization, priority Telegram support, and a clear improvement plan after launch."
       },
       "5": {
         "q": "How is ROI measured?",
@@ -199,13 +116,14 @@
   "cta": {
     "title": "Ready for Automation?",
     "subtitle": "30-min call. We'll find 3+ automation opportunities in your business.",
-    "button": "Book a Free Call",
+    "button": "Get AI Audit",
     "description": "30-minute call. We'll find 3+ automation opportunities in your business.",
     "free": "Free",
     "no_obligation": "No obligations",
     "ai_audit": "AI audit as a gift",
     "slots_left": "Left",
-    "slots": "spots in"
+    "slots": "spots in",
+    "slots_message": "{slots} slots left for {month}"
   },
   "quiz": {
     "title": "Get Your Free Project Estimate",
@@ -216,7 +134,7 @@
     "submit": "Get My Estimate",
     "result": {
       "title": "Your Project Estimate",
-      "range": "Estimated Budget Range",
+      "range": "Recommended implementation scope",
       "timeline": "Estimated Timeline",
       "recommendations": "Recommendations",
       "cta": "Schedule Free Consultation",
@@ -235,12 +153,12 @@
         }
       },
       "budget": {
-        "title": "What's your approximate budget?",
+        "title": "What solution scope fits you best?",
         "options": {
-          "small": "Up to $5,000",
-          "medium": "$5,000 - $15,000",
-          "large": "$15,000 - $50,000",
-          "enterprise": "$50,000+",
+          "small": "MVP / focused task",
+          "medium": "Several integrations",
+          "large": "Department process",
+          "enterprise": "Complex automation",
           "not_sure": "Not sure yet"
         }
       },
@@ -284,6 +202,7 @@
     "automation_service": "Process Automation",
     "saas_service": "SaaS Development",
     "integration_service": "System Integration",
+    "roi_calculator": "Automation ROI Calculator",
     "location": "Tashkent, Uzbekistan",
     "privacy": "Privacy Policy"
   },
@@ -299,7 +218,7 @@
     "email_label": "Email *",
     "phone_label": "Phone",
     "service_label": "Service type",
-    "budget_label": "Budget",
+    "budget_label": "Project scope",
     "message_label": "Project description *",
     "message_placeholder": "Tell us about your project, goals and timeline...",
     "select_service": "Select service",
@@ -308,11 +227,11 @@
     "service_saas": "SaaS Development",
     "service_integration": "System Integration",
     "service_other": "Other",
-    "select_budget": "Select budget",
-    "budget_small": "up to $5,000",
-    "budget_medium": "$5,000 - $15,000",
-    "budget_large": "$15,000 - $50,000",
-    "budget_enterprise": "more than $50,000",
+    "select_budget": "Select scope",
+    "budget_small": "MVP / focused task",
+    "budget_medium": "Several integrations",
+    "budget_large": "Department process",
+    "budget_enterprise": "Complex automation",
     "success_title": "Application sent!",
     "success_desc": "We'll contact you shortly",
     "send_another": "Send another application",
@@ -456,7 +375,7 @@
       "problem": "What problem does it solve? *",
       "problem_placeholder": "Describe the problem you want to solve. The more detail — the higher chances of winning.",
       "target_audience": "Who is your target audience? *",
-      "target_audience_placeholder": "Who will use it? Age, profession, pains, budget...",
+      "target_audience_placeholder": "Who will use it? Age, profession, pains, constraints...",
       "market_size": "Market size",
       "solution_desc": "How should the product work? *",
       "solution_placeholder": "Describe how the user will interact with the product. What steps, screens, processes?",
@@ -517,7 +436,8 @@
     "slots": "spots",
     "in_month": "in",
     "limited": "Limited spots this month",
-    "cta": "Book a call"
+    "cta": "Get AI audit",
+    "slots_message": "{slots} slots left for {month}"
   },
   "common": {
     "scroll": "Scroll",
@@ -533,8 +453,13 @@
     "mission_p1": "We believe that technology can transform any business. Our goal is to help companies harness the potential of digital solutions for competitive advantage.",
     "mission_p2": "Since 2019, we have completed over 50 projects for clients across various industries — from startups to large enterprises.",
     "stats_projects": "Projects",
+    "stats_projects_value": "50+",
     "stats_years": "Years of experience",
+    "stats_years_value": "{years}+",
     "stats_clients": "Clients",
+    "stats_clients_value": "35+",
+    "stats_team": "Team",
+    "stats_team_value": "8+",
     "stats_specialists": "Specialists",
     "values_badge": "Values",
     "values_title": "Our",
@@ -564,21 +489,25 @@
     "team_description": "People who make FullFocus special",
     "team": {
       "0": {
-        "name": "Ahmad Ruziboev",
+        "initials": "JR",
+        "name": "Jakhongir Ruzibaev",
         "position": "CEO & Founder",
-        "bio": "Over 10 years of experience in IT industry"
+        "bio": "{years}+ years of experience in IT industry"
       },
       "1": {
+        "initials": "BK",
         "name": "Bobur Karimov",
         "position": "CTO",
         "bio": "Solutions architect, cloud technology expert"
       },
       "2": {
+        "initials": "NN",
         "name": "Nigora Nazarova",
         "position": "Lead Designer",
         "bio": "UI/UX specialist with international experience"
       },
       "3": {
+        "initials": "JA",
         "name": "Jasur Alimov",
         "position": "Full-Stack Developer",
         "bio": "Expert in React, Node.js and cloud solutions"
@@ -648,6 +577,7 @@
     "form_title": "Submit",
     "form_highlight": "application",
     "contact_info": "Contact information",
+    "email": "Email",
     "phone": "Phone",
     "address": "Address",
     "address_value": "Tashkent, Uzbekistan",
@@ -660,8 +590,8 @@
     "faq_desc": "Answers to popular questions about our work",
     "faq": {
       "0": {
-        "q": "How much does website development cost?",
-        "a": "Cost depends on complexity and functionality. Landing — from $500, corporate site — from $1500, web app — from $3000. Take our quiz for an accurate estimate."
+        "q": "How do we understand the project scope?",
+        "a": "Scope depends on processes, integrations, content, and reliability requirements. Use the quiz or AI audit to shape a precise brief and implementation plan."
       },
       "1": {
         "q": "How long does project development take?",
@@ -673,7 +603,7 @@
       },
       "3": {
         "q": "Do you work with international clients?",
-        "a": "Yes, we work with clients worldwide. We communicate in Russian, Uzbek and English. We accept payments in various currencies."
+        "a": "Yes, we work with clients worldwide. We communicate in Russian, Uzbek, and English and choose a convenient collaboration format."
       },
       "4": {
         "q": "What is the development process?",

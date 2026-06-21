@@ -17,12 +17,12 @@ export function Badge({
 }: BadgeProps) {
   const variants = {
     default: "bg-gray-700 text-gray-200",
-    success: "bg-green-500/10 text-green-500 border-green-500/30",
+    success: "bg-emerald-500/10 text-emerald-500 border-emerald-500/30",
     warning: "bg-yellow-500/10 text-yellow-500 border-yellow-500/30",
     error: "bg-red-500/10 text-red-500 border-red-500/30",
     outline: "bg-transparent border-gray-600 text-gray-300",
     gradient:
-      "bg-gradient-to-r from-green-500/10 to-teal-500/10 text-green-400 border border-green-500/20",
+      "bg-gradient-to-r from-emerald-500/10 to-teal-500/10 text-emerald-400 border border-emerald-500/20",
   };
 
   return (
@@ -35,7 +35,7 @@ export function Badge({
       {...props}
     >
       {pulse && (
-        <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
       )}
       {children}
     </span>

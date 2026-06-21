@@ -167,7 +167,7 @@ export default function RequestDetailPage() {
                     <p className="text-gray-400 text-sm">Email</p>
                     <a
                       href={`mailto:${request.email}`}
-                      className="text-green-500 hover:underline"
+                      className="text-emerald-500 hover:underline"
                     >
                       {request.email}
                     </a>
@@ -193,7 +193,7 @@ export default function RequestDetailPage() {
                     <p className="text-white">{request.serviceType || "-"}</p>
                   </div>
                   <div>
-                    <p className="text-gray-400 text-sm">Бюджет</p>
+                    <p className="text-gray-400 text-sm">Масштаб</p>
                     <p className="text-white">{request.budget || "-"}</p>
                   </div>
                 </div>

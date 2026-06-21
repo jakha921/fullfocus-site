@@ -158,11 +158,7 @@ export function IdeaAuctionSection() {
       } else {
         const errorData = await res.json().catch(() => null);
         console.error("API error:", errorData);
-        setError(
-          errorData?.details
-            ? errorData.details.map((d: { message: string }) => d.message).join(", ")
-            : t("error_send")
-        );
+        setError(t("error_send"));
       }
     } catch {
       setError(t("error_send"));
@@ -172,7 +168,7 @@ export function IdeaAuctionSection() {
   };
 
   const inputClass =
-    "w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:border-green-500 focus:outline-none text-sm transition-colors";
+    "w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:border-emerald-500 focus:outline-none text-sm transition-colors";
   const textareaClass = `${inputClass} min-h-[100px] resize-none`;
   const labelClass = "block text-sm font-medium text-gray-300 mb-1.5";
 
@@ -236,7 +232,7 @@ export function IdeaAuctionSection() {
                     }
                     className={`px-3 py-2.5 rounded-lg text-sm text-left transition-all ${
                       formData.marketSize === option
-                        ? "bg-green-500/20 border border-green-500/40 text-green-400"
+                        ? "bg-emerald-500/20 border border-emerald-500/40 text-emerald-400"
                         : "bg-white/5 border border-white/10 text-gray-400 hover:border-white/20"
                     }`}
                   >
@@ -295,7 +291,7 @@ export function IdeaAuctionSection() {
                     }
                     className={`px-3 py-2.5 rounded-lg text-sm text-left transition-all ${
                       formData.revenueModel === option
-                        ? "bg-green-500/20 border border-green-500/40 text-green-400"
+                        ? "bg-emerald-500/20 border border-emerald-500/40 text-emerald-400"
                         : "bg-white/5 border border-white/10 text-gray-400 hover:border-white/20"
                     }`}
                   >
@@ -429,7 +425,7 @@ export function IdeaAuctionSection() {
                   {t("benefit_mvp")}
                 </span>
                 <span className="flex items-center gap-2">
-                  <Code2 className="w-4 h-4 text-green-400" />
+                  <Code2 className="w-4 h-4 text-emerald-400" />
                   {t("benefit_code")}
                 </span>
                 <span className="flex items-center gap-2">
@@ -457,8 +453,8 @@ export function IdeaAuctionSection() {
             <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-40 h-40 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
 
             <div className="relative">
-              <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Check className="w-8 h-8 text-green-500" />
+              <div className="w-16 h-16 bg-emerald-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Check className="w-8 h-8 text-emerald-500" />
               </div>
               <h3 className="font-display text-2xl font-bold text-white mb-3">
                 {t("success_title")}
@@ -543,7 +539,7 @@ export function IdeaAuctionSection() {
                         index === currentStep
                           ? "bg-amber-500/20 text-amber-400"
                           : index < currentStep
-                            ? "bg-green-500/20 text-green-400"
+                            ? "bg-emerald-500/20 text-emerald-400"
                             : "text-gray-600"
                       }`}
                     >
@@ -557,7 +553,7 @@ export function IdeaAuctionSection() {
                     {index < steps.length - 1 && (
                       <div
                         className={`flex-1 h-px mx-1 ${
-                          index < currentStep ? "bg-green-500/40" : "bg-white/5"
+                          index < currentStep ? "bg-emerald-500/40" : "bg-white/5"
                         }`}
                       />
                     )}
@@ -621,7 +617,7 @@ export function IdeaAuctionSection() {
               <button
                 onClick={handleSubmit}
                 disabled={!canGoNext() || isSubmitting}
-                className="flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-400 hover:to-teal-400 text-black font-bold rounded-lg text-sm transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                className="flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-black font-bold rounded-lg text-sm transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
               >
                 {isSubmitting ? (
                   <>

@@ -39,8 +39,8 @@ export function ProcessSection() {
                 <div className="text-3xl font-display font-bold gradient-text mb-3">
                   {number}
                 </div>
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500/20 to-teal-500/10 flex items-center justify-center mb-3 group-hover:from-green-500/30 group-hover:to-teal-500/20 transition-all">
-                  <Icon className="w-5 h-5 text-green-400" />
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500/20 to-teal-500/10 flex items-center justify-center mb-3 group-hover:from-emerald-500/30 group-hover:to-teal-500/20 transition-all">
+                  <Icon className="w-5 h-5 text-emerald-400" />
                 </div>
                 <h3 className="font-display font-semibold text-white mb-2">
                   {t(`steps.${index}.title`)}
@@ -73,8 +73,8 @@ export function ProcessSection() {
                   <div className="text-2xl font-display font-bold gradient-text">{number}</div>
                 </div>
                 <div>
-                  <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-green-500/20 to-teal-500/10 flex items-center justify-center mb-2">
-                    <Icon className="w-4 h-4 text-green-400" />
+                  <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-emerald-500/20 to-teal-500/10 flex items-center justify-center mb-2">
+                    <Icon className="w-4 h-4 text-emerald-400" />
                   </div>
                   <h3 className="font-display font-semibold text-white mb-1">
                     {t(`steps.${index}.title`)}
