@@ -8,10 +8,10 @@ import { SectionHeading } from "./SectionHeading";
 import { Card } from "@/components/ui";
 
 const serviceItems = [
-  { number: "01", icon: Bot, key: "ai_agents", href: "/services#ai-agents" },
-  { number: "02", icon: Workflow, key: "automation", href: "/services#automation" },
-  { number: "03", icon: Code2, key: "saas", href: "/services#saas" },
-  { number: "04", icon: Plug, key: "integration", href: "/services#integration" },
+  { number: "01", icon: Bot, key: "ai_agents", href: "/services/ai-support-agent" },
+  { number: "02", icon: Workflow, key: "automation", href: "/services/telegram-bot-automation" },
+  { number: "03", icon: Code2, key: "saas", href: "/services" },
+  { number: "04", icon: Plug, key: "integration", href: "/services/crm-automation" },
 ] as const;
 
 const containerVariants = {

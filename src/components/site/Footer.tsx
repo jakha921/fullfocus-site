@@ -14,10 +14,10 @@ const navLinks = [
 ] as const;
 
 const serviceLinks = [
-  { href: "/services#ai-agents", key: "ai_agents_service" },
-  { href: "/services#automation", key: "automation_service" },
-  { href: "/services#saas", key: "saas_service" },
-  { href: "/services#integration", key: "integration_service" },
+  { href: "/services/ai-support-agent", key: "ai_agents_service" },
+  { href: "/services/telegram-bot-automation", key: "automation_service" },
+  { href: "/services", key: "saas_service" },
+  { href: "/services/crm-automation", key: "integration_service" },
 ] as const;
 
 export function Footer() {
