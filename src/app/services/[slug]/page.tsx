@@ -146,7 +146,7 @@ export default function ServiceLandingPage({ params }: ServicePageProps) {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/quiz"
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-green-500 to-teal-500 px-6 py-3 text-sm font-bold text-black shadow-lg shadow-green-500/20 transition hover:from-green-400 hover:to-teal-400"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-3 text-sm font-bold text-black shadow-lg shadow-emerald-500/20 transition hover:from-emerald-400 hover:to-teal-400"
               >
                 Get AI Audit
                 <ArrowRight className="h-4 w-4" />

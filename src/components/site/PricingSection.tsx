@@ -52,11 +52,11 @@ export function PricingSection() {
               <motion.div key={key} variants={itemVariants}>
                 <div
                   className={`glass-card rounded-2xl p-8 h-full flex flex-col relative ${
-                    isPopular ? "border-green-500/30 shadow-lg shadow-green-500/10" : ""
+                    isPopular ? "border-emerald-500/30 shadow-lg shadow-emerald-500/10" : ""
                   }`}
                 >
                   {isPopular && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-green-500 to-teal-500 text-black text-xs font-bold rounded-full">
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-emerald-500 to-teal-500 text-black text-xs font-bold rounded-full">
                       {tCommon("popular")}
                     </div>
                   )}
@@ -81,7 +81,7 @@ export function PricingSection() {
                   <ul className="space-y-3 mb-8 flex-1">
                     {Array.from({ length: featureCount }, (_, i) => (
                       <li key={i} className="flex items-start gap-3">
-                        <Check className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
+                        <Check className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
                         <span className="text-sm text-gray-300">
                           {t(`${key}.features.${i}`)}
                         </span>
@@ -93,7 +93,7 @@ export function PricingSection() {
                     href="/quiz"
                     className={`inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-all hover:scale-[1.02] active:scale-[0.98] ${
                       isPopular
-                        ? "bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-400 hover:to-teal-400 text-black shadow-lg shadow-green-500/25"
+                        ? "bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-black shadow-lg shadow-emerald-500/25"
                         : "border border-gray-700 hover:border-gray-500 text-white hover:bg-white/5"
                     }`}
                   >

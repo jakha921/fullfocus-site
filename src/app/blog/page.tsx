@@ -25,9 +25,9 @@ function categoryHref(category?: string) {
 
 function getCardGradient(index: number) {
   const gradients = [
-    "from-green-500/20 to-teal-500/10",
+    "from-emerald-500/20 to-teal-500/10",
     "from-teal-500/20 to-blue-500/10",
-    "from-blue-500/20 to-green-500/10",
+    "from-blue-500/20 to-emerald-500/10",
     "from-purple-500/20 to-teal-500/10",
   ];
 
@@ -71,7 +71,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
             href="/blog"
             className={`rounded-lg border px-4 py-2 text-sm font-medium transition ${
               !activeCategory
-                ? "border-green-500/50 bg-green-500/20 text-green-300"
+                ? "border-emerald-500/50 bg-emerald-500/20 text-emerald-300"
                 : "border-white/10 bg-white/[0.03] text-zinc-400 hover:text-white"
             }`}
           >
@@ -83,7 +83,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
               href={categoryHref(category)}
               className={`rounded-lg border px-4 py-2 text-sm font-medium transition ${
                 activeCategory === category
-                  ? "border-green-500/50 bg-green-500/20 text-green-300"
+                  ? "border-emerald-500/50 bg-emerald-500/20 text-emerald-300"
                   : "border-white/10 bg-white/[0.03] text-zinc-400 hover:text-white"
               }`}
             >
@@ -118,7 +118,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
 
                     <div className="relative z-10 max-w-3xl p-6 md:p-8">
                       <div className="mb-4 flex flex-wrap items-center gap-3">
-                        <span className="rounded-full border border-green-500/20 bg-green-500/10 px-3 py-1 text-sm font-medium text-green-300">
+                        <span className="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-sm font-medium text-emerald-300">
                           {featured.category}
                         </span>
                         <span className="flex items-center gap-1 text-sm text-zinc-400">
@@ -126,7 +126,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                           {formatDate(featured.publishedAt ?? featured.createdAt)}
                         </span>
                       </div>
-                      <h2 className="font-display text-2xl font-bold text-white transition-colors group-hover:text-green-300 md:text-4xl">
+                      <h2 className="font-display text-2xl font-bold text-white transition-colors group-hover:text-emerald-300 md:text-4xl">
                         {featured.title}
                       </h2>
                       <p className="mt-4 line-clamp-3 text-base leading-7 text-zinc-300">
@@ -159,7 +159,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
 
                       <div className="relative z-10 p-5">
                         <div className="mb-3 flex flex-wrap items-center gap-2">
-                          <span className="rounded-full border border-green-500/20 bg-green-500/10 px-2.5 py-1 text-xs font-medium text-green-300">
+                          <span className="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-1 text-xs font-medium text-emerald-300">
                             {post.category}
                           </span>
                           <span className="flex items-center gap-1 text-xs text-zinc-500">
@@ -167,7 +167,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                             {formatDate(post.publishedAt ?? post.createdAt)}
                           </span>
                         </div>
-                        <h3 className="font-display text-lg font-semibold text-white transition-colors group-hover:text-green-300">
+                        <h3 className="font-display text-lg font-semibold text-white transition-colors group-hover:text-emerald-300">
                           {post.title}
                         </h3>
                         <p className="mt-3 line-clamp-2 text-sm leading-6 text-zinc-400">

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -11,11 +12,13 @@ const projectsMeta = [
     id: "1",
     index: 0,
     category: "web",
+    image: "/images/project-1.jpg",
+    imageAlt: "AI lead intake and CRM automation dashboard",
     technologies: ["React", "Node.js", "PostgreSQL", "Redis"],
-    gradient: "from-green-500/30 to-teal-500/20",
+    gradient: "from-emerald-500/30 to-teal-500/20",
     techColors: {
       React: "bg-blue-500/20 text-blue-400",
-      "Node.js": "bg-green-500/20 text-green-400",
+      "Node.js": "bg-emerald-500/20 text-emerald-400",
       PostgreSQL: "bg-blue-600/20 text-blue-300",
       Redis: "bg-red-500/20 text-red-400",
     } as Record<string, string>,
@@ -24,6 +27,8 @@ const projectsMeta = [
     id: "2",
     index: 1,
     category: "mobile",
+    image: "/images/project-2.jpg",
+    imageAlt: "Telegram bot and workflow automation visual",
     technologies: ["Flutter", "Firebase", "Stripe"],
     gradient: "from-teal-500/30 to-blue-500/20",
     techColors: {
@@ -36,8 +41,10 @@ const projectsMeta = [
     id: "3",
     index: 2,
     category: "erp",
+    image: "/images/project-3.jpg",
+    imageAlt: "AI support agent analytics dashboard",
     technologies: ["Next.js", "Prisma", "PostgreSQL"],
-    gradient: "from-blue-500/30 to-green-500/20",
+    gradient: "from-blue-500/30 to-emerald-500/20",
     techColors: {
       "Next.js": "bg-white/10 text-gray-300",
       Prisma: "bg-purple-500/20 text-purple-400",
@@ -48,11 +55,13 @@ const projectsMeta = [
     id: "4",
     index: 3,
     category: "web",
+    image: "/images/project-4.jpg",
+    imageAlt: "Internal operations automation portal",
     technologies: ["Vue.js", "Django", "PostgreSQL"],
     gradient: "from-purple-500/30 to-teal-500/20",
     techColors: {
-      "Vue.js": "bg-green-600/20 text-green-300",
-      Django: "bg-green-800/20 text-green-400",
+      "Vue.js": "bg-emerald-600/20 text-emerald-300",
+      Django: "bg-emerald-800/20 text-emerald-400",
       PostgreSQL: "bg-blue-600/20 text-blue-300",
     } as Record<string, string>,
   },
@@ -60,18 +69,22 @@ const projectsMeta = [
     id: "5",
     index: 4,
     category: "mobile",
+    image: "/images/project-5.jpg",
+    imageAlt: "E-commerce order automation dashboard",
     technologies: ["React Native", "Node.js", "MongoDB"],
     gradient: "from-orange-500/30 to-red-500/20",
     techColors: {
       "React Native": "bg-blue-500/20 text-blue-400",
-      "Node.js": "bg-green-500/20 text-green-400",
-      MongoDB: "bg-green-700/20 text-green-300",
+      "Node.js": "bg-emerald-500/20 text-emerald-400",
+      MongoDB: "bg-emerald-700/20 text-emerald-300",
     } as Record<string, string>,
   },
   {
     id: "6",
     index: 5,
     category: "design",
+    image: "/images/project-6.jpg",
+    imageAlt: "AI product design and customer journey dashboard",
     technologies: ["Figma", "Illustrator", "After Effects"],
     gradient: "from-pink-500/30 to-purple-500/20",
     techColors: {
@@ -132,7 +145,7 @@ export default function PortfolioPage() {
                 onClick={() => setActiveCategory(cat.value)}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 glass-card hover:border-white/15 ${
                   activeCategory === cat.value
-                    ? "bg-green-500/20 border-green-500/50 text-green-400"
+                    ? "bg-emerald-500/20 border-emerald-500/50 text-emerald-400"
                     : "text-gray-400 hover:text-white"
                 }`}
               >
@@ -159,9 +172,16 @@ export default function PortfolioPage() {
                 >
                   <Link href={`/portfolio/${project.id}`} className="block h-full">
                     <div className="glass-card rounded-2xl overflow-hidden group h-full min-h-[280px] relative flex flex-col justify-end hover:border-white/15 transition-all duration-300">
-                      {/* Gradient bg */}
                       <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient}`} />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                      <Image
+                        src={project.image}
+                        alt={project.imageAlt}
+                        fill
+                        sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                        className="absolute inset-0 object-cover opacity-60 transition duration-500 group-hover:scale-[1.04] group-hover:opacity-80"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-black/35 via-transparent to-black/15" />
 
                       {/* Hover overlay */}
                       <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
@@ -180,7 +200,7 @@ export default function PortfolioPage() {
 
                       {/* Content */}
                       <div className="relative z-10 p-6">
-                        <h3 className="font-display text-lg font-bold text-white mb-2 group-hover:text-green-400 transition-colors">
+                        <h3 className="font-display text-lg font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">
                           {t(`projects.${project.index}.title`)}
                         </h3>
                         <p className="text-gray-300 text-sm mb-4 line-clamp-2">

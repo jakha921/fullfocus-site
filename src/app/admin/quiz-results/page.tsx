@@ -53,10 +53,10 @@ const projectTypeLabels: Record<string, string> = {
 
 const budgetLabels: Record<string, { label: string; color: string }> = {
   starter: { label: "До $2,000", color: "bg-blue-500" },
-  growth: { label: "$2,000 - $7,000", color: "bg-green-500" },
+  growth: { label: "$2,000 - $7,000", color: "bg-emerald-500" },
   scale: { label: "$7,000 - $20,000", color: "bg-yellow-500" },
   small: { label: "До $5,000", color: "bg-blue-500" },
-  medium: { label: "$5,000 - $15,000", color: "bg-green-500" },
+  medium: { label: "$5,000 - $15,000", color: "bg-emerald-500" },
   large: { label: "$15,000 - $50,000", color: "bg-yellow-500" },
   enterprise: { label: "$50,000+", color: "bg-purple-500" },
   not_sure: { label: "Не определён", color: "bg-gray-500" },
@@ -138,13 +138,13 @@ export default function QuizResultsPage() {
                 return (
                   <Card
                     key={result.id}
-                    className={`cursor-pointer transition-all hover:border-green-500/50 ${
-                      selectedResult?.id === result.id ? "border-green-500" : ""
+                    className={`cursor-pointer transition-all hover:border-emerald-500/50 ${
+                      selectedResult?.id === result.id ? "border-emerald-500" : ""
                     }`}
                     onClick={() => setSelectedResult(result)}
                   >
                     <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-black font-bold text-sm">
+                      <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-full flex items-center justify-center text-black font-bold text-sm">
                         {result.name.charAt(0).toUpperCase()}
                       </div>
                       <div className="flex-1 min-w-0">
@@ -162,7 +162,7 @@ export default function QuizResultsPage() {
                         </p>
                       </div>
                       <div className="text-right">
-                        <p className="text-green-400 font-semibold text-sm">
+                        <p className="text-emerald-400 font-semibold text-sm">
                           ${result.estimateMin.toLocaleString()} - ${result.estimateMax.toLocaleString()}
                         </p>
                         <p className="text-gray-500 text-xs">
@@ -194,14 +194,14 @@ export default function QuizResultsPage() {
                     {/* Contact Info */}
                     <div className="grid grid-cols-2 gap-4">
                       <div className="flex items-center gap-2 text-gray-400">
-                        <Mail className="w-4 h-4 text-green-500" />
+                        <Mail className="w-4 h-4 text-emerald-500" />
                         <a href={`mailto:${selectedResult.email}`} className="hover:text-white">
                           {selectedResult.email}
                         </a>
                       </div>
                       {selectedResult.phone && (
                         <div className="flex items-center gap-2 text-gray-400">
-                          <Phone className="w-4 h-4 text-green-500" />
+                          <Phone className="w-4 h-4 text-emerald-500" />
                           <a href={`tel:${selectedResult.phone}`} className="hover:text-white">
                             {selectedResult.phone}
                           </a>
@@ -209,7 +209,7 @@ export default function QuizResultsPage() {
                       )}
                       {selectedResult.company && (
                         <div className="flex items-center gap-2 text-gray-400 col-span-2">
-                          <Building className="w-4 h-4 text-green-500" />
+                          <Building className="w-4 h-4 text-emerald-500" />
                           {selectedResult.company}
                         </div>
                       )}
@@ -279,11 +279,11 @@ export default function QuizResultsPage() {
                     <hr className="border-white/8" />
 
                     {/* Estimate */}
-                    <div className="bg-green-500/10 rounded-lg p-4 border border-green-500/20">
-                      <h3 className="text-green-400 font-semibold mb-3">Оценка автоматизации</h3>
+                    <div className="bg-emerald-500/10 rounded-lg p-4 border border-emerald-500/20">
+                      <h3 className="text-emerald-400 font-semibold mb-3">Оценка автоматизации</h3>
                       <div className="grid grid-cols-2 gap-4">
                         <div className="flex items-center gap-2">
-                          <DollarSign className="w-5 h-5 text-green-400" />
+                          <DollarSign className="w-5 h-5 text-emerald-400" />
                           <div>
                             <p className="text-gray-400 text-xs">Бюджет</p>
                             <p className="text-white font-semibold">
@@ -292,7 +292,7 @@ export default function QuizResultsPage() {
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
-                          <Clock className="w-5 h-5 text-green-400" />
+                          <Clock className="w-5 h-5 text-emerald-400" />
                           <div>
                             <p className="text-gray-400 text-xs">Сроки</p>
                             <p className="text-white font-semibold">
@@ -323,7 +323,7 @@ export default function QuizResultsPage() {
                     <div className="flex gap-3 pt-2">
                       <a
                         href={`mailto:${selectedResult.email}?subject=AI-аудит автоматизации&body=Здравствуйте, ${selectedResult.name}!%0D%0A%0D%0AСпасибо за интерес к FullFocus.%0D%0A%0D%0AПо вашему запросу:`}
-                        className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-lg transition-colors"
+                        className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-black font-semibold rounded-lg transition-colors"
                       >
                         <Mail className="w-4 h-4" />
                         Написать Email

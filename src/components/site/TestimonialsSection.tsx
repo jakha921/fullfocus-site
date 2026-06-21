@@ -12,7 +12,7 @@ const testimonialsMeta = [
     index: 0,
     rating: 5,
     initials: "AP",
-    gradient: "from-green-500 to-teal-500",
+    gradient: "from-emerald-500 to-teal-500",
   },
   {
     id: "2",
@@ -26,7 +26,7 @@ const testimonialsMeta = [
     index: 2,
     rating: 5,
     initials: "DK",
-    gradient: "from-blue-500 to-green-500",
+    gradient: "from-blue-500 to-emerald-500",
   },
 ];
 

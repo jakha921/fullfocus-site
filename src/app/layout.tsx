@@ -47,6 +47,20 @@ export const metadata: Metadata = {
     siteName: "FullFocus",
     title: "FullFocus - AI Business Automation",
     description: "AI-powered business automation. AI agents, process automation, SaaS development.",
+    images: [
+      {
+        url: "/images/hero-automation-dashboard.jpg",
+        width: 1672,
+        height: 941,
+        alt: "FullFocus AI automation dashboard",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FullFocus - AI Business Automation",
+    description: "AI-powered business automation. AI agents, process automation, SaaS development.",
+    images: ["/images/hero-automation-dashboard.jpg"],
   },
   robots: {
     index: true,

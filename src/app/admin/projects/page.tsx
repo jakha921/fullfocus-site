@@ -140,7 +140,7 @@ export default function ProjectsPage() {
                   {/* Image */}
                   <div className="relative aspect-video bg-white/5">
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10" />
-                    <div className="w-full h-full bg-gradient-to-br from-green-500/20 to-white/5" />
+                    <div className="w-full h-full bg-gradient-to-br from-emerald-500/20 to-white/5" />
 
                     {/* Featured badge */}
                     {project.featured && (

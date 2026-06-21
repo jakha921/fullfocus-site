@@ -161,7 +161,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </Link>
 
           <div className="mb-4 flex flex-wrap items-center gap-3">
-            <span className="rounded-full border border-green-500/30 bg-green-500/10 px-3 py-1 text-sm font-medium text-green-300">
+            <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-sm font-medium text-emerald-300">
               {post.category}
             </span>
             <span className="flex items-center gap-1 text-sm text-zinc-500">
@@ -199,7 +199,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </section>
       ) : (
         <section className="px-4 pb-12 sm:px-6 lg:px-8">
-          <div className="mx-auto aspect-video max-w-4xl rounded-lg border border-white/10 bg-gradient-to-br from-green-500/20 via-teal-500/10 to-zinc-900" />
+          <div className="mx-auto aspect-video max-w-4xl rounded-lg border border-white/10 bg-gradient-to-br from-emerald-500/20 via-teal-500/10 to-zinc-900" />
         </section>
       )}
 
@@ -237,7 +237,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <div className="grid gap-6 md:grid-cols-2">
               {relatedPosts.map((relatedPost) => (
                 <Link key={relatedPost.id} href={`/blog/${relatedPost.slug}`}>
-                  <article className="rounded-lg border border-white/10 bg-white/[0.03] p-6 transition hover:border-green-500/30 hover:bg-white/[0.06]">
+                  <article className="rounded-lg border border-white/10 bg-white/[0.03] p-6 transition hover:border-emerald-500/30 hover:bg-white/[0.06]">
                     <div className="mb-3 flex flex-wrap items-center gap-3">
                       <span className="rounded-full border border-white/10 px-3 py-1 text-xs text-zinc-300">
                         {relatedPost.category}

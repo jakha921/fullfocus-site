@@ -72,7 +72,7 @@ export function Header() {
           <Link href="/" className="flex items-center gap-2 group">
             <div
               className={cn(
-                "flex items-center justify-center rounded-lg bg-gradient-to-br from-green-400 to-teal-500 shadow-lg shadow-green-500/20 transition-all duration-500",
+                "flex items-center justify-center rounded-lg bg-gradient-to-br from-emerald-400 to-teal-500 shadow-lg shadow-emerald-500/20 transition-all duration-500",
                 scrolled ? "h-7 w-7" : "h-8 w-8"
               )}
             >
@@ -85,7 +85,7 @@ export function Header() {
             </div>
             <span
               className={cn(
-                "font-display font-bold text-white transition-all duration-500 group-hover:text-green-400",
+                "font-display font-bold text-white transition-all duration-500 group-hover:text-emerald-400",
                 scrolled ? "text-lg" : "text-xl"
               )}
             >
@@ -107,7 +107,7 @@ export function Header() {
                 className="relative text-sm text-gray-400 hover:text-white transition-colors group"
               >
                 {t(link.key)}
-                <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-green-500 to-teal-500 group-hover:w-full transition-all duration-300" />
+                <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-emerald-500 to-teal-500 group-hover:w-full transition-all duration-300" />
               </Link>
             ))}
           </nav>
@@ -149,7 +149,7 @@ export function Header() {
                         onClick={() => handleLanguageChange(lang.code)}
                         className={cn(
                           "flex items-center gap-3 px-4 py-2 w-full text-left hover:bg-white/5 transition-colors",
-                          currentLang === lang.code && "text-green-400"
+                          currentLang === lang.code && "text-emerald-400"
                         )}
                       >
                         <span className="text-sm font-medium">{lang.label}</span>
@@ -163,7 +163,7 @@ export function Header() {
             <Link
               href="/quiz"
               className={cn(
-                "rounded-lg bg-gradient-to-r from-green-500 to-teal-500 text-sm font-bold text-black shadow-md shadow-green-500/20 transition-all hover:scale-[1.02] hover:from-green-400 hover:to-teal-400 active:scale-[0.98]",
+                "rounded-lg bg-gradient-to-r from-emerald-500 to-teal-500 text-sm font-bold text-black shadow-md shadow-emerald-500/20 transition-all hover:scale-[1.02] hover:from-emerald-400 hover:to-teal-400 active:scale-[0.98]",
                 scrolled ? "px-4 py-1.5" : "px-5 py-2"
               )}
             >
@@ -211,7 +211,7 @@ export function Header() {
                     className={cn(
                       "flex-1 py-2 rounded-lg text-sm font-medium transition-colors",
                       currentLang === lang.code
-                        ? "bg-gradient-to-r from-green-500 to-teal-500 text-black font-bold"
+                        ? "bg-gradient-to-r from-emerald-500 to-teal-500 text-black font-bold"
                         : "bg-white/5 text-gray-300 hover:bg-white/10"
                     )}
                   >
@@ -222,7 +222,7 @@ export function Header() {
 
               <Link
                 href="/quiz"
-                className="block mt-4 px-4 py-3 bg-gradient-to-r from-green-500 to-teal-500 text-black font-bold rounded-lg text-center"
+                className="block mt-4 px-4 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-black font-bold rounded-lg text-center"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {tCta("button")}

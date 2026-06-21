@@ -42,17 +42,17 @@ export function StickyCtaBar() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
           transition={{ type: "spring", damping: 25, stiffness: 200 }}
-          className="fixed bottom-0 left-0 right-0 z-50 glass-card border-t border-green-500/20"
+          className="fixed bottom-0 left-0 right-0 z-50 glass-card border-t border-emerald-500/20"
         >
           <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse flex-shrink-0" />
+              <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse flex-shrink-0" />
               <span className="text-sm text-white">
                 {slots && monthName ? (
                   <>
                     {t("slots_left")}{" "}
-                    <span className="font-bold text-green-400">{slots} {t("slots")}</span>{" "}
-                    {t("in_month")} <span className="font-bold text-green-400">{monthName}</span>
+                    <span className="font-bold text-emerald-400">{slots} {t("slots")}</span>{" "}
+                    {t("in_month")} <span className="font-bold text-emerald-400">{monthName}</span>
                   </>
                 ) : (
                   t("limited")
@@ -62,7 +62,7 @@ export function StickyCtaBar() {
             <div className="flex items-center gap-2 flex-shrink-0">
               <Link
                 href="/quiz"
-                className="px-4 py-1.5 bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-400 hover:to-teal-400 text-black font-semibold text-sm rounded-lg transition-all hover:scale-[1.02]"
+                className="px-4 py-1.5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-black font-semibold text-sm rounded-lg transition-all hover:scale-[1.02]"
               >
                 {t("cta")}
               </Link>

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowDown } from "lucide-react";
 import { Badge } from "@/components/ui";
@@ -12,6 +13,17 @@ export function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden noise-bg">
+      <Image
+        src="/images/hero-automation-dashboard.jpg"
+        alt="FullFocus AI automation dashboard"
+        fill
+        priority
+        sizes="100vw"
+        className="absolute inset-0 object-cover object-[62%_center] opacity-65"
+      />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,10,10,0.97)_0%,rgba(10,10,10,0.88)_42%,rgba(10,10,10,0.42)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(10,10,10,0.85)_0%,rgba(10,10,10,0.1)_40%,rgba(10,10,10,0.55)_100%)]" />
+
       {/* Dot pattern */}
       <div className="absolute inset-0 dot-pattern opacity-40" />
 
@@ -20,9 +32,7 @@ export function Hero() {
       <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] ambient-glow-teal rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
-          {/* Left: Text content */}
-          <div className="flex-1 text-center lg:text-left space-y-8">
+        <div className="max-w-4xl text-center lg:text-left space-y-8">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -37,13 +47,13 @@ export function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white leading-none"
+              className="mx-auto max-w-[22rem] break-words font-display text-4xl font-bold tracking-tight text-white leading-[0.95] sm:max-w-xl sm:text-5xl md:text-7xl lg:mx-0 lg:max-w-4xl lg:text-8xl"
             >
               {t("title_line1")}{" "}
               <br />
               <span className="gradient-text">{t("title_line2")}</span>{" "}
               <br />
-              <span className="text-gray-400 text-4xl md:text-5xl lg:text-6xl">{t("title_line3")}</span>
+              <span className="text-3xl text-gray-400 sm:text-4xl md:text-5xl lg:text-6xl">{t("title_line3")}</span>
             </motion.h1>
 
             <motion.p
@@ -53,7 +63,7 @@ export function Hero() {
               className="max-w-xl mx-auto lg:mx-0 text-lg md:text-xl text-gray-400 leading-relaxed"
             >
               {t("subtitle_text")}{" "}
-              <span className="text-white font-semibold">{t("subtitle_highlight")}</span>
+              <span className="whitespace-nowrap font-semibold text-white">{t("subtitle_highlight")}</span>
             </motion.p>
 
             <motion.div
@@ -64,46 +74,12 @@ export function Hero() {
             >
               <Link
                 href="/quiz"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-400 hover:to-teal-400 text-black font-bold rounded-lg transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-green-500/25"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-black font-bold rounded-lg transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-emerald-500/25"
               >
                 {t("cta")}
                 <ArrowRight className="w-5 h-5" />
               </Link>
             </motion.div>
-          </div>
-
-          {/* Right: Floating cards */}
-          <div className="flex-shrink-0 relative w-72 h-64 hidden lg:block">
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.5 }}
-              className="animate-float absolute top-0 right-0 glass-card rounded-2xl p-5 w-52"
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
-                <div>
-                  <div className="text-2xl font-display font-bold text-white">300%</div>
-                  <div className="text-xs text-gray-400">{t("card_roi")}</div>
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.6 }}
-              className="animate-float-delayed absolute bottom-0 left-0 glass-card rounded-2xl p-5 w-48"
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-3 h-3 rounded-full bg-teal-500 animate-pulse" />
-                <div>
-                  <div className="text-2xl font-display font-bold text-white">40+</div>
-                  <div className="text-xs text-gray-400">{t("card_hours")}</div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
         </div>
       </div>
 

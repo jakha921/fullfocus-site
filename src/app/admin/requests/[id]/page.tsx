@@ -167,7 +167,7 @@ export default function RequestDetailPage() {
                     <p className="text-gray-400 text-sm">Email</p>
                     <a
                       href={`mailto:${request.email}`}
-                      className="text-green-500 hover:underline"
+                      className="text-emerald-500 hover:underline"
                     >
                       {request.email}
                     </a>

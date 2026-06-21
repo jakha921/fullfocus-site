@@ -18,7 +18,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
       >
         <span className="font-display font-semibold text-white pr-4">{question}</span>
         <ChevronDown
-          className={`w-5 h-5 text-green-400 flex-shrink-0 transition-transform duration-300 ${
+          className={`w-5 h-5 text-emerald-400 flex-shrink-0 transition-transform duration-300 ${
             isOpen ? "rotate-180" : ""
           }`}
         />
@@ -47,8 +47,8 @@ const contactInfoMeta = [
     key: "email" as const,
     value: "hello@fullfocus.dev",
     href: "mailto:hello@fullfocus.dev",
-    gradient: "from-green-500/20 to-teal-500/10",
-    iconColor: "text-green-400",
+    gradient: "from-emerald-500/20 to-teal-500/10",
+    iconColor: "text-emerald-400",
   },
   {
     icon: Phone,
@@ -71,7 +71,7 @@ const contactInfoMeta = [
     key: "hours" as const,
     valueKey: "hours_value" as const,
     href: null,
-    gradient: "from-purple-500/20 to-green-500/10",
+    gradient: "from-purple-500/20 to-emerald-500/10",
     iconColor: "text-purple-400",
   },
 ];
@@ -148,7 +148,7 @@ export default function ContactPage() {
                           {item.href ? (
                             <a
                               href={item.href}
-                              className="text-white hover:text-green-400 transition-colors"
+                              className="text-white hover:text-emerald-400 transition-colors"
                             >
                               {value}
                             </a>

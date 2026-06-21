@@ -91,7 +91,7 @@ export function AdminHeader({ title }: AdminHeaderProps) {
         {/* Notifications */}
         <button className="relative p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-colors">
           <Bell className="w-5 h-5" />
-          <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-green-500 rounded-full" />
+          <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-emerald-500 rounded-full" />
         </button>
 
         {/* User Menu */}
@@ -100,7 +100,7 @@ export function AdminHeader({ title }: AdminHeaderProps) {
             onClick={() => setShowUserMenu(!showUserMenu)}
             className="flex items-center gap-2 p-1.5 pr-3 rounded-lg hover:bg-white/5 transition-colors"
           >
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center text-black font-bold text-sm">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center text-black font-bold text-sm">
               {session?.user?.name?.[0]?.toUpperCase() || "A"}
             </div>
             <span className="hidden sm:block text-sm text-white font-medium">

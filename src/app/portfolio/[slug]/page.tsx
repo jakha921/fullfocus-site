@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { Button, Card } from "@/components/ui";
 import { CTASection } from "@/components/site";
@@ -85,7 +86,7 @@ export default function ProjectDetailPage({
               {project.title}
             </h1>
             <div className="flex flex-wrap items-center gap-4 text-gray-400">
-              <span className="text-green-500">{project.client}</span>
+              <span className="text-emerald-500">{project.client}</span>
               <span>•</span>
               <span>Веб-разработка</span>
             </div>
@@ -100,8 +101,18 @@ export default function ProjectDetailPage({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="aspect-video bg-gradient-to-br from-green-500/20 to-gray-800 rounded-xl"
-          />
+            className="relative aspect-video overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-emerald-500/20 to-gray-800"
+          >
+            <Image
+              src={project.coverImage}
+              alt={project.title}
+              fill
+              priority
+              sizes="(min-width: 1280px) 1280px, 100vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/10" />
+          </motion.div>
         </div>
       </section>
 
@@ -134,7 +145,7 @@ export default function ProjectDetailPage({
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="px-3 py-1 bg-green-500/10 text-green-500 rounded-lg text-sm"
+                      className="px-3 py-1 bg-emerald-500/10 text-emerald-500 rounded-lg text-sm"
                     >
                       {tech}
                     </span>
@@ -171,8 +182,14 @@ export default function ProjectDetailPage({
               <Link key={p.id} href={`/portfolio/${p.id}`}>
                 <Card hover className="overflow-hidden group p-0">
                   <div className="relative aspect-video bg-gray-800">
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
-                    <div className="w-full h-full bg-gradient-to-br from-green-500/20 to-gray-800" />
+                    <Image
+                      src={p.coverImage}
+                      alt={p.title}
+                      fill
+                      sizes="(min-width: 768px) 50vw, 100vw"
+                      className="object-cover opacity-75 transition duration-500 group-hover:scale-[1.04] group-hover:opacity-90"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent z-10" />
                     <div className="absolute top-4 left-4 z-20">
                       <span className="px-3 py-1 bg-black/50 backdrop-blur-sm rounded-full text-xs text-white">
                         {p.categoryName}
@@ -180,7 +197,7 @@ export default function ProjectDetailPage({
                     </div>
                   </div>
                   <div className="p-6">
-                    <h3 className="text-lg font-semibold text-white group-hover:text-green-500 transition-colors">
+                    <h3 className="text-lg font-semibold text-white group-hover:text-emerald-500 transition-colors">
                       {p.title}
                     </h3>
                   </div>

@@ -38,6 +38,7 @@ const starterPosts = [
     category: "AI automation",
     tags: ["business automation", "AI audit", "process automation"],
     authorName: "FullFocus",
+    coverImage: "/images/blog-automation-audit.jpg",
   },
   {
     title: "Telegram bot biznes uchun: lead, CRM va hisobotlarni avtomatlashtirish",
@@ -59,6 +60,7 @@ const starterPosts = [
     category: "Telegram bots",
     tags: ["Telegram bot", "CRM automation", "lead automation"],
     authorName: "FullFocus",
+    coverImage: "/images/blog-telegram-bot.jpg",
   },
   {
     title: "CRM avtomatlashtirish: sotuv voronkasini nazorat qilish",
@@ -80,6 +82,7 @@ const starterPosts = [
     category: "CRM automation",
     tags: ["CRM automation", "sales funnel", "business process"],
     authorName: "FullFocus",
+    coverImage: "/images/blog-crm-automation.jpg",
   },
 ];
 
@@ -102,13 +105,23 @@ async function main() {
   });
 
   let created = 0;
+  let updatedCovers = 0;
   for (const post of starterPosts) {
     const existing = await prisma.blogPost.findUnique({
       where: { slug: post.slug },
-      select: { id: true },
+      select: { id: true, coverImage: true },
     });
 
-    if (existing) continue;
+    if (existing) {
+      if (!existing.coverImage) {
+        await prisma.blogPost.update({
+          where: { slug: post.slug },
+          data: { coverImage: post.coverImage },
+        });
+        updatedCovers += 1;
+      }
+      continue;
+    }
 
     await prisma.blogPost.create({
       data: {
@@ -121,7 +134,7 @@ async function main() {
   }
 
   console.log(
-    `[seo-content] Ready. Created ${created} starter posts; hidden ${hiddenLegacy.count} legacy demo posts`
+    `[seo-content] Ready. Created ${created} starter posts; updated ${updatedCovers} covers; hidden ${hiddenLegacy.count} legacy demo posts`
   );
 }
 

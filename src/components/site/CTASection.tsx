@@ -43,7 +43,7 @@ export function CTASection() {
 
             <Link
               href="/quiz"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-400 hover:to-teal-400 text-black font-bold rounded-lg transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-green-500/25"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-black font-bold rounded-lg transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-emerald-500/25"
             >
               {t("button")}
               <ArrowRight className="w-5 h-5" />
@@ -52,7 +52,7 @@ export function CTASection() {
             {/* Trust badges */}
             <div className="mt-10 flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">
               <span className="flex items-center gap-2">
-                <Gift className="w-4 h-4 text-green-400" />
+                <Gift className="w-4 h-4 text-emerald-400" />
                 {t("free")}
               </span>
               <span className="flex items-center gap-2">

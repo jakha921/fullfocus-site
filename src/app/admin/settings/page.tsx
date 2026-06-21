@@ -165,7 +165,7 @@ export default function SettingsPage() {
                         type="button"
                         onClick={() => handleToggle("sticky_bar_enabled")}
                         className={`relative w-11 h-6 rounded-full transition-colors ${
-                          settings.sticky_bar_enabled === "true" ? "bg-green-500" : "bg-gray-700"
+                          settings.sticky_bar_enabled === "true" ? "bg-emerald-500" : "bg-gray-700"
                         }`}
                       >
                         <span

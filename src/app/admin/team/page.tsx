@@ -50,7 +50,7 @@ export default function TeamPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {members.map((member) => (
               <Card key={member.id} className="flex items-center gap-4">
-                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-black text-xl font-bold">
+                <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-full flex items-center justify-center text-black text-xl font-bold">
                   {member.name.charAt(0)}
                 </div>
                 <div className="flex-1">

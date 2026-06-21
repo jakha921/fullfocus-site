@@ -12,13 +12,13 @@ const config: Config = {
         background: "#0a0a0a",
         foreground: "#ffffff",
         primary: {
-          DEFAULT: "#22c55e",
-          hover: "#16a34a",
-          light: "#4ade80",
+          DEFAULT: "#10b981",
+          hover: "#059669",
+          light: "#34d399",
         },
         accent: {
           teal: "#14b8a6",
-          blue: "#3b82f6",
+          blue: "#2563eb",
         },
         muted: "#9ca3af",
         border: "#27272a",

@@ -8,17 +8,17 @@ import { Card } from "@/components/ui";
 
 const valueIcons = [Target, Users, Lightbulb, Award];
 const valueGradients = [
-  "from-green-500/20 to-teal-500/10",
+  "from-emerald-500/20 to-teal-500/10",
   "from-teal-500/20 to-blue-500/10",
-  "from-blue-500/20 to-green-500/10",
-  "from-green-500/20 to-blue-500/10",
+  "from-blue-500/20 to-emerald-500/10",
+  "from-emerald-500/20 to-blue-500/10",
 ];
 
 const teamGradients = [
-  "from-green-500 to-teal-500",
+  "from-emerald-500 to-teal-500",
   "from-teal-500 to-blue-500",
   "from-blue-500 to-purple-500",
-  "from-purple-500 to-green-500",
+  "from-purple-500 to-emerald-500",
 ];
 
 const containerVariants = {
@@ -174,7 +174,7 @@ export default function AboutPage() {
                   <h3 className="font-display text-lg font-semibold text-white">
                     {t(`team.${index}.name`)}
                   </h3>
-                  <p className="text-green-400 text-sm mb-2">
+                  <p className="text-emerald-400 text-sm mb-2">
                     {t(`team.${index}.position`)}
                   </p>
                   <p className="text-gray-400 text-sm">
