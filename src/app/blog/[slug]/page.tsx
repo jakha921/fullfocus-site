@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Script from "next/script";
 import { ArrowLeft, Calendar, Clock3, User } from "lucide-react";
+import { getLocale, getTranslations } from "next-intl/server";
 import { ArticleCta } from "@/components/blog/ArticleCta";
 import {
   getPlainTextFromHtml,
@@ -12,8 +13,16 @@ import {
   getRelatedBlogPosts,
   sanitizeBlogHtml,
 } from "@/lib/blog";
+import type { Locale } from "@/lib/i18n";
+import {
+  absoluteLocalizedUrl,
+  localeAlternates,
+  localizedAlternates,
+  localizedPath,
+  openGraphLocales,
+} from "@/lib/routing";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 type BlogPostPageProps = {
   params: {
@@ -21,16 +30,22 @@ type BlogPostPageProps = {
   };
 };
 
-function formatDate(date: Date | null) {
-  return (date ?? new Date()).toLocaleDateString("uz-UZ", {
+const dateLocales: Record<Locale, string> = {
+  uz: "uz-UZ",
+  ru: "ru-RU",
+  en: "en-US",
+};
+
+function formatDate(date: Date | null, locale: Locale) {
+  return (date ?? new Date()).toLocaleDateString(dateLocales[locale], {
     day: "numeric",
     month: "long",
     year: "numeric",
   });
 }
 
-function getArticleUrl(slug: string) {
-  return `https://fullfocus.dev/blog/${slug}`;
+function getArticleUrl(slug: string, locale: Locale) {
+  return absoluteLocalizedUrl(`/blog/${slug}`, locale);
 }
 
 function getSafeImageSrc(value: string | null | undefined) {
@@ -42,10 +57,11 @@ function getSafeImageSrc(value: string | null | undefined) {
 export async function generateMetadata({
   params,
 }: BlogPostPageProps): Promise<Metadata> {
-  const post = await getPublishedBlogPostBySlug(params.slug);
+  const locale = (await getLocale()) as Locale;
+  const post = await getPublishedBlogPostBySlug(params.slug, locale);
   if (!post) return {};
 
-  const url = getArticleUrl(post.slug);
+  const url = getArticleUrl(post.slug, locale);
   const image = getSafeImageSrc(post.coverImage) || undefined;
 
   return {
@@ -54,13 +70,14 @@ export async function generateMetadata({
     keywords: post.tags,
     alternates: {
       canonical: url,
+      languages: localizedAlternates(`/blog/${post.slug}`),
     },
     openGraph: {
       title: post.title,
       description: post.excerpt,
       url,
       siteName: "FullFocus",
-      locale: "uz_UZ",
+      locale: openGraphLocales[locale],
       type: "article",
       publishedTime: (post.publishedAt ?? post.createdAt).toISOString(),
       modifiedTime: post.updatedAt.toISOString(),
@@ -78,11 +95,13 @@ export async function generateMetadata({
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const post = await getPublishedBlogPostBySlug(params.slug);
+  const locale = (await getLocale()) as Locale;
+  const post = await getPublishedBlogPostBySlug(params.slug, locale);
   if (!post) notFound();
 
-  const relatedPosts = await getRelatedBlogPosts(post);
-  const articleUrl = getArticleUrl(post.slug);
+  const t = await getTranslations("blog_page");
+  const relatedPosts = await getRelatedBlogPosts(post, locale);
+  const articleUrl = getArticleUrl(post.slug, locale);
   const publishedAt = post.publishedAt ?? post.createdAt;
   const sanitizedContent = sanitizeBlogHtml(post.content);
   const readingTime = getReadingTimeMinutes(post.content);
@@ -101,7 +120,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         url: articleUrl,
         datePublished: publishedAt.toISOString(),
         dateModified: post.updatedAt.toISOString(),
-        inLanguage: "uz-UZ",
+        inLanguage: localeAlternates[locale],
         keywords: post.tags.join(", "),
         image: safeCoverImage ? [safeCoverImage] : undefined,
         author: {
@@ -126,13 +145,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             "@type": "ListItem",
             position: 1,
             name: "Home",
-            item: "https://fullfocus.dev",
+            item: absoluteLocalizedUrl("/", locale),
           },
           {
             "@type": "ListItem",
             position: 2,
             name: "Blog",
-            item: "https://fullfocus.dev/blog",
+            item: absoluteLocalizedUrl("/blog", locale),
           },
           {
             "@type": "ListItem",
@@ -158,11 +177,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
         <div className="relative mx-auto max-w-4xl">
           <Link
-            href="/blog"
+            href={localizedPath("/blog", locale)}
             className="mb-6 inline-flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-white"
           >
             <ArrowLeft className="h-4 w-4" />
-            Barcha maqolalar
+            {t("back_all")}
           </Link>
 
           <div className="mb-4 flex flex-wrap items-center gap-3">
@@ -171,11 +190,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </span>
             <span className="flex items-center gap-1 text-sm text-zinc-500">
               <Calendar className="h-4 w-4" />
-              {formatDate(publishedAt)}
+              {formatDate(publishedAt, locale)}
             </span>
             <span className="flex items-center gap-1 text-sm text-zinc-500">
               <Clock3 className="h-4 w-4" />
-              {readingTime} min o&apos;qish
+              {t("reading_time", { minutes: readingTime })}
             </span>
           </div>
 
@@ -225,7 +244,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               {post.tags.map((tag) => (
                 <Link
                   key={tag}
-                  href={`/blog?category=${encodeURIComponent(post.category)}`}
+                  href={`${localizedPath("/blog", locale)}?category=${encodeURIComponent(post.category)}`}
                   className="rounded-lg bg-white/[0.04] px-3 py-1 text-sm text-zinc-400 transition hover:text-white"
                 >
                   #{tag}
@@ -240,18 +259,18 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <section className="bg-[#0f0f0f] px-4 py-16 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl">
             <h2 className="mb-8 font-display text-2xl font-bold text-white">
-              Shu mavzuga yaqin maqolalar
+              {t("related_title")}
             </h2>
             <div className="grid gap-6 md:grid-cols-2">
               {relatedPosts.map((relatedPost) => (
-                <Link key={relatedPost.id} href={`/blog/${relatedPost.slug}`}>
+                <Link key={relatedPost.id} href={localizedPath(`/blog/${relatedPost.slug}`, locale)}>
                   <article className="rounded-lg border border-white/10 bg-white/[0.03] p-6 transition hover:border-emerald-500/30 hover:bg-white/[0.06]">
                     <div className="mb-3 flex flex-wrap items-center gap-3">
                       <span className="rounded-full border border-white/10 px-3 py-1 text-xs text-zinc-300">
                         {relatedPost.category}
                       </span>
                       <span className="text-xs text-zinc-500">
-                        {formatDate(relatedPost.publishedAt ?? relatedPost.createdAt)}
+                        {formatDate(relatedPost.publishedAt ?? relatedPost.createdAt, locale)}
                       </span>
                     </div>
                     <h3 className="font-display text-lg font-semibold text-white">

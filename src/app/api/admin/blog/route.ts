@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { z } from "zod";
+import type { Prisma } from "@prisma/client";
 
 export async function GET() {
   try {
@@ -30,6 +31,7 @@ const createSchema = z.object({
   category: z.string().min(1),
   tags: z.array(z.string()),
   authorName: z.string().min(1),
+  translations: z.record(z.unknown()).optional(),
   isPublished: z.boolean().optional(),
 });
 
@@ -42,11 +44,13 @@ export async function POST(request: NextRequest) {
 
     const body = await request.json();
     const data = createSchema.parse(body);
+    const { translations, ...postData } = data;
 
     const post = await prisma.blogPost.create({
       data: {
-        ...data,
+        ...postData,
         coverImage: data.coverImage || null,
+        translations: translations as Prisma.InputJsonValue | undefined,
         publishedAt: data.isPublished ? new Date() : null,
       },
     });

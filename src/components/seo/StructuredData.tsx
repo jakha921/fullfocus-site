@@ -1,15 +1,13 @@
-import Script from 'next/script';
-
 interface OrganizationJsonLdProps {
   locale: string;
 }
 
 export function OrganizationJsonLd({ locale }: OrganizationJsonLdProps) {
   const description = locale === 'ru'
-    ? "IT-компания: веб-разработка, мобильные приложения, ERP/CRM системы"
+    ? "AI-автоматизация бизнеса: AI-агенты, Telegram/CRM workflows и SaaS-инструменты"
     : locale === 'uz'
-    ? "IT kompaniya: veb-ishlab chiqish, mobil ilovalar, ERP/CRM tizimlar"
-    : "IT Company: Web development, mobile apps, ERP/CRM systems";
+    ? "Biznes uchun AI avtomatlashtirish: AI agentlar, Telegram/CRM workflow va SaaS vositalar"
+    : "AI business automation: AI agents, Telegram/CRM workflows, and SaaS tools";
 
   const jsonLd = JSON.stringify({
     "@context": "https://schema.org",
@@ -17,7 +15,8 @@ export function OrganizationJsonLd({ locale }: OrganizationJsonLdProps) {
     "name": "FullFocus",
     "alternateName": "FullFocus.dev",
     "url": "https://fullfocus.dev",
-    "logo": "https://fullfocus.dev/logo.png",
+    "logo": "https://fullfocus.dev/images/fullfocus-logo.svg",
+    "image": "https://fullfocus.dev/images/hero-automation-dashboard.avif",
     "description": description,
     "address": {
       "@type": "PostalAddress",
@@ -26,7 +25,6 @@ export function OrganizationJsonLd({ locale }: OrganizationJsonLdProps) {
     },
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+998-90-123-45-67",
       "contactType": "sales",
       "availableLanguage": ["English", "Russian", "Uzbek"]
     },
@@ -38,9 +36,11 @@ export function OrganizationJsonLd({ locale }: OrganizationJsonLdProps) {
   });
 
   return (
-    <Script id="organization-jsonld" type="application/ld+json">
-      {jsonLd}
-    </Script>
+    <script
+      id="organization-jsonld"
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: jsonLd }}
+    />
   );
 }
 
@@ -71,9 +71,11 @@ export function ServiceJsonLd({ name, description, locale }: ServiceJsonLdProps)
   });
 
   return (
-    <Script id={`service-jsonld-${name.toLowerCase().replace(/\s/g, '-')}`} type="application/ld+json">
-      {jsonLd}
-    </Script>
+    <script
+      id={`service-jsonld-${name.toLowerCase().replace(/\s/g, '-')}`}
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: jsonLd }}
+    />
   );
 }
 
@@ -96,9 +98,11 @@ export function FAQJsonLd({ faqs }: FAQJsonLdProps) {
   });
 
   return (
-    <Script id="faq-jsonld" type="application/ld+json">
-      {jsonLd}
-    </Script>
+    <script
+      id="faq-jsonld"
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: jsonLd }}
+    />
   );
 }
 
@@ -119,8 +123,10 @@ export function BreadcrumbJsonLd({ items }: BreadcrumbJsonLdProps) {
   });
 
   return (
-    <Script id="breadcrumb-jsonld" type="application/ld+json">
-      {jsonLd}
-    </Script>
+    <script
+      id="breadcrumb-jsonld"
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: jsonLd }}
+    />
   );
 }

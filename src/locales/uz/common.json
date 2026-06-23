@@ -8,48 +8,48 @@
     "contact": "Aloqa"
   },
   "hero": {
-    "title": "Biz jarayonlarni avtomatlashtiramiz. Siz biznesni kengaytirasiz.",
-    "subtitle": "AI agentlar, avtomatlashtirish va biznes uchun SaaS mahsulotlar. 3-6 oyda 300% ROI.",
+    "title": "Ariza, sotuv va supportni avtomatlashtiramiz. Siz biznesni kengaytirasiz.",
+    "subtitle": "AI agentlar, Telegram/CRM workflow va SaaS vositalar qo‘lda ishni kamaytiradi va ROIni raqam bilan ko‘rsatadi.",
     "cta": "AI-audit olish",
-    "badge": "AI asosida biznesni avtomatlashtirish",
-    "title_line1": "Jarayonlarni",
-    "title_line2": "avtomatlashtiramiz.",
+    "badge": "O‘sish uchun AI avtomatlashtirish",
+    "title_line1": "Ariza, sotuv va",
+    "title_line2": "supportni avtomatlashtiramiz.",
     "title_line3": "Siz biznesni kengaytirasiz.",
-    "subtitle_text": "Biznes uchun AI agentlar, avtomatlashtirish va SaaS mahsulotlar.",
-    "subtitle_highlight": "3-6 oyda 300% ROI.",
-    "card_roi": "O'rtacha ROI",
-    "card_hours": "soat/hafta tejash"
+    "subtitle_text": "AI agentlar, Telegram/CRM workflow va SaaS vositalar.",
+    "subtitle_highlight": "ROI va’da emas, raqam bilan.",
+    "card_roi": "Maqsad ROI",
+    "card_hours": "soat/hafta rutinasiz"
   },
   "services": {
-    "title": "Biznes o'sishi uchun",
-    "subtitle": "Jarayonlarni avtomatlashtiramiz, AI agentlar yaratamiz va SaaS mahsulotlar ishlab chiqamiz",
+    "title": "Biznes o‘sishi uchun",
+    "subtitle": "Ariza, CRM, support va hisobotlardan qo‘lda ishni olib tashlaymiz",
     "ai_agents": {
       "title": "AI agentlar va chatbotlar",
-      "desc": "24/7 mijozlarni qo'llab-quvvatlash, sotuvlarni avtomatlashtirish"
+      "desc": "Tez javob, lead saralash va managerga 24/7 uzatish"
     },
     "automation": {
-      "title": "Jarayonlarni avtomatlashtirish",
-      "desc": "Kundalik ishlarni yo'qotish va haftasiga 40+ soat tejash"
+      "title": "Telegram/CRM automation",
+      "desc": "Chat, sayt va reklamadan kelgan leadlar boshqariladigan voronkaga tushadi"
     },
     "saas": {
-      "title": "SaaS ishlab chiqish",
-      "desc": "MVPdan kengaytiriladigan mahsulotgacha AI funksionallik bilan"
+      "title": "SaaS va ichki portallar",
+      "desc": "AI funksiyali MVP, kabinet va admin vositalar birinchi relizdan"
     },
     "integration": {
-      "title": "Tizim integratsiyasi",
-      "desc": "CRM, ERP, to'lov tizimlari va AI bitta ekotizimda"
+      "title": "Integratsiya va analitika",
+      "desc": "CRM, ERP, to‘lov, jadval va hisobotlar bitta tizimda"
     },
     "badge": "Xizmatlar",
-    "ai_agents_metric": "24/7 to'xtovsiz",
-    "ai_agents_full_desc": "24/7 mijozlarni qo'llab-quvvatlash, sotish va operatsiyalarni avtomatlashtirish. 24/7 dam olishsiz ishlaydigan AI agentlar.",
-    "automation_metric": "40+ soat/hafta tejash",
-    "automation_full_desc": "Rutin va qo'l mehnatini yo'q qilamiz. Haftasiga 40+ soat tejash uchun n8n, Make va maxsus yechimlar integratsiyasi.",
+    "ai_agents_metric": "24/7 birinchi javob",
+    "ai_agents_full_desc": "AI agentlar tasdiqlangan bilimdan javob beradi, ehtiyojni aniqlaydi, kontakt yig‘adi va murakkab so‘rovni managerga uzatadi.",
+    "automation_metric": "yo‘qolgan leadlar kamayadi",
+    "automation_full_desc": "Telegram, formalar, CRM va jadvallarni ulaymiz: lead status oladi, manager vazifa oladi, rahbar aniq hisobot ko‘radi.",
     "saas_metric": "6-8 haftada MVP",
-    "saas_full_desc": "MVPdan kengaytiriladigan mahsulotgacha. AI funksionallik bilan SaaS yechimlarini to'liq ishlab chiqish.",
-    "integration_metric": "300% ROI integratsiyalar",
-    "integration_full_desc": "CRM, ERP, to'lov tizimlari va AIni biznesingiz uchun yagona ekotizimga birlashtiramiz.",
-    "more": "Batafsil",
-    "highlight": "AI yechimlar"
+    "saas_full_desc": "Avtomatlashtirish ish jarayoniga o‘rnatilgan SaaS, kabinet va ichki vositalarni loyihalaymiz.",
+    "integration_metric": "ishga tushgandan keyin ROI",
+    "integration_full_desc": "API integratsiya, dashboard, xabarnoma va hujjatlarni yig‘amiz, operatsion holat har kuni ko‘rinadi.",
+    "more": "Muhokama qilish",
+    "highlight": "o‘lchanadigan natija"
   },
   "stats": {
     "projects": "Tugallangan loyihalar",
@@ -59,28 +59,28 @@
   },
   "pain": {
     "title": "Biznesingiz",
-    "subtitle": "Avtomatlashtirishsiz har bir kun — yo'qotilgan foyda",
+    "subtitle": "Avtomatlashtirishsiz har bir kun - yo‘qolgan lead, vaqt va nazorat",
     "manual": {
-      "title": "Qo'lda jarayonlar",
-      "desc": "Haftasiga 40+ soat oddiy ishlarga"
+      "title": "Qo‘lda lead yuritish",
+      "desc": "Managerlar chat, CRM va jadvallar orasida ma’lumot ko‘chiradi"
     },
     "support": {
-      "title": "24/7 qo'llab-quvvatlash yo'q",
-      "desc": "Mijozlar javobi yo'q ketadi"
+      "title": "Sekin birinchi javob",
+      "desc": "Mijoz kutadi, raqobatchi esa tezroq javob beradi"
     },
     "scaling": {
-      "title": "Kengayish = yollash",
-      "desc": "Avtomatlashtirish o'rniga odamlar orqali o'sish"
+      "title": "O‘sish faqat yollash orqali",
+      "desc": "Jamoa o‘sadi, jarayonlar esa zaif qoladi"
     },
-    "transition": "Yaxshiroq yo'l bor.",
+    "transition": "Buni o‘ylagandan tezroq tuzatish mumkin.",
     "badge": "Muammo",
     "manual_metric": "40+ soat/hafta",
-    "manual_desc_full": "Jamoangiz haftasiga 40+ soatni avtomatlashtirilishi mumkin bo'lgan rutinaga sarflaydi",
-    "support_metric": "60% mijozlar",
-    "support_desc_full": "Mijozlar ish vaqtidan tashqarida javob olmagani uchun raqobatchilarga ketishadi",
-    "scaling_metric": "x3 xarajatlar",
-    "scaling_desc_full": "O'sish uchun jarayonlarni optimallashtirish o'rniga ko'proq odam yollaysiz",
-    "highlight": "pul yo'qotmoqda"
+    "manual_desc_full": "Jamoa avtomatlashtirish mumkin bo‘lgan ma’lumot ko‘chirish, status, eslatma va hisobotlarga ko‘p vaqt sarflaydi",
+    "support_metric": "24/7 muhim",
+    "support_desc_full": "Ish vaqtidan keyin lead soviydi: AI agent arizani qabul qiladi, javob beradi va kontekstni managerga uzatadi",
+    "scaling_metric": "x3 yuklama",
+    "scaling_desc_full": "Avtomatlashtirishsiz leadlar o‘sishi tartibsizlik, kechikkan follow-up va har qadamni qo‘lda nazorat qilishga aylanadi",
+    "highlight": "qo‘lda pul yo‘qotmoqda"
   },
   "faq": {
     "title": "Ko'p beriladigan savollar",
@@ -114,13 +114,13 @@
     }
   },
   "cta": {
-    "title": "Avtomatlashtirishga tayyormisiz?",
-    "subtitle": "30 daqiqalik qo'ng'iroq. Biznesingizda 3+ avtomatlashtirish imkoniyatini topamiz.",
-    "button": "AI-audit olish",
-    "description": "30 daqiqalik qo'ng'iroq. Biznesingizda 3+ avtomatlashtirish imkoniyatini topamiz.",
+    "title": "Eng tez pul qaytaradigan avtomatlashtirish nuqtalarini topamiz",
+    "subtitle": "30 daqiqalik qo‘ng‘iroq. Ariza, CRM va rutinani ko‘rib chiqamiz, keyin 3+ aniq avtomatlashtirish imkoniyatini ko‘rsatamiz.",
+    "button": "AI-auditga yozilish",
+    "description": "30 daqiqalik qo‘ng‘iroq. Ariza, CRM va rutinani ko‘rib chiqamiz, keyin 3+ aniq avtomatlashtirish imkoniyatini ko‘rsatamiz.",
     "free": "Bepul",
     "no_obligation": "Majburiyatsiz",
-    "ai_audit": "AI-audit sovg'a sifatida",
+    "ai_audit": "Roadmap bilan AI-audit",
     "slots_left": "Qoldi",
     "slots": "o'rin",
     "slots_message": "{month} oyida {slots} ta joy qoldi"
@@ -192,7 +192,7 @@
     }
   },
   "footer": {
-    "description": "FullFocus — AI-powered biznes avtomatlashtirish agentligi. AI agentlar, jarayonlarni avtomatlashtirish va SaaS ishlab chiqish.",
+    "description": "FullFocus — biznes uchun AI avtomatlashtirish: AI agentlar, Telegram/CRM workflow, integratsiya va SaaS ishlab chiqish.",
     "quick_links": "Tezkor havolalar",
     "services": "Xizmatlar",
     "contact": "Aloqa",
@@ -220,7 +220,7 @@
     "service_label": "Xizmat turi",
     "budget_label": "Loyiha ko‘lami",
     "message_label": "Loyiha tavsifi *",
-    "message_placeholder": "Loyihangiz, maqsadlaringiz va muddatlar haqida gapirib bering...",
+    "message_placeholder": "Qayerda lead, vaqt yoki nazorat yo‘qolyapti: Telegram, CRM, hisobot, support...",
     "select_service": "Xizmatni tanlang",
     "service_ai": "AI agentlar va chatbotlar",
     "service_automation": "Jarayonlarni avtomatlashtirish",
@@ -233,10 +233,10 @@
     "budget_large": "Bo‘lim jarayoni",
     "budget_enterprise": "Kompleks avtomatlashtirish",
     "success_title": "Ariza yuborildi!",
-    "success_desc": "Tez orada siz bilan bog'lanamiz",
+    "success_desc": "Arizani ko‘rib chiqamiz va aniq keyingi qadam bilan bog‘lanamiz",
     "send_another": "Yana ariza yuborish",
     "submitting": "Yuborilmoqda...",
-    "submit_btn": "Ariza yuborish"
+    "submit_btn": "Loyihani tahlil qilish"
   },
   "socialproof": {
     "projects": "loyihalar",
@@ -247,7 +247,7 @@
     "badge": "Jarayon",
     "title": "Biz qanday",
     "highlight": "ishlaymiz",
-    "description": "Qo'ng'iroqdan natijagacha — haftalik demo bilan shaffof jarayon",
+    "description": "Auditdan launchgacha: metrikani belgilaymiz, demo ko‘rsatamiz va natijani o‘lchaymiz",
     "steps": {
       "0": {
         "title": "Discovery Call",
@@ -437,6 +437,7 @@
     "in_month": "da",
     "limited": "Bu oyda cheklangan joylar",
     "cta": "AI-audit olish",
+    "dismiss": "Panelni yopish",
     "slots_message": "{month} oyida {slots} ta joy qoldi"
   },
   "common": {
@@ -447,11 +448,11 @@
   "about": {
     "title": "Kompaniya haqida",
     "highlight": "FullFocus",
-    "description": "Biz biznesga o'sish va yangi cho'qqilarni zabt etishga yordam beradigan raqamli mahsulotlar yaratadigan professionallar jamoasimiz",
+    "description": "FullFocus o‘lchanadigan o‘sish va kamroq qo‘lda ish uchun AI avtomatlashtirish, CRM workflow va SaaS vositalar yaratadi.",
     "mission_title": "Bizning",
     "mission_highlight": "missiyamiz",
-    "mission_p1": "Biz texnologiyalar har qanday biznesni o'zgartirishi mumkinligiga ishonamiz. Maqsadimiz — kompaniyalarga raqobat ustunligiga erishish uchun raqamli yechimlar imkoniyatlaridan foydalanishga yordam berish.",
-    "mission_p2": "2019 yildan beri biz turli sohalardagi mijozlar uchun 50 dan ortiq loyihani amalga oshirdik — startaplardan yirik korxonalargacha.",
+    "mission_p1": "Biz biznes jarayondan boshlaymiz: lead, vaqt, pul va nazorat qayerda yo‘qoladi. Shundan keyin AI, integratsiya va mahsulot arxitekturasini tanlaymiz.",
+    "mission_p2": "Maqsadimiz faqat kod yozish emas, jamoa har kuni ishlatadigan va rahbar ROI bo‘yicha o‘lchaydigan tizim qurish.",
     "stats_projects": "Loyihalar",
     "stats_projects_value": "50+",
     "stats_years": "Yillik tajriba",
@@ -515,10 +516,10 @@
     }
   },
   "services_page": {
-    "title": "Bizning",
-    "highlight": "xizmatlarimiz",
-    "description": "Biznesingizni raqamli transformatsiya qilish uchun IT-xizmatlarning to'liq spektri",
-    "discuss_project": "Loyihani muhokama qilish",
+    "title": "AI avtomatlashtirish",
+    "highlight": "sizning jarayoningiz uchun",
+    "description": "Yo‘nalishni tanlang: AI agent, Telegram/CRM flow, SaaS yoki integratsiya. Biz abstrakt TZdan emas, biznes metrikadan boshlaymiz.",
+    "discuss_project": "AI-audit olish",
     "items": {
       "0": {
         "title": "Veb-ishlab chiqish",
@@ -612,15 +613,15 @@
     }
   },
   "portfolio_page": {
-    "title": "Bizning",
-    "highlight": "loyihalarimiz",
-    "description": "Biz faxrlanadigan ishlar namunalari",
+    "title": "Avtomatlashtirish",
+    "highlight": "keyslari",
+    "description": "AI, CRM va integratsiyalar qo‘lda ishni kamaytirib, arizalarni tezroq qayta ishlaydigan tizimlar.",
     "all": "Hammasi",
     "web": "Veb-ishlab chiqish",
     "mobile": "Mobil",
     "design": "Dizayn",
     "erp": "ERP/CRM",
-    "view_project": "Loyihani ko'rish",
+    "view_project": "Keysni ochish",
     "projects": {
       "0": {
         "title": "E-commerce Platform",
@@ -655,12 +656,19 @@
     }
   },
   "blog_page": {
-    "title": "Bizning",
-    "highlight": "blogimiz",
-    "description": "Ishlab chiqish va dizayn haqida tajriba, bilim va fikrlarimiz bilan o'rtoqlashamiz",
-    "all": "Hammasi",
+    "title": "AI avtomatlashtirish bo‘yicha",
+    "highlight": "amaliy maqolalar",
+    "description": "CRM, Telegram bot, AI agentlar, lead management va qo‘lda ishni kamaytiradigan operatsion jarayonlar.",
+    "all": "Barchasi",
     "tech": "Texnologiyalar",
     "design": "Dizayn",
-    "tips": "Maslahatlar"
+    "tips": "Maslahatlar",
+    "badge": "Avtomatlashtirish blogi",
+    "empty_title": "Maqolalar tayyorlanmoqda",
+    "empty_desc": "Bu kategoriya bo‘yicha hozircha chop etilgan maqola yo‘q. Shu vaqt ichida biznesingizdagi avtomatlashtirish imkoniyatlarini auditdan o‘tkazing.",
+    "audit_cta": "AI auditdan o‘tish",
+    "back_all": "Barcha maqolalar",
+    "reading_time": "{minutes} min o‘qish",
+    "related_title": "Shu mavzuga yaqin maqolalar"
   }
 }

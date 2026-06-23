@@ -9,6 +9,16 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  const [requestCount, projectCount, postCount, testimonialCount, serviceCount, quizCount] =
+    await Promise.all([
+      prisma.contactRequest.count(),
+      prisma.project.count({ where: { isActive: true } }),
+      prisma.blogPost.count({ where: { isPublished: true } }),
+      prisma.testimonial.count({ where: { isActive: true } }),
+      prisma.service.count({ where: { isActive: true } }),
+      prisma.quizResult.count(),
+    ]);
+
   // Last 7 days chart data
   const today = new Date();
   const sevenDaysAgo = new Date(today);
@@ -47,6 +57,14 @@ export async function GET() {
   const pieData = Object.entries(serviceMap).map(([name, value]) => ({ name, value }));
 
   return NextResponse.json({
+    stats: {
+      requests: requestCount,
+      projects: projectCount,
+      posts: postCount,
+      testimonials: testimonialCount,
+      services: serviceCount,
+      quizResults: quizCount,
+    },
     chartData: chartData.map(({ date, count }) => ({ date, count })),
     pieData,
   });

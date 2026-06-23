@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">FullFocus logo</title>
+  <rect width="512" height="512" rx="96" fill="#0a0a0a"/>
+  <circle cx="256" cy="256" r="168" fill="none" stroke="#10b981" stroke-width="40"/>
+  <circle cx="256" cy="256" r="84" fill="none" stroke="#2dd4bf" stroke-width="32"/>
+  <circle cx="256" cy="256" r="28" fill="#34d399"/>
+</svg>

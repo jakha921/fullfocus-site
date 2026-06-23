@@ -2,14 +2,19 @@ import { LeadQuiz } from '@/components/quiz';
 import { quizCopy, resolveQuizLocale } from '@/components/quiz/quiz-content';
 import { createPageMetadata } from '@/lib/seo-metadata';
 import { getLocale } from 'next-intl/server';
+import type { Locale } from '@/lib/i18n';
 
-export const metadata = createPageMetadata({
-  path: '/quiz',
-  title: 'AI Automation Audit',
-  description:
-    'Answer a short diagnostic quiz and get automation ideas for sales, support, marketing, operations, reporting, and analytics.',
-  keywords: ['AI automation audit', 'business automation quiz', 'automation estimate'],
-});
+export async function generateMetadata() {
+  const locale = (await getLocale()) as Locale;
+  return createPageMetadata({
+    path: '/quiz',
+    locale,
+    title: 'AI Automation Audit',
+    description:
+      'Answer a short diagnostic quiz and get automation ideas for sales, support, marketing, operations, reporting, and analytics.',
+    keywords: ['AI automation audit', 'business automation quiz', 'automation estimate'],
+  });
+}
 
 export default async function QuizPage() {
   const locale = resolveQuizLocale(await getLocale());

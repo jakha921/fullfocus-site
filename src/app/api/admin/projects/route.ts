@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
+import { Prisma } from "@prisma/client";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { z } from "zod";
@@ -33,8 +34,10 @@ const createSchema = z.object({
   images: z.array(z.string()),
   coverImage: z.string().min(1),
   link: z.string().optional(),
+  translations: z.record(z.unknown()).optional(),
   featured: z.boolean().optional(),
   isActive: z.boolean().optional(),
+  order: z.number().optional(),
 });
 
 export async function POST(request: NextRequest) {
@@ -53,6 +56,7 @@ export async function POST(request: NextRequest) {
         shortDesc: data.shortDesc || null,
         client: data.client || null,
         link: data.link || null,
+        translations: data.translations as Prisma.InputJsonValue | undefined,
       },
     });
 

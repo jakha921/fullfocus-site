@@ -67,8 +67,8 @@ export function resolveQuizLocale(locale: string): QuizLocale {
 export const quizCopy: Record<QuizLocale, QuizCopy> = {
   uz: {
     pageTitle: "AI-audit",
-    pageHighlight: "avtomatlashtirish",
-    pageDescription: "Kontaktlaringizni qoldiring, 5 tagacha savolga javob bering va mini-hisobot oling.",
+    pageHighlight: "avtomatlashtirish roadmap",
+    pageDescription: "Kontaktlaringizni qoldiring, 5 tagacha savolga javob bering va qaysi jarayon birinchi pul qaytarishini ko‘ring.",
     multiHint: "Bir nechta variantni tanlash mumkin.",
     back: "Orqaga",
     next: "Keyingi",
@@ -83,7 +83,7 @@ export const quizCopy: Record<QuizLocale, QuizCopy> = {
     },
     result: {
       title: "Mini-hisobot tayyor",
-      description: "Ariza saqlandi. Hisobotni Telegram bot orqali ochishingiz mumkin.",
+      description: "Ariza saqlandi. Mini-roadmapda tezkor avtomatlashtirish nuqtalari, risklar va keyingi qadamlar bor.",
       score: "Lead score",
       quickSteps: "Birinchi tezkor qadamlar",
       telegramCta: "Telegram'da mini-hisobotni ochish",
@@ -176,8 +176,8 @@ export const quizCopy: Record<QuizLocale, QuizCopy> = {
   },
   ru: {
     pageTitle: "AI-аудит",
-    pageHighlight: "автоматизации",
-    pageDescription: "Оставьте контакты, ответьте максимум на 5 вопросов и получите мини-отчет.",
+    pageHighlight: "с roadmap",
+    pageDescription: "Оставьте контакты, ответьте максимум на 5 вопросов и увидьте, какой процесс быстрее всего вернет деньги.",
     multiHint: "Можно выбрать несколько вариантов.",
     back: "Назад",
     next: "Далее",
@@ -192,7 +192,7 @@ export const quizCopy: Record<QuizLocale, QuizCopy> = {
     },
     result: {
       title: "Мини-отчет готов",
-      description: "Заявка сохранена. Отчет можно открыть через Telegram-бота.",
+      description: "Заявка сохранена. В мини-roadmap будут быстрые точки автоматизации, риски и понятные следующие шаги.",
       score: "Lead score",
       quickSteps: "Первые быстрые шаги",
       telegramCta: "Открыть мини-отчет в Telegram",
@@ -263,9 +263,9 @@ export const quizCopy: Record<QuizLocale, QuizCopy> = {
     },
   },
   en: {
-    pageTitle: "AI automation",
-    pageHighlight: "audit",
-    pageDescription: "Leave your contacts, answer up to 5 questions, and get a mini-report.",
+    pageTitle: "AI audit",
+    pageHighlight: "with roadmap",
+    pageDescription: "Leave your contacts, answer up to 5 questions, and see which workflow can pay back first.",
     multiHint: "You can choose several options.",
     back: "Back",
     next: "Next",
@@ -280,7 +280,7 @@ export const quizCopy: Record<QuizLocale, QuizCopy> = {
     },
     result: {
       title: "Mini-report is ready",
-      description: "Your request is saved. Open the report through the Telegram bot.",
+      description: "Your request is saved. The mini-roadmap includes quick automation wins, risks, and clear next steps.",
       score: "Lead score",
       quickSteps: "First quick steps",
       telegramCta: "Open mini-report in Telegram",

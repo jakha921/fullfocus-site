@@ -9,6 +9,8 @@ import {
   Briefcase,
   FileText,
   Eye,
+  Layers,
+  ClipboardList,
   Plus,
   ExternalLink,
   ArrowUpRight,
@@ -33,6 +35,8 @@ interface Stats {
   projects: number;
   posts: number;
   testimonials: number;
+  services?: number;
+  quizResults?: number;
 }
 
 interface Request {
@@ -73,19 +77,18 @@ export default function AdminDashboard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [statsRes, requestsRes, dashRes] = await Promise.all([
-          fetch("/api/stats"),
+        const [requestsRes, dashRes] = await Promise.all([
           fetch("/api/admin/requests"),
           fetch("/api/admin/dashboard-stats"),
         ]);
 
-        if (statsRes.ok) setStats(await statsRes.json());
         if (requestsRes.ok) {
           const data = await requestsRes.json();
           setRequests(data.slice(0, 5));
         }
         if (dashRes.ok) {
           const data = await dashRes.json();
+          setStats(data.stats || null);
           setChartData(data.chartData || []);
           setPieData(data.pieData || []);
         }
@@ -126,6 +129,20 @@ export default function AdminDashboard() {
       icon: Eye,
       href: "/admin/testimonials",
       gradient: "from-amber-500 to-orange-600",
+    },
+    {
+      title: "Услуги",
+      value: stats?.services ?? 0,
+      icon: Layers,
+      href: "/admin/services",
+      gradient: "from-teal-500 to-emerald-600",
+    },
+    {
+      title: "AI-аудиты",
+      value: stats?.quizResults ?? 0,
+      icon: ClipboardList,
+      href: "/admin/quiz-results",
+      gradient: "from-violet-500 to-fuchsia-600",
     },
   ];
 

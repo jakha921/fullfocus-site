@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { Building2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -18,10 +15,7 @@ export function SocialProofBar() {
   return (
     <section className="py-8 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+        <div
           className="glass-card rounded-2xl px-8 py-6"
         >
           <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
@@ -30,10 +24,10 @@ export function SocialProofBar() {
               {clients.map((client) => (
                 <div
                   key={client}
-                  className="flex items-center gap-2 opacity-50 hover:opacity-100 transition-opacity duration-300"
+                  className="flex items-center gap-2 text-gray-300 transition-colors duration-300 hover:text-white"
                 >
-                  <Building2 className="w-4 h-4 text-gray-400" />
-                  <span className="text-sm font-medium text-gray-400">{client}</span>
+                  <Building2 className="w-4 h-4" />
+                  <span className="text-sm font-medium">{client}</span>
                 </div>
               ))}
             </div>
@@ -52,7 +46,7 @@ export function SocialProofBar() {
               ))}
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

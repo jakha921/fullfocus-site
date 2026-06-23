@@ -1,13 +1,21 @@
 import type { Metadata } from "next";
+import {
+  absoluteLocalizedUrl,
+  localizedAlternates,
+  openGraphLocales,
+  siteUrl,
+  type Locale,
+} from "@/lib/routing";
 
-const siteUrl = "https://fullfocus.dev";
-const defaultImage = `${siteUrl}/images/hero-automation-dashboard.jpg`;
+const defaultImage = `${siteUrl}/images/hero-automation-dashboard.avif`;
 
 type PageMetadataInput = {
   path: string;
   title: string;
   description: string;
   keywords?: string[];
+  locale?: Locale;
+  type?: "website" | "article";
 };
 
 export function createPageMetadata({
@@ -15,9 +23,11 @@ export function createPageMetadata({
   title,
   description,
   keywords = [],
+  locale = "uz",
+  type = "website",
 }: PageMetadataInput): Metadata {
   const canonicalPath = path.startsWith("/") ? path : `/${path}`;
-  const url = `${siteUrl}${canonicalPath}`;
+  const url = absoluteLocalizedUrl(canonicalPath, locale);
 
   return {
     title,
@@ -25,14 +35,15 @@ export function createPageMetadata({
     keywords,
     alternates: {
       canonical: url,
+      languages: localizedAlternates(canonicalPath),
     },
     openGraph: {
       title,
       description,
       url,
       siteName: "FullFocus",
-      locale: "uz_UZ",
-      type: "website",
+      locale: openGraphLocales[locale],
+      type,
       images: [
         {
           url: defaultImage,

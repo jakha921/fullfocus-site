@@ -1,21 +1,25 @@
 import { getRequestConfig } from 'next-intl/server';
-import { cookies } from 'next/headers';
+import { cookies, headers } from 'next/headers';
+import {
+  defaultLocale,
+  isLocale,
+  localeNames,
+  locales,
+  type Locale,
+} from "@/lib/routing";
 
-export const locales = ['en', 'ru', 'uz'] as const;
-export type Locale = (typeof locales)[number];
-
-export const defaultLocale: Locale = 'uz';
-
-export const localeNames: Record<Locale, string> = {
-  en: 'English',
-  ru: 'Русский',
-  uz: "O'zbek",
-};
+export { defaultLocale, localeNames, locales, type Locale };
 
 export default getRequestConfig(async () => {
   const cookieStore = await cookies();
+  const headerStore = headers();
+  const localeHeader = headerStore.get("x-fullfocus-locale");
   const localeCookie = cookieStore.get('locale')?.value as Locale | undefined;
-  const locale = localeCookie && locales.includes(localeCookie) ? localeCookie : defaultLocale;
+  const locale = isLocale(localeHeader)
+    ? localeHeader
+    : localeCookie && locales.includes(localeCookie)
+      ? localeCookie
+      : defaultLocale;
 
   return {
     locale,

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
+import { Prisma } from "@prisma/client";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { z } from "zod";
@@ -29,6 +30,8 @@ const createSchema = z.object({
   linkedin: z.string().optional(),
   github: z.string().optional(),
   telegram: z.string().optional(),
+  translations: z.record(z.unknown()).optional(),
+  order: z.number().optional(),
   isActive: z.boolean().optional(),
 });
 
@@ -50,6 +53,7 @@ export async function POST(request: NextRequest) {
         linkedin: data.linkedin || null,
         github: data.github || null,
         telegram: data.telegram || null,
+        translations: data.translations as Prisma.InputJsonValue | undefined,
       },
     });
 

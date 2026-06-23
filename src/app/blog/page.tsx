@@ -1,9 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Calendar } from "lucide-react";
+import { getLocale, getTranslations } from "next-intl/server";
 import { getBlogCategories, getPublishedBlogPosts } from "@/lib/blog";
+import type { Locale } from "@/lib/i18n";
+import { localizedPath } from "@/lib/routing";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 type BlogPageProps = {
   searchParams?: {
@@ -11,16 +14,23 @@ type BlogPageProps = {
   };
 };
 
-function formatDate(date: Date | null) {
-  return (date ?? new Date()).toLocaleDateString("uz-UZ", {
+const dateLocales: Record<Locale, string> = {
+  uz: "uz-UZ",
+  ru: "ru-RU",
+  en: "en-US",
+};
+
+function formatDate(date: Date | null, locale: Locale) {
+  return (date ?? new Date()).toLocaleDateString(dateLocales[locale], {
     day: "numeric",
     month: "long",
     year: "numeric",
   });
 }
 
-function categoryHref(category?: string) {
-  return category ? `/blog?category=${encodeURIComponent(category)}` : "/blog";
+function categoryHref(category: string | undefined, locale: Locale) {
+  const basePath = localizedPath("/blog", locale);
+  return category ? `${basePath}?category=${encodeURIComponent(category)}` : basePath;
 }
 
 function getSafeImageSrc(value: string | null | undefined) {
@@ -41,10 +51,12 @@ function getCardGradient(index: number) {
 }
 
 export default async function BlogPage({ searchParams }: BlogPageProps) {
+  const locale = (await getLocale()) as Locale;
   const activeCategory = searchParams?.category?.trim();
+  const t = await getTranslations("blog_page");
   const [categories, posts] = await Promise.all([
-    getBlogCategories(),
-    getPublishedBlogPosts(activeCategory),
+    getBlogCategories(locale),
+    getPublishedBlogPosts(locale, activeCategory),
   ]);
 
   const featured = posts[0];
@@ -59,15 +71,13 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
 
         <div className="relative mx-auto max-w-4xl text-center">
           <p className="mb-5 inline-flex rounded-lg border border-teal-300/20 bg-teal-300/10 px-3 py-1 text-sm font-medium text-teal-200">
-            AI automation blog
+            {t("badge")}
           </p>
           <h1 className="font-display text-4xl font-bold text-white md:text-5xl lg:text-6xl">
-            Biznes avtomatlashtirish bo&apos;yicha{" "}
-            <span className="gradient-text">amaliy maqolalar</span>
+            {t("title")} <span className="gradient-text">{t("highlight")}</span>
           </h1>
           <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-zinc-400">
-            CRM, Telegram bot, AI agentlar, lead management va biznes jarayonlarini
-            tizimlashtirish haqida SEO maqolalar.
+            {t("description")}
           </p>
         </div>
       </section>
@@ -75,19 +85,19 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
       <section className="px-4 pb-8 sm:px-6 lg:px-8">
         <div className="mx-auto flex max-w-7xl flex-wrap justify-center gap-3">
           <Link
-            href="/blog"
+            href={categoryHref(undefined, locale)}
             className={`rounded-lg border px-4 py-2 text-sm font-medium transition ${
               !activeCategory
                 ? "border-emerald-500/50 bg-emerald-500/20 text-emerald-300"
                 : "border-white/10 bg-white/[0.03] text-zinc-400 hover:text-white"
             }`}
           >
-            Barchasi
+            {t("all")}
           </Link>
           {categories.map((category) => (
             <Link
               key={category}
-              href={categoryHref(category)}
+              href={categoryHref(category, locale)}
               className={`rounded-lg border px-4 py-2 text-sm font-medium transition ${
                 activeCategory === category
                   ? "border-emerald-500/50 bg-emerald-500/20 text-emerald-300"
@@ -105,7 +115,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
           {featured ? (
             <>
               <div className="mb-6">
-                <Link href={`/blog/${featured.slug}`}>
+                <Link href={localizedPath(`/blog/${featured.slug}`, locale)}>
                   <article className="glass-card group relative flex min-h-[300px] flex-col justify-end overflow-hidden rounded-lg transition-all duration-300 hover:border-white/15">
                     {featuredCoverImage ? (
                       <Image
@@ -133,7 +143,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                         </span>
                         <span className="flex items-center gap-1 text-sm text-zinc-400">
                           <Calendar className="h-4 w-4" />
-                          {formatDate(featured.publishedAt ?? featured.createdAt)}
+                          {formatDate(featured.publishedAt ?? featured.createdAt, locale)}
                         </span>
                       </div>
                       <h2 className="font-display text-2xl font-bold text-white transition-colors group-hover:text-emerald-300 md:text-4xl">
@@ -152,7 +162,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                 {rest.map((post, index) => {
                   const coverImage = getSafeImageSrc(post.coverImage);
                   return (
-                    <Link key={post.id} href={`/blog/${post.slug}`}>
+                    <Link key={post.id} href={localizedPath(`/blog/${post.slug}`, locale)}>
                       <article className="glass-card group relative flex min-h-[220px] flex-col justify-end overflow-hidden rounded-lg transition-all duration-300 hover:border-white/15">
                         {coverImage ? (
                           <Image
@@ -178,7 +188,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                             </span>
                             <span className="flex items-center gap-1 text-xs text-zinc-500">
                               <Calendar className="h-3 w-3" />
-                              {formatDate(post.publishedAt ?? post.createdAt)}
+                              {formatDate(post.publishedAt ?? post.createdAt, locale)}
                             </span>
                           </div>
                           <h3 className="font-display text-lg font-semibold text-white transition-colors group-hover:text-emerald-300">
@@ -197,17 +207,16 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
           ) : (
             <div className="mx-auto max-w-2xl rounded-lg border border-white/10 bg-white/[0.03] p-8 text-center">
               <h2 className="font-display text-2xl font-bold text-white">
-                Maqolalar tayyorlanmoqda
+                {t("empty_title")}
               </h2>
               <p className="mt-3 text-sm leading-6 text-zinc-400">
-                Hozircha bu kategoriya bo&apos;yicha chop etilgan maqola yo&apos;q. Shu vaqt ichida
-                biznesingizdagi avtomatlashtirish imkoniyatlarini auditdan o&apos;tkazing.
+                {t("empty_desc")}
               </p>
               <Link
-                href="/quiz"
+                href={localizedPath("/quiz", locale)}
                 className="mt-6 inline-flex items-center justify-center gap-2 rounded-lg bg-teal-300 px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-teal-200"
               >
-                AI auditdan o&apos;tish
+                {t("audit_cta")}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>

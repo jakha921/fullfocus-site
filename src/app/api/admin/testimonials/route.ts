@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
+import { Prisma } from "@prisma/client";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { z } from "zod";
@@ -28,6 +29,8 @@ const createSchema = z.object({
   content: z.string().min(1),
   avatar: z.string().optional(),
   rating: z.number().min(1).max(5),
+  translations: z.record(z.unknown()).optional(),
+  order: z.number().optional(),
   isActive: z.boolean().optional(),
 });
 
@@ -46,6 +49,7 @@ export async function POST(request: NextRequest) {
         ...data,
         position: data.position || null,
         avatar: data.avatar || null,
+        translations: data.translations as Prisma.InputJsonValue | undefined,
       },
     });
 

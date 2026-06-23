@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { Badge } from "@/components/ui";
 
 interface SectionHeadingProps {
@@ -19,11 +16,7 @@ export function SectionHeading({
   align = "center",
 }: SectionHeadingProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
+    <div
       className={`max-w-3xl mb-16 ${align === "center" ? "text-center mx-auto" : "text-left"}`}
     >
       {badge && (
@@ -38,6 +31,6 @@ export function SectionHeading({
       {description && (
         <p className="text-gray-400 text-lg leading-relaxed">{description}</p>
       )}
-    </motion.div>
+    </div>
   );
 }

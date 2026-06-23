@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
+import { Prisma } from "@prisma/client";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { z } from "zod";
@@ -15,6 +16,7 @@ const updateSchema = z.object({
   images: z.array(z.string()).optional(),
   coverImage: z.string().min(1).optional(),
   link: z.string().optional(),
+  translations: z.record(z.unknown()).optional(),
   featured: z.boolean().optional(),
   isActive: z.boolean().optional(),
   order: z.number().optional(),
@@ -60,7 +62,10 @@ export async function PATCH(
 
     const project = await prisma.project.update({
       where: { id },
-      data,
+      data: {
+        ...data,
+        translations: data.translations as Prisma.InputJsonValue | undefined,
+      },
     });
 
     return NextResponse.json(project);
