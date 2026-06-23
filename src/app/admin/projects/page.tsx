@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Plus, Edit, Trash2, Star } from "lucide-react";
+import { Plus, Edit, Trash2, Star, Eye, EyeOff } from "lucide-react";
 import { AdminHeader } from "@/components/admin/AdminHeader";
 import { Card, Badge, Button, Skeleton } from "@/components/ui";
 import toast from "react-hot-toast";
@@ -23,6 +23,9 @@ interface Project {
 }
 
 const categoryLabels: Record<string, string> = {
+  ai: "AI automation",
+  automation: "Telegram/CRM",
+  analytics: "Analytics",
   web: "Веб-разработка",
   mobile: "Мобильные",
   design: "Дизайн",
@@ -30,6 +33,9 @@ const categoryLabels: Record<string, string> = {
 };
 
 const categoryColors: Record<string, string> = {
+  ai: "text-emerald-400 border-emerald-500/30 bg-emerald-500/10",
+  automation: "text-teal-400 border-teal-500/30 bg-teal-500/10",
+  analytics: "text-cyan-400 border-cyan-500/30 bg-cyan-500/10",
   web: "text-blue-400 border-blue-500/30 bg-blue-500/10",
   mobile: "text-purple-400 border-purple-500/30 bg-purple-500/10",
   design: "text-pink-400 border-pink-500/30 bg-pink-500/10",
@@ -89,6 +95,27 @@ export default function ProjectsPage() {
           )
         );
         toast.success(featured ? "Убран из избранного" : "Добавлен в избранное");
+      }
+    } catch {
+      toast.error("Ошибка");
+    }
+  };
+
+  const handleToggleActive = async (id: string, isActive: boolean) => {
+    try {
+      const res = await fetch(`/api/admin/projects/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ isActive: !isActive }),
+      });
+
+      if (res.ok) {
+        setProjects(
+          projects.map((p) =>
+            p.id === id ? { ...p, isActive: !isActive } : p
+          )
+        );
+        toast.success(isActive ? "Проект скрыт" : "Проект опубликован");
       }
     } catch {
       toast.error("Ошибка");
@@ -166,6 +193,13 @@ export default function ProjectsPage() {
                             project.featured ? "text-yellow-500 fill-yellow-500" : ""
                           }`}
                         />
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        onClick={() => handleToggleActive(project.id, project.isActive)}
+                      >
+                        {project.isActive ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                       </Button>
                       <Button
                         size="sm"

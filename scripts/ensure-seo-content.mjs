@@ -38,7 +38,43 @@ const starterPosts = [
     category: "AI automation",
     tags: ["business automation", "AI audit", "process automation"],
     authorName: "FullFocus",
-    coverImage: "/images/blog-automation-audit.jpg",
+    coverImage: "/images/blog-automation-audit.avif",
+    translations: {
+      ru: {
+        title: "Автоматизация бизнес-процессов: с чего начать",
+        excerpt:
+          "Практичный способ понять, какие процессы автоматизировать первыми и где быстрее появится ROI.",
+        content: `<p>Автоматизацию не нужно начинать с большого рискованного проекта. Лучший первый шаг - найти повторяющийся процесс, который регулярно забирает время команды или мешает быстро обработать заявки.</p>
+<h2>Как выбрать первый процесс?</h2>
+<p>Выпишите задачи за неделю: прием лидов, ответы клиентам, обновление CRM, отчеты, напоминания по оплате, генерация документов. Затем оцените, где задержка сразу влияет на деньги.</p>
+<ul>
+  <li>Процесс повторяется каждый день?</li>
+  <li>Ошибка или задержка приводит к потере заявки?</li>
+  <li>Результат можно измерить в часах, лидах или выручке?</li>
+</ul>
+<h2>Где обычно быстрее ROI?</h2>
+<p>Telegram lead capture, CRM reminders, задачи менеджерам, отчеты из Google Sheets и AI support agent чаще всего дают быстрый и измеримый эффект.</p>`,
+        category: "AI-автоматизация",
+        tags: ["автоматизация бизнеса", "AI аудит", "автоматизация процессов"],
+      },
+      en: {
+        title: "Business process automation: where to start",
+        excerpt:
+          "A practical way to choose the first processes to automate and find the fastest ROI.",
+        content: `<p>Automation does not have to start as a large risky project. The best first step is usually a repetitive process that consumes team time or slows down lead response.</p>
+<h2>How to choose the first process?</h2>
+<p>List weekly tasks: lead intake, customer replies, CRM updates, reports, payment reminders, or document generation. Then identify where delay directly costs money.</p>
+<ul>
+  <li>Does the process repeat every day?</li>
+  <li>Does an error or delay lose revenue?</li>
+  <li>Can the outcome be measured in hours, leads, or revenue?</li>
+</ul>
+<h2>Where ROI usually appears faster</h2>
+<p>Telegram lead capture, CRM reminders, manager task flows, Google Sheets reporting, and AI support agents are often strong first candidates.</p>`,
+        category: "AI automation",
+        tags: ["business automation", "AI audit", "process automation"],
+      },
+    },
   },
   {
     title: "Telegram bot biznes uchun: lead, CRM va hisobotlarni avtomatlashtirish",
@@ -60,7 +96,43 @@ const starterPosts = [
     category: "Telegram bots",
     tags: ["Telegram bot", "CRM automation", "lead automation"],
     authorName: "FullFocus",
-    coverImage: "/images/blog-telegram-bot.jpg",
+    coverImage: "/images/blog-telegram-bot.avif",
+    translations: {
+      ru: {
+        title: "Telegram-бот для бизнеса: лиды, CRM и отчеты",
+        excerpt:
+          "Как не терять заявки из Telegram и автоматически передавать их в CRM, менеджерам и отчеты.",
+        content: `<p>Для многих компаний в Узбекистане Telegram - основной канал общения с клиентами. Поэтому бот может быть не просто FAQ, а полноценным слоем lead capture, CRM, reminders и мини-отчетов.</p>
+<h2>Что автоматизирует Telegram-бот?</h2>
+<ul>
+  <li>Собирает имя, телефон, услугу и бюджет клиента.</li>
+  <li>Создает лид в CRM или Google Sheets.</li>
+  <li>Отправляет уведомление ответственному менеджеру.</li>
+  <li>Показывает клиенту следующий шаг и статус.</li>
+</ul>
+<h2>Где помогает AI agent?</h2>
+<p>AI agent отвечает на частые вопросы, уточняет проблему клиента и передает сложные диалоги менеджеру с кратким резюме.</p>`,
+        category: "Telegram-боты",
+        tags: ["Telegram bot", "CRM автоматизация", "lead automation"],
+      },
+      en: {
+        title: "Telegram bot for business: leads, CRM, and reports",
+        excerpt:
+          "How to stop losing Telegram requests and send them automatically to CRM, managers, and reports.",
+        content: `<p>For many companies in Uzbekistan, Telegram is the main customer communication channel. A bot can become more than FAQ: it can handle lead capture, CRM updates, reminders, and mini reports.</p>
+<h2>What does a Telegram bot automate?</h2>
+<ul>
+  <li>Collects customer name, phone, service, and budget.</li>
+  <li>Creates a lead in CRM or Google Sheets.</li>
+  <li>Sends a notification to the responsible manager.</li>
+  <li>Shows the customer the next step and status.</li>
+</ul>
+<h2>Where does an AI agent help?</h2>
+<p>An AI agent answers frequent questions, clarifies the customer problem, and escalates complex chats to a manager with a short summary.</p>`,
+        category: "Telegram bots",
+        tags: ["Telegram bot", "CRM automation", "lead automation"],
+      },
+    },
   },
   {
     title: "CRM avtomatlashtirish: sotuv voronkasini nazorat qilish",
@@ -82,7 +154,43 @@ const starterPosts = [
     category: "CRM automation",
     tags: ["CRM automation", "sales funnel", "business process"],
     authorName: "FullFocus",
-    coverImage: "/images/blog-crm-automation.jpg",
+    coverImage: "/images/blog-crm-automation.avif",
+    translations: {
+      ru: {
+        title: "CRM-автоматизация: контроль воронки продаж",
+        excerpt:
+          "Как автоматизировать лиды, задачи менеджеров, follow-up и отчеты внутри CRM.",
+        content: `<p>Если CRM остается только списком клиентов, она дает мало пользы бизнесу. Цель автоматизации CRM - сделать следующий шаг, ответственного, срок и результат понятными для каждого лида.</p>
+<h2>Что автоматизировать первым?</h2>
+<ul>
+  <li>Создание лидов из сайта, Telegram и рекламных форм.</li>
+  <li>Автоматическое назначение менеджера и reminders.</li>
+  <li>SLA alerts по лидам без ответа.</li>
+  <li>Еженедельные отчеты по продажам.</li>
+</ul>
+<h2>Какой результат ожидать?</h2>
+<p>Правильно настроенная CRM снижает потери лидов, повышает дисциплину менеджеров и показывает владельцу реальную воронку продаж.</p>`,
+        category: "CRM-автоматизация",
+        tags: ["CRM автоматизация", "воронка продаж", "бизнес-процесс"],
+      },
+      en: {
+        title: "CRM automation: controlling the sales funnel",
+        excerpt:
+          "How to automate leads, manager tasks, follow-ups, and reporting inside CRM.",
+        content: `<p>If CRM is only a customer list, it delivers little business value. CRM automation makes the next step, owner, deadline, and outcome clear for every lead.</p>
+<h2>What should be automated first?</h2>
+<ul>
+  <li>Lead creation from website, Telegram, and ad forms.</li>
+  <li>Automatic manager assignment and reminders.</li>
+  <li>SLA alerts for unanswered leads.</li>
+  <li>Weekly sales reports.</li>
+</ul>
+<h2>What result should you expect?</h2>
+<p>A well-configured CRM reduces lost leads, improves manager discipline, and gives the owner a real-time view of the sales funnel.</p>`,
+        category: "CRM automation",
+        tags: ["CRM automation", "sales funnel", "business process"],
+      },
+    },
   },
 ];
 
@@ -109,16 +217,23 @@ async function main() {
   for (const post of starterPosts) {
     const existing = await prisma.blogPost.findUnique({
       where: { slug: post.slug },
-      select: { id: true, coverImage: true },
+      select: { id: true, coverImage: true, translations: true },
     });
 
     if (existing) {
+      const updateData = {};
       if (!existing.coverImage) {
+        updateData.coverImage = post.coverImage;
+        updatedCovers += 1;
+      }
+      if (!existing.translations) {
+        updateData.translations = post.translations;
+      }
+      if (Object.keys(updateData).length > 0) {
         await prisma.blogPost.update({
           where: { slug: post.slug },
-          data: { coverImage: post.coverImage },
+          data: updateData,
         });
-        updatedCovers += 1;
       }
       continue;
     }

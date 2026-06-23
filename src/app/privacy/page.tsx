@@ -1,12 +1,18 @@
 import { createPageMetadata } from "@/lib/seo-metadata";
+import { getLocale } from "next-intl/server";
+import type { Locale } from "@/lib/i18n";
 
-export const metadata = createPageMetadata({
-  path: "/privacy",
-  title: "Privacy Policy",
-  description:
-    "FullFocus privacy policy for website forms, AI automation audit submissions, analytics, and client communications.",
-  keywords: ["FullFocus privacy policy", "website privacy", "automation audit privacy"],
-});
+export async function generateMetadata() {
+  const locale = (await getLocale()) as Locale;
+  return createPageMetadata({
+    path: "/privacy",
+    locale,
+    title: "Privacy Policy",
+    description:
+      "FullFocus privacy policy for website forms, AI automation audit submissions, analytics, and client communications.",
+    keywords: ["FullFocus privacy policy", "website privacy", "automation audit privacy"],
+  });
+}
 
 const sections = [
   {

@@ -15,9 +15,14 @@ services:
       - ADMIN_NAME=${ADMIN_NAME:-Admin}
       - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN:-}
       - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID:-}
+    volumes:
+      - fullfocus_uploads:/app/public/uploads
     networks:
       - coolify
 
 networks:
   coolify:
     external: true
+
+volumes:
+  fullfocus_uploads:

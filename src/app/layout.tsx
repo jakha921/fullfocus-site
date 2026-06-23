@@ -1,25 +1,12 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
-import { Providers } from "@/components/Providers";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { PublicOnlyWrapper } from "@/components/site";
 import { getLocale, getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import { OrganizationJsonLd } from "@/components/seo";
-
-const inter = Inter({
-  subsets: ["latin", "latin-ext"],
-  variable: "--font-inter",
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space-grotesk",
-  weight: ["400", "500", "600", "700"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://fullfocus.dev"),
@@ -49,7 +36,7 @@ export const metadata: Metadata = {
     description: "AI-powered business automation. AI agents, process automation, SaaS development.",
     images: [
       {
-        url: "/images/hero-automation-dashboard.jpg",
+        url: "/images/hero-automation-dashboard.avif",
         width: 1672,
         height: 941,
         alt: "FullFocus AI automation dashboard",
@@ -60,14 +47,11 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "FullFocus - AI Business Automation",
     description: "AI-powered business automation. AI agents, process automation, SaaS development.",
-    images: ["/images/hero-automation-dashboard.jpg"],
+    images: ["/images/hero-automation-dashboard.avif"],
   },
   robots: {
     index: true,
     follow: true,
-  },
-  alternates: {
-    canonical: "https://fullfocus.dev/",
   },
 };
 
@@ -80,26 +64,24 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={`${inter.variable} ${spaceGrotesk.variable}`}>
+    <html lang={locale}>
       <body className="antialiased bg-[#0a0a0a] text-white min-h-screen">
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <Providers>
-            <Header />
-            <main className="min-h-screen pt-16">{children}</main>
-            <Footer />
-            <PublicOnlyWrapper />
-            <OrganizationJsonLd locale={locale} />
-            <Toaster
-              position="top-right"
-              toastOptions={{
-                style: {
-                  background: "#111",
-                  color: "#fff",
-                  border: "1px solid #27272a",
-                },
-              }}
-            />
-          </Providers>
+          <Header />
+          <main className="min-h-screen pt-16">{children}</main>
+          <Footer />
+          <PublicOnlyWrapper />
+          <OrganizationJsonLd locale={locale} />
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              style: {
+                background: "#111",
+                color: "#fff",
+                border: "1px solid #27272a",
+              },
+            }}
+          />
         </NextIntlClientProvider>
       </body>
     </html>

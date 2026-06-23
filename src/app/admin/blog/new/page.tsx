@@ -8,9 +8,57 @@ import { motion } from "framer-motion";
 import { ArrowLeft, Save, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { AdminHeader } from "@/components/admin/AdminHeader";
+import { ImageUploadField } from "@/components/admin/ImageUploadField";
 import { Card, Button, Input, Textarea } from "@/components/ui";
 import { slugify } from "@/lib/utils";
 import toast from "react-hot-toast";
+
+type LocaleCode = "uz" | "ru" | "en";
+type BlogTranslationForm = {
+  title: string;
+  excerpt: string;
+  content: string;
+  category: string;
+  tags: string;
+};
+
+const translationLocales: Array<{ code: LocaleCode; label: string }> = [
+  { code: "uz", label: "UZ" },
+  { code: "ru", label: "RU" },
+  { code: "en", label: "EN" },
+];
+
+const emptyTranslation = (): BlogTranslationForm => ({
+  title: "",
+  excerpt: "",
+  content: "",
+  category: "",
+  tags: "",
+});
+
+const emptyTranslations = () =>
+  translationLocales.reduce(
+    (acc, locale) => ({ ...acc, [locale.code]: emptyTranslation() }),
+    {} as Record<LocaleCode, BlogTranslationForm>
+  );
+
+function buildTranslationPayload(translations: Record<LocaleCode, BlogTranslationForm>) {
+  return Object.fromEntries(
+    Object.entries(translations).map(([locale, value]) => [
+      locale,
+      {
+        title: value.title.trim(),
+        excerpt: value.excerpt.trim(),
+        content: value.content.trim(),
+        category: value.category.trim(),
+        tags: value.tags
+          .split(",")
+          .map((tag) => tag.trim())
+          .filter(Boolean),
+      },
+    ])
+  );
+}
 
 export default function NewBlogPostPage() {
   const router = useRouter();
@@ -24,6 +72,7 @@ export default function NewBlogPostPage() {
     tags: "",
     authorName: "FullFocus",
     coverImage: "",
+    translations: emptyTranslations(),
     isPublished: false,
   });
 
@@ -36,6 +85,27 @@ export default function NewBlogPostPage() {
     }
   };
 
+  const handleCoverImageChange = (name: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleTranslationChange = (
+    locale: LocaleCode,
+    field: keyof BlogTranslationForm,
+    value: string
+  ) => {
+    setFormData((prev) => ({
+      ...prev,
+      translations: {
+        ...prev.translations,
+        [locale]: {
+          ...prev.translations[locale],
+          [field]: value,
+        },
+      },
+    }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -46,6 +116,7 @@ export default function NewBlogPostPage() {
         body: JSON.stringify({
           ...formData,
           tags: formData.tags.split(",").map((t) => t.trim()).filter(Boolean),
+          translations: buildTranslationPayload(formData.translations),
         }),
       });
       if (res.ok) {
@@ -81,6 +152,54 @@ export default function NewBlogPostPage() {
                     <Textarea label="Содержание *" name="content" value={formData.content} onChange={handleChange} required className="min-h-[300px]" />
                   </div>
                 </Card>
+                <Card>
+                  <h2 className="text-lg font-semibold text-white mb-4">Переводы RU / EN / UZ</h2>
+                  <div className="space-y-8">
+                    {translationLocales.map((locale) => (
+                      <div key={locale.code} className="space-y-4 rounded-lg border border-white/10 p-4">
+                        <h3 className="text-sm font-semibold text-emerald-300">{locale.label}</h3>
+                        <Input
+                          label={`${locale.label} заголовок`}
+                          value={formData.translations[locale.code].title}
+                          onChange={(event) =>
+                            handleTranslationChange(locale.code, "title", event.target.value)
+                          }
+                        />
+                        <Textarea
+                          label={`${locale.label} краткое описание`}
+                          value={formData.translations[locale.code].excerpt}
+                          onChange={(event) =>
+                            handleTranslationChange(locale.code, "excerpt", event.target.value)
+                          }
+                        />
+                        <Textarea
+                          label={`${locale.label} содержание`}
+                          value={formData.translations[locale.code].content}
+                          onChange={(event) =>
+                            handleTranslationChange(locale.code, "content", event.target.value)
+                          }
+                          className="min-h-[180px]"
+                        />
+                        <div className="grid md:grid-cols-2 gap-4">
+                          <Input
+                            label={`${locale.label} категория`}
+                            value={formData.translations[locale.code].category}
+                            onChange={(event) =>
+                              handleTranslationChange(locale.code, "category", event.target.value)
+                            }
+                          />
+                          <Input
+                            label={`${locale.label} теги`}
+                            value={formData.translations[locale.code].tags}
+                            onChange={(event) =>
+                              handleTranslationChange(locale.code, "tags", event.target.value)
+                            }
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </Card>
               </div>
               <div className="space-y-6">
                 <Card>
@@ -89,7 +208,13 @@ export default function NewBlogPostPage() {
                     <Input label="Категория" name="category" value={formData.category} onChange={handleChange} />
                     <Input label="Теги (через запятую)" name="tags" value={formData.tags} onChange={handleChange} />
                     <Input label="Автор" name="authorName" value={formData.authorName} onChange={handleChange} />
-                    <Input label="URL обложки" name="coverImage" value={formData.coverImage} onChange={handleChange} />
+                    <ImageUploadField
+                      label="Обложка"
+                      name="coverImage"
+                      value={formData.coverImage}
+                      onChange={handleCoverImageChange}
+                      placeholder="/uploads/article-cover.webp"
+                    />
                     <label className="flex items-center gap-3">
                       <input type="checkbox" name="isPublished" checked={formData.isPublished} onChange={handleChange} className="w-5 h-5 bg-gray-800 border-gray-600 rounded" />
                       <span className="text-white">Опубликовать</span>

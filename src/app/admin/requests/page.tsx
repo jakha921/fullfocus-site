@@ -4,7 +4,7 @@ export const dynamic = "force-dynamic";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Search, MoreHorizontal } from "lucide-react";
+import { Download, Search, MoreHorizontal } from "lucide-react";
 import { AdminHeader } from "@/components/admin/AdminHeader";
 import { Card, Badge, Select } from "@/components/ui";
 import { cn } from "@/lib/utils";
@@ -229,6 +229,11 @@ export default function RequestsPage() {
     }
   };
 
+  const exportHref = `/api/admin/requests/export?${new URLSearchParams({
+    ...(status !== "all" ? { status } : {}),
+    ...(search ? { search } : {}),
+  }).toString()}`;
+
   return (
     <>
       <AdminHeader title="Заявки" />
@@ -256,6 +261,13 @@ export default function RequestsPage() {
             onChange={(e) => setStatus(e.target.value)}
             className="w-full sm:w-48"
           />
+          <a
+            href={exportHref}
+            className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/8 bg-white/5 px-4 py-2.5 text-sm font-semibold text-gray-300 transition hover:border-emerald-500/40 hover:text-white"
+          >
+            <Download className="h-4 w-4" />
+            CSV
+          </a>
           {/* View Mode Toggle */}
           <div className="flex items-center gap-1 p-1 bg-white/5 border border-white/8 rounded-lg">
             {(["table", "kanban"] as const).map((m) => (

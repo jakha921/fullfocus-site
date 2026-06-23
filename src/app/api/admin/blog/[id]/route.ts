@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { z } from "zod";
+import type { Prisma } from "@prisma/client";
 
 const updateSchema = z.object({
   title: z.string().min(1).optional(),
@@ -13,6 +14,7 @@ const updateSchema = z.object({
   category: z.string().min(1).optional(),
   tags: z.array(z.string()).optional(),
   authorName: z.string().min(1).optional(),
+  translations: z.record(z.unknown()).optional(),
   isPublished: z.boolean().optional(),
 });
 
@@ -53,7 +55,11 @@ export async function PATCH(
     const body = await request.json();
     const data = updateSchema.parse(body);
 
-    const updateData: Record<string, unknown> = { ...data };
+    const { translations, ...postData } = data;
+    const updateData: Record<string, unknown> = { ...postData };
+    if (translations !== undefined) {
+      updateData.translations = translations as Prisma.InputJsonValue;
+    }
 
     // Set publishedAt when publishing for the first time
     if (data.isPublished) {

@@ -14,6 +14,14 @@ import {
   getServiceLandingPage,
   serviceLandingPages,
 } from "@/lib/service-landing-pages";
+import { getLocale } from "next-intl/server";
+import type { Locale } from "@/lib/i18n";
+import {
+  absoluteLocalizedUrl,
+  localeAlternates,
+  localizedAlternates,
+  localizedPath,
+} from "@/lib/routing";
 
 type ServicePageProps = {
   params: {
@@ -25,23 +33,26 @@ export function generateStaticParams() {
   return serviceLandingPages.map((page) => ({ slug: page.slug }));
 }
 
-export function generateMetadata({ params }: ServicePageProps): Metadata {
+export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {
+  const locale = (await getLocale()) as Locale;
   const page = getServiceLandingPage(params.slug);
   if (!page) return {};
 
   return createPageMetadata({
     path: `/services/${page.slug}`,
+    locale,
     title: page.metaTitle,
     description: page.description,
     keywords: page.keywords,
   });
 }
 
-export default function ServiceLandingPage({ params }: ServicePageProps) {
+export default async function ServiceLandingPage({ params }: ServicePageProps) {
+  const locale = (await getLocale()) as Locale;
   const page = getServiceLandingPage(params.slug);
   if (!page) notFound();
 
-  const pageUrl = `https://fullfocus.dev/services/${page.slug}`;
+  const pageUrl = absoluteLocalizedUrl(`/services/${page.slug}`, locale);
   const serviceJsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -51,6 +62,10 @@ export default function ServiceLandingPage({ params }: ServicePageProps) {
         url: pageUrl,
         name: page.metaTitle,
         description: page.description,
+        inLanguage: localeAlternates[locale],
+        alternateName: Object.entries(localizedAlternates(`/services/${page.slug}`)).map(
+          ([language, url]) => `${language}: ${url}`
+        ),
         isPartOf: {
           "@type": "WebSite",
           name: "FullFocus",
@@ -65,13 +80,13 @@ export default function ServiceLandingPage({ params }: ServicePageProps) {
             "@type": "ListItem",
             position: 1,
             name: "Home",
-            item: "https://fullfocus.dev",
+            item: absoluteLocalizedUrl("/", locale),
           },
           {
             "@type": "ListItem",
             position: 2,
             name: "Services",
-            item: "https://fullfocus.dev/services",
+            item: absoluteLocalizedUrl("/services", locale),
           },
           {
             "@type": "ListItem",
@@ -137,14 +152,14 @@ export default function ServiceLandingPage({ params }: ServicePageProps) {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
-                href="/quiz"
+                href={localizedPath("/quiz", locale)}
                 className="inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-3 text-sm font-bold text-black shadow-lg shadow-emerald-500/20 transition hover:from-emerald-400 hover:to-teal-400"
               >
                 Get AI Audit
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                href="/services"
+                href={localizedPath("/services", locale)}
                 className="inline-flex items-center justify-center rounded-lg border border-white/10 px-6 py-3 text-sm font-semibold text-zinc-200 transition hover:border-white/25 hover:text-white"
               >
                 All services
@@ -302,7 +317,7 @@ export default function ServiceLandingPage({ params }: ServicePageProps) {
               </div>
             </div>
             <Link
-              href="/quiz"
+              href={localizedPath("/quiz", locale)}
               className="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg bg-teal-300 px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-teal-200"
             >
               Start with audit

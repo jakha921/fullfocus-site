@@ -6,10 +6,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { getCurrentMonthName } from "@/lib/current-month";
+import { isLocale, localizedPath, type Locale } from "@/lib/routing";
 
 export function StickyCtaBar() {
   const t = useTranslations("stickycta");
-  const locale = useLocale();
+  const nextIntlLocale = useLocale();
+  const locale: Locale = isLocale(nextIntlLocale) ? nextIntlLocale : "uz";
   const [isVisible, setIsVisible] = useState(false);
   const [slots, setSlots] = useState<string | null>(null);
   const monthName = getCurrentMonthName(locale);
@@ -60,13 +62,14 @@ export function StickyCtaBar() {
             </div>
             <div className="flex items-center gap-2 flex-shrink-0">
               <Link
-                href="/quiz"
+                href={localizedPath("/quiz", locale)}
                 className="px-4 py-1.5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-black font-semibold text-sm rounded-lg transition-all hover:scale-[1.02]"
               >
                 {t("cta")}
               </Link>
               <button
                 onClick={handleDismiss}
+                aria-label={t("dismiss")}
                 className="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
               >
                 <X className="w-4 h-4" />

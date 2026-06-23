@@ -3,7 +3,7 @@ export const dynamic = "force-dynamic";
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Clock, Gauge, Mail, Phone, Building, Eye, Trash2 } from "lucide-react";
+import { Clock, Download, Gauge, Mail, Phone, Building, Eye, Trash2 } from "lucide-react";
 import { AdminHeader } from "@/components/admin/AdminHeader";
 import { Card, Badge, Button, Skeleton } from "@/components/ui";
 import toast from "react-hot-toast";
@@ -116,11 +116,18 @@ export default function QuizResultsPage() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-6"
+          className="mb-6 flex items-center justify-between gap-4"
         >
           <p className="text-gray-400">
             {isLoading ? "..." : `${results.length} ответов`}
           </p>
+          <a
+            href="/api/admin/quiz-results/export"
+            className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/8 bg-white/5 px-4 py-2.5 text-sm font-semibold text-gray-300 transition hover:border-emerald-500/40 hover:text-white"
+          >
+            <Download className="h-4 w-4" />
+            CSV
+          </a>
         </motion.div>
 
         {isLoading ? (

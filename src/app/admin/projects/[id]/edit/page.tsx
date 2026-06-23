@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { ArrowLeft, Save, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { AdminHeader } from "@/components/admin/AdminHeader";
+import { ImageUploadField } from "@/components/admin/ImageUploadField";
 import { Card, Button, Input, Select, Textarea, Skeleton } from "@/components/ui";
 import toast from "react-hot-toast";
 
@@ -27,8 +28,10 @@ interface Project {
   technologies: string[];
   coverImage: string;
   link: string | null;
+  translations: Record<string, { title?: string; shortDesc?: string; description?: string; category?: string }> | null;
   featured: boolean;
   isActive: boolean;
+  order: number;
 }
 
 export default function EditProjectPage() {
@@ -46,8 +49,17 @@ export default function EditProjectPage() {
     technologies: "",
     coverImage: "",
     link: "",
+    order: "0",
     featured: false,
     isActive: true,
+    enTitle: "",
+    enShortDesc: "",
+    enDescription: "",
+    enCategory: "",
+    uzTitle: "",
+    uzShortDesc: "",
+    uzDescription: "",
+    uzCategory: "",
   });
 
   useEffect(() => {
@@ -56,6 +68,8 @@ export default function EditProjectPage() {
         const res = await fetch("/api/admin/projects/" + params.id);
         if (res.ok) {
           const project: Project = await res.json();
+          const en = project.translations?.en || {};
+          const uz = project.translations?.uz || {};
           setFormData({
             title: project.title,
             slug: project.slug,
@@ -66,8 +80,17 @@ export default function EditProjectPage() {
             technologies: project.technologies.join(", "),
             coverImage: project.coverImage,
             link: project.link || "",
+            order: String(project.order),
             featured: project.featured,
             isActive: project.isActive,
+            enTitle: en.title || "",
+            enShortDesc: en.shortDesc || "",
+            enDescription: en.description || "",
+            enCategory: en.category || "",
+            uzTitle: uz.title || "",
+            uzShortDesc: uz.shortDesc || "",
+            uzDescription: uz.description || "",
+            uzCategory: uz.category || "",
           });
         }
       } finally {
@@ -89,6 +112,10 @@ export default function EditProjectPage() {
     }));
   };
 
+  const setField = (name: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSaving(true);
@@ -100,6 +127,28 @@ export default function EditProjectPage() {
         body: JSON.stringify({
           ...formData,
           technologies: formData.technologies.split(",").map((t) => t.trim()).filter(Boolean),
+          images: formData.coverImage ? [formData.coverImage] : [],
+          order: Number(formData.order) || 0,
+          translations: {
+            ru: {
+              title: formData.title,
+              shortDesc: formData.shortDesc,
+              description: formData.description,
+              category: formData.category,
+            },
+            en: {
+              title: formData.enTitle || formData.title,
+              shortDesc: formData.enShortDesc || formData.shortDesc,
+              description: formData.enDescription || formData.description,
+              category: formData.enCategory || formData.category,
+            },
+            uz: {
+              title: formData.uzTitle || formData.title,
+              shortDesc: formData.uzShortDesc || formData.shortDesc,
+              description: formData.uzDescription || formData.description,
+              category: formData.uzCategory || formData.category,
+            },
+          },
         }),
       });
 
@@ -230,6 +279,35 @@ export default function EditProjectPage() {
                       onChange={handleChange}
                       required
                     />
+                    <ImageUploadField
+                      label="Upload cover"
+                      name="coverImage"
+                      value={formData.coverImage}
+                      onChange={setField}
+                      placeholder="/uploads/project.jpg"
+                    />
+                  </div>
+                </Card>
+
+                <Card>
+                  <h2 className="text-lg font-semibold text-white mb-4">
+                    Translations
+                  </h2>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="space-y-4 rounded-lg border border-white/8 p-4">
+                      <h3 className="font-semibold text-white">English</h3>
+                      <Input label="Title EN" name="enTitle" value={formData.enTitle} onChange={handleChange} />
+                      <Input label="Short description EN" name="enShortDesc" value={formData.enShortDesc} onChange={handleChange} />
+                      <Input label="Category EN" name="enCategory" value={formData.enCategory} onChange={handleChange} />
+                      <Textarea label="Description EN" name="enDescription" value={formData.enDescription} onChange={handleChange} />
+                    </div>
+                    <div className="space-y-4 rounded-lg border border-white/8 p-4">
+                      <h3 className="font-semibold text-white">O&apos;zbek</h3>
+                      <Input label="Title UZ" name="uzTitle" value={formData.uzTitle} onChange={handleChange} />
+                      <Input label="Short description UZ" name="uzShortDesc" value={formData.uzShortDesc} onChange={handleChange} />
+                      <Input label="Category UZ" name="uzCategory" value={formData.uzCategory} onChange={handleChange} />
+                      <Textarea label="Description UZ" name="uzDescription" value={formData.uzDescription} onChange={handleChange} />
+                    </div>
                   </div>
                 </Card>
               </div>
@@ -241,6 +319,14 @@ export default function EditProjectPage() {
                   </h2>
 
                   <div className="space-y-4">
+                    <Input
+                      label="Order"
+                      name="order"
+                      type="number"
+                      value={formData.order}
+                      onChange={handleChange}
+                    />
+
                     <label className="flex items-center gap-3">
                       <input
                         type="checkbox"

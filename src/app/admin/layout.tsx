@@ -5,12 +5,21 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Sidebar } from "@/components/admin/Sidebar";
 import { cn } from "@/lib/utils";
+import { Providers } from "@/components/Providers";
 
 export default function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  return (
+    <Providers>
+      <AdminShell>{children}</AdminShell>
+    </Providers>
+  );
+}
+
+function AdminShell({ children }: { children: React.ReactNode }) {
   const { status } = useSession();
   const router = useRouter();
   const [mounted, setMounted] = useState(false);

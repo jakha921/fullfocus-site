@@ -1,10 +1,8 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { SectionHeading } from "./SectionHeading";
 import { Card } from "@/components/ui";
+import type { PublicTestimonial } from "@/lib/cms";
 
 const testimonialsMeta = [
   {
@@ -30,8 +28,40 @@ const testimonialsMeta = [
   },
 ];
 
-export function TestimonialsSection() {
+export function TestimonialsSection({
+  testimonials = [],
+}: {
+  testimonials?: PublicTestimonial[];
+}) {
   const t = useTranslations("testimonials");
+  const items =
+    testimonials.length > 0
+      ? testimonials.map((testimonial, index) => ({
+          id: testimonial.id,
+          rating: testimonial.rating,
+          initials: testimonial.avatar
+            ? ""
+            : testimonial.clientName
+                .split(" ")
+                .map((part) => part[0])
+                .join("")
+                .slice(0, 2)
+                .toUpperCase(),
+          gradient: testimonialsMeta[index % testimonialsMeta.length].gradient,
+          text: testimonial.content,
+          name: testimonial.clientName,
+          role: testimonial.position || "",
+          company: testimonial.company,
+          avatar: testimonial.avatar,
+        }))
+      : testimonialsMeta.map((testimonial) => ({
+          ...testimonial,
+          text: t(`items.${testimonial.index}.text`),
+          name: t(`items.${testimonial.index}.name`),
+          role: t(`items.${testimonial.index}.role`),
+          company: t(`items.${testimonial.index}.company`),
+          avatar: null,
+        }));
 
   return (
     <section className="py-24 relative overflow-hidden">
@@ -46,23 +76,22 @@ export function TestimonialsSection() {
         />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {testimonialsMeta.map((testimonial, index) => (
-            <motion.div
+          {items.map((testimonial) => (
+            <div
               key={testimonial.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
             >
               <Card glass hover className="h-full flex flex-col">
                 {/* Big quote */}
-                <div className="font-display text-6xl gradient-text opacity-40 leading-none mb-4 select-none">
+                <div
+                  aria-hidden="true"
+                  className="font-display text-6xl gradient-text opacity-40 leading-none mb-4 select-none"
+                >
                   &ldquo;
                 </div>
 
                 {/* Content */}
                 <p className="text-gray-300 leading-relaxed flex-1 mb-6">
-                  {t(`items.${testimonial.index}.text`)}
+                  {testimonial.text}
                 </p>
 
                 {/* Rating */}
@@ -77,19 +106,24 @@ export function TestimonialsSection() {
                   <div
                     className={`w-10 h-10 rounded-full bg-gradient-to-br ${testimonial.gradient} flex items-center justify-center text-white font-bold text-sm flex-shrink-0`}
                   >
-                    {testimonial.initials}
+                    {testimonial.avatar ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={testimonial.avatar} alt={testimonial.name} className="h-full w-full rounded-full object-cover" />
+                    ) : (
+                      testimonial.initials
+                    )}
                   </div>
                   <div>
                     <div className="text-white font-semibold text-sm">
-                      {t(`items.${testimonial.index}.name`)}
+                      {testimonial.name}
                     </div>
                     <div className="text-gray-400 text-xs">
-                      {t(`items.${testimonial.index}.role`)}, {t(`items.${testimonial.index}.company`)}
+                      {testimonial.role ? `${testimonial.role}, ` : ""}{testimonial.company}
                     </div>
                   </div>
                 </div>
               </Card>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

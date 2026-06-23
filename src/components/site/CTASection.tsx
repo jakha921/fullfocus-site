@@ -2,14 +2,21 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { ArrowRight, Gift, Shield, Sparkles } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { getCurrentMonthName } from "@/lib/current-month";
+import { isLocale, localizedPath, type Locale } from "@/lib/routing";
 
-export function CTASection() {
+export type CtaContent = {
+  title?: string;
+  subtitle?: string;
+  button?: string;
+};
+
+export function CTASection({ content }: { content?: CtaContent }) {
   const t = useTranslations("cta");
-  const locale = useLocale();
+  const nextIntlLocale = useLocale();
+  const locale: Locale = isLocale(nextIntlLocale) ? nextIntlLocale : "uz";
   const [slots, setSlots] = useState<string | null>(null);
   const monthName = getCurrentMonthName(locale);
 
@@ -29,24 +36,20 @@ export function CTASection() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] ambient-glow-green rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
+        <div>
           <div className="glass-card rounded-2xl p-10 md:p-14 text-center">
             <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-              {t("title")}
+              {content?.title || t("title")}
             </h2>
             <p className="text-lg text-gray-400 mb-10 max-w-2xl mx-auto">
-              {t("description")}
+              {content?.subtitle || t("description")}
             </p>
 
             <Link
-              href="/quiz"
+              href={localizedPath("/quiz", locale)}
               className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-black font-bold rounded-lg transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-emerald-500/25"
             >
-              {t("button")}
+              {content?.button || t("button")}
               <ArrowRight className="w-5 h-5" />
             </Link>
 
@@ -74,7 +77,7 @@ export function CTASection() {
               </div>
             )}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

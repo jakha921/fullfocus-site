@@ -4,8 +4,9 @@ import Script from "next/script";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { AutomationRoiCalculator } from "@/components/tools/AutomationRoiCalculator";
 import { createPageMetadata } from "@/lib/seo-metadata";
-
-const pageUrl = "https://fullfocus.dev/tools/automation-roi-calculator";
+import { getLocale } from "next-intl/server";
+import type { Locale } from "@/lib/i18n";
+import { absoluteLocalizedUrl } from "@/lib/routing";
 
 const faqs = [
   {
@@ -25,21 +26,27 @@ const faqs = [
   },
 ];
 
-export const metadata: Metadata = createPageMetadata({
-  path: "/tools/automation-roi-calculator",
-  title: "Automation ROI Calculator",
-  description:
-    "Estimate monthly savings, annual impact, payback period, and first-year ROI for business process automation, CRM automation, Telegram bots, and AI support agents.",
-  keywords: [
-    "automation ROI calculator",
-    "business automation ROI",
-    "AI automation calculator",
-    "CRM automation ROI",
-    "Telegram bot automation ROI",
-  ],
-});
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = (await getLocale()) as Locale;
+  return createPageMetadata({
+    path: "/tools/automation-roi-calculator",
+    locale,
+    title: "Automation ROI Calculator",
+    description:
+      "Estimate monthly savings, annual impact, payback period, and first-year ROI for business process automation, CRM automation, Telegram bots, and AI support agents.",
+    keywords: [
+      "automation ROI calculator",
+      "business automation ROI",
+      "AI automation calculator",
+      "CRM automation ROI",
+      "Telegram bot automation ROI",
+    ],
+  });
+}
 
-export default function AutomationRoiCalculatorPage() {
+export default async function AutomationRoiCalculatorPage() {
+  const locale = (await getLocale()) as Locale;
+  const pageUrl = absoluteLocalizedUrl("/tools/automation-roi-calculator", locale);
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [

@@ -8,48 +8,48 @@
     "contact": "Contact"
   },
   "hero": {
-    "title": "We Automate Business. You Scale.",
-    "subtitle": "AI agents, automations, and SaaS products for business. 300% ROI in 3-6 months.",
-    "cta": "Get AI Audit",
-    "badge": "AI-Powered Business Automation",
-    "title_line1": "We automate",
-    "title_line2": "business.",
-    "title_line3": "You scale.",
-    "subtitle_text": "AI agents, automations and SaaS products for business.",
-    "subtitle_highlight": "300% ROI in 3-6 months.",
-    "card_roi": "Average ROI",
-    "card_hours": "hrs/week saved"
+    "title": "Automate leads, sales and support. Scale the business.",
+    "subtitle": "AI agents, Telegram/CRM workflows, and SaaS tools that cut manual work and show ROI in clear numbers.",
+    "cta": "Get an AI audit",
+    "badge": "AI automation for growth",
+    "title_line1": "Automate leads,",
+    "title_line2": "sales and support.",
+    "title_line3": "Scale the business.",
+    "subtitle_text": "AI agents, Telegram/CRM workflows and SaaS tools.",
+    "subtitle_highlight": "ROI in numbers, not promises.",
+    "card_roi": "Target ROI",
+    "card_hours": "hrs/week without routine"
   },
   "services": {
-    "title": "AI Solutions for",
-    "subtitle": "We automate processes, build AI agents, and develop SaaS products",
+    "title": "AI solutions for",
+    "subtitle": "Remove manual work from leads, CRM, support and reports",
     "ai_agents": {
-      "title": "AI Agents & Chatbots",
-      "desc": "24/7 customer support, sales automation, and operations"
+      "title": "AI agents and chatbots",
+      "desc": "Fast replies, lead qualification and human handoff 24/7"
     },
     "automation": {
-      "title": "Process Automation",
-      "desc": "Eliminate routine tasks and save 40+ hours per week"
+      "title": "Telegram/CRM automation",
+      "desc": "Leads from chats, site and ads go straight into a managed pipeline"
     },
     "saas": {
-      "title": "SaaS Development",
-      "desc": "From MVP to scalable product with AI functionality"
+      "title": "SaaS and internal portals",
+      "desc": "MVPs, portals and admin tools with AI from the first release"
     },
     "integration": {
-      "title": "System Integration",
-      "desc": "CRM, ERP, payment systems, and AI in one ecosystem"
+      "title": "Integrations and analytics",
+      "desc": "CRM, ERP, payments, spreadsheets and reports in one system"
     },
     "badge": "Services",
-    "ai_agents_metric": "24/7 non-stop",
-    "ai_agents_full_desc": "24/7 customer support, sales and operations automation. AI agents that work 24/7 without breaks.",
-    "automation_metric": "40+ hrs/week savings",
-    "automation_full_desc": "Eliminate routine and manual labor. Integration of n8n, Make and custom solutions to save 40+ hours per week.",
+    "ai_agents_metric": "24/7 first response",
+    "ai_agents_full_desc": "AI agents answer from approved knowledge, clarify the need, collect contacts and hand complex requests to a manager.",
+    "automation_metric": "fewer missed leads",
+    "automation_full_desc": "We connect Telegram, forms, CRM and spreadsheets: the lead gets status, the manager gets a task, leadership gets a clear report.",
     "saas_metric": "MVP in 6-8 weeks",
-    "saas_full_desc": "From MVP to scalable product. Full cycle SaaS development with AI functionality.",
-    "integration_metric": "300% ROI integrations",
-    "integration_full_desc": "Unite CRM, ERP, payment systems and AI in a single ecosystem for your business.",
-    "more": "Learn more",
-    "highlight": "business growth"
+    "saas_full_desc": "We design SaaS, client portals and internal tools where automation is built into the workflow.",
+    "integration_metric": "ROI after launch",
+    "integration_full_desc": "We build API integrations, dashboards, notifications and documents so operations are visible every day.",
+    "more": "Discuss",
+    "highlight": "measurable growth"
   },
   "stats": {
     "projects": "Projects Completed",
@@ -58,29 +58,29 @@
     "team": "Team Members"
   },
   "pain": {
-    "title": "Your Business Is",
-    "subtitle": "Every day without automation is lost profit",
+    "title": "Your business is",
+    "subtitle": "Every day without automation means missed leads, hours and control",
     "manual": {
-      "title": "Manual Processes",
-      "desc": "40+ hours per week on routine tasks"
+      "title": "Manual lead handling",
+      "desc": "Managers copy data between chats, CRM and spreadsheets"
     },
     "support": {
-      "title": "No 24/7 Support",
-      "desc": "Customers leave without answers"
+      "title": "Slow first response",
+      "desc": "Customers wait while competitors answer faster"
     },
     "scaling": {
-      "title": "Scaling = Hiring",
-      "desc": "Growth through people instead of automation"
+      "title": "Growth only by hiring",
+      "desc": "The team grows, but processes stay fragile"
     },
-    "transition": "There's a better way.",
+    "transition": "This can be fixed faster than it seems.",
     "badge": "Problem",
     "manual_metric": "40+ hrs/week",
-    "manual_desc_full": "Your team spends 40+ hours per week on routine that can be automated",
-    "support_metric": "60% clients",
-    "support_desc_full": "Clients leave to competitors because they don't get answers after hours",
-    "scaling_metric": "x3 costs",
-    "scaling_desc_full": "To grow, you hire more people instead of optimizing processes",
-    "highlight": "losing money"
+    "manual_desc_full": "Teams spend dozens of hours on data transfer, statuses, reminders and reports that can be automated",
+    "support_metric": "24/7 matters",
+    "support_desc_full": "After-hours leads cool down: an AI agent can accept the request, answer and pass context to a manager",
+    "scaling_metric": "x3 workload",
+    "scaling_desc_full": "Without automation, lead growth turns into chaos, overdue follow-ups and manual control of every step",
+    "highlight": "losing money manually"
   },
   "faq": {
     "title": "Frequently Asked Questions",
@@ -114,13 +114,13 @@
     }
   },
   "cta": {
-    "title": "Ready for Automation?",
-    "subtitle": "30-min call. We'll find 3+ automation opportunities in your business.",
-    "button": "Get AI Audit",
-    "description": "30-minute call. We'll find 3+ automation opportunities in your business.",
+    "title": "Find the automation points that pay back first",
+    "subtitle": "30-minute call. We review leads, CRM and routine work, then show 3+ concrete automation opportunities.",
+    "button": "Book an AI audit",
+    "description": "30-minute call. We review leads, CRM and routine work, then show 3+ concrete automation opportunities.",
     "free": "Free",
     "no_obligation": "No obligations",
-    "ai_audit": "AI audit as a gift",
+    "ai_audit": "AI audit with roadmap",
     "slots_left": "Left",
     "slots": "spots in",
     "slots_message": "{slots} slots left for {month}"
@@ -192,7 +192,7 @@
     }
   },
   "footer": {
-    "description": "FullFocus — AI-powered business automation agency. AI agents, process automation, and SaaS development.",
+    "description": "FullFocus — business AI automation: AI agents, Telegram/CRM workflows, integrations and SaaS development.",
     "quick_links": "Quick Links",
     "services": "Services",
     "contact": "Contact Us",
@@ -220,7 +220,7 @@
     "service_label": "Service type",
     "budget_label": "Project scope",
     "message_label": "Project description *",
-    "message_placeholder": "Tell us about your project, goals and timeline...",
+    "message_placeholder": "Tell us where leads, time or control are being lost: Telegram, CRM, reports, support...",
     "select_service": "Select service",
     "service_ai": "AI Agents & Chatbots",
     "service_automation": "Process Automation",
@@ -233,10 +233,10 @@
     "budget_large": "Department process",
     "budget_enterprise": "Complex automation",
     "success_title": "Application sent!",
-    "success_desc": "We'll contact you shortly",
+    "success_desc": "We will review the request and come back with a clear next step",
     "send_another": "Send another application",
     "submitting": "Submitting...",
-    "submit_btn": "Submit application"
+    "submit_btn": "Get project review"
   },
   "socialproof": {
     "projects": "projects",
@@ -247,7 +247,7 @@
     "badge": "Process",
     "title": "How we",
     "highlight": "work",
-    "description": "From call to result — transparent process with weekly demos",
+    "description": "From audit to launch: we set metrics, show demos and measure impact",
     "steps": {
       "0": {
         "title": "Discovery Call",
@@ -437,6 +437,7 @@
     "in_month": "in",
     "limited": "Limited spots this month",
     "cta": "Get AI audit",
+    "dismiss": "Close bar",
     "slots_message": "{slots} slots left for {month}"
   },
   "common": {
@@ -447,11 +448,11 @@
   "about": {
     "title": "About",
     "highlight": "FullFocus",
-    "description": "We are a team of professionals who create digital products that help businesses grow and reach new heights",
+    "description": "FullFocus builds AI automation, CRM workflows and SaaS tools for companies that need measurable growth without extra manual work.",
     "mission_title": "Our",
     "mission_highlight": "mission",
-    "mission_p1": "We believe that technology can transform any business. Our goal is to help companies harness the potential of digital solutions for competitive advantage.",
-    "mission_p2": "Since 2019, we have completed over 50 projects for clients across various industries — from startups to large enterprises.",
+    "mission_p1": "We start with the business process: where leads, time, money and control are lost. Only then do we choose AI, integrations and product architecture.",
+    "mission_p2": "Our job is not just to write code, but to build a system the team uses every day and management can measure by ROI.",
     "stats_projects": "Projects",
     "stats_projects_value": "50+",
     "stats_years": "Years of experience",
@@ -515,10 +516,10 @@
     }
   },
   "services_page": {
-    "title": "Our",
-    "highlight": "services",
-    "description": "Full range of IT services for digital transformation of your business",
-    "discuss_project": "Discuss project",
+    "title": "AI automation",
+    "highlight": "for your workflow",
+    "description": "Choose the direction: AI agent, Telegram/CRM flow, SaaS or integrations. We start with business metrics, not abstract specs.",
+    "discuss_project": "Get an AI audit",
     "items": {
       "0": {
         "title": "Web Development",
@@ -612,15 +613,15 @@
     }
   },
   "portfolio_page": {
-    "title": "Our",
-    "highlight": "projects",
-    "description": "Examples of work we're proud of",
+    "title": "Automation",
+    "highlight": "case studies",
+    "description": "Systems where AI, CRM and integrations reduce manual work and speed up lead handling.",
     "all": "All",
     "web": "Web Development",
     "mobile": "Mobile",
     "design": "Design",
     "erp": "ERP/CRM",
-    "view_project": "View project",
+    "view_project": "Open case",
     "projects": {
       "0": {
         "title": "E-commerce Platform",
@@ -655,12 +656,19 @@
     }
   },
   "blog_page": {
-    "title": "Our",
-    "highlight": "blog",
-    "description": "We share experience, knowledge and thoughts about development and design",
+    "title": "Practical",
+    "highlight": "AI automation guides",
+    "description": "CRM, Telegram bots, AI agents, lead management, and operating workflows without manual routine.",
     "all": "All",
     "tech": "Technology",
     "design": "Design",
-    "tips": "Tips"
+    "tips": "Tips",
+    "badge": "Automation blog",
+    "empty_title": "Articles are coming",
+    "empty_desc": "There are no published posts in this category yet. In the meantime, run an AI audit and find automation points in your business.",
+    "audit_cta": "Start AI audit",
+    "back_all": "All articles",
+    "reading_time": "{minutes} min read",
+    "related_title": "Related articles"
   }
 }

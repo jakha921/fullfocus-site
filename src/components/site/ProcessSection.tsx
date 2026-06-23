@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { Phone, Lightbulb, Code2, Rocket } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { SectionHeading } from "./SectionHeading";
@@ -28,12 +25,8 @@ export function ProcessSection() {
           {stepNumbers.map((number, index) => {
             const Icon = stepIcons[index];
             return (
-              <motion.div
+              <div
                 key={number}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.15 }}
                 className="glass-card rounded-xl p-5 group hover:border-white/15 transition-all duration-300"
               >
                 <div className="text-3xl font-display font-bold gradient-text mb-3">
@@ -51,7 +44,7 @@ export function ProcessSection() {
                 <span className="text-xs font-bold text-teal-400/80 bg-teal-500/10 px-2 py-1 rounded-full">
                   {t(`steps.${index}.duration`)}
                 </span>
-              </motion.div>
+              </div>
             );
           })}
         </div>
@@ -61,12 +54,8 @@ export function ProcessSection() {
           {stepNumbers.map((number, index) => {
             const Icon = stepIcons[index];
             return (
-              <motion.div
+              <div
                 key={number}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="glass-card rounded-xl p-5 flex gap-4"
               >
                 <div className="flex-shrink-0">
@@ -86,7 +75,7 @@ export function ProcessSection() {
                     {t(`steps.${index}.duration`)}
                   </span>
                 </div>
-              </motion.div>
+              </div>
             );
           })}
         </div>
