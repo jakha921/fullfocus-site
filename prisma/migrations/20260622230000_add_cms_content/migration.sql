@@ -1,20 +1,20 @@
 -- AlterTable
-ALTER TABLE "Service" ADD COLUMN "translations" JSONB;
+ALTER TABLE "Service" ADD COLUMN IF NOT EXISTS "translations" JSONB;
 
 -- AlterTable
-ALTER TABLE "Project" ADD COLUMN "translations" JSONB;
+ALTER TABLE "Project" ADD COLUMN IF NOT EXISTS "translations" JSONB;
 
 -- AlterTable
-ALTER TABLE "TeamMember" ADD COLUMN "translations" JSONB;
+ALTER TABLE "TeamMember" ADD COLUMN IF NOT EXISTS "translations" JSONB;
 
 -- AlterTable
-ALTER TABLE "Testimonial" ADD COLUMN "translations" JSONB;
+ALTER TABLE "Testimonial" ADD COLUMN IF NOT EXISTS "translations" JSONB;
 
 -- AlterTable
-ALTER TABLE "BlogPost" ADD COLUMN "translations" JSONB;
+ALTER TABLE "BlogPost" ADD COLUMN IF NOT EXISTS "translations" JSONB;
 
 -- CreateTable
-CREATE TABLE "ContentBlock" (
+CREATE TABLE IF NOT EXISTS "ContentBlock" (
     "id" TEXT NOT NULL,
     "key" TEXT NOT NULL,
     "locale" TEXT NOT NULL,
@@ -28,10 +28,10 @@ CREATE TABLE "ContentBlock" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "ContentBlock_key_locale_key" ON "ContentBlock"("key", "locale");
+CREATE UNIQUE INDEX IF NOT EXISTS "ContentBlock_key_locale_key" ON "ContentBlock"("key", "locale");
 
 -- CreateIndex
-CREATE INDEX "ContentBlock_key_idx" ON "ContentBlock"("key");
+CREATE INDEX IF NOT EXISTS "ContentBlock_key_idx" ON "ContentBlock"("key");
 
 -- CreateIndex
-CREATE INDEX "ContentBlock_locale_idx" ON "ContentBlock"("locale");
+CREATE INDEX IF NOT EXISTS "ContentBlock_locale_idx" ON "ContentBlock"("locale");
