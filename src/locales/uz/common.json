@@ -204,7 +204,8 @@
     "integration_service": "Tizim integratsiyasi",
     "roi_calculator": "Avtomatlashtirish ROI kalkulyatori",
     "location": "Toshkent, O'zbekiston",
-    "privacy": "Maxfiylik siyosati"
+    "privacy": "Maxfiylik siyosati",
+    "built_by": "Ishlab chiqdi:"
   },
   "form": {
     "name": "Ismingiz",
