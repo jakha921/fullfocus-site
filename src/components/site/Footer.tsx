@@ -130,6 +130,17 @@ export function Footer() {
 
           <p className="text-gray-400 text-sm">
             &copy; {new Date().getFullYear()} FullFocus. {t("rights")}
+            {" · "}
+            {t("built_by")}{" "}
+            <a
+              href="https://ruzibaev.uz/"
+              rel="author"
+              target="_blank"
+              className="hover:text-white transition-colors"
+            >
+              Jakhongir Ruzibaev
+            </a>
+            , Software Engineer
           </p>
           <div className="flex items-center gap-6 text-sm text-gray-400">
             <Link href={localizedPath("/privacy", locale)} className="hover:text-white transition-colors">

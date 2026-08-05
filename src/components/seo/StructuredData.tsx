@@ -28,6 +28,14 @@ export function OrganizationJsonLd({ locale }: OrganizationJsonLdProps) {
       "contactType": "sales",
       "availableLanguage": ["English", "Russian", "Uzbek"]
     },
+    // @id совпадает с Person-разметкой на ruzibaev.uz — так Google склеивает обе в одну сущность
+    "founder": {
+      "@type": "Person",
+      "@id": "https://ruzibaev.uz/#person",
+      "name": "Jakhongir Ruzibaev",
+      "jobTitle": "Software Engineer",
+      "url": "https://ruzibaev.uz/"
+    },
     "sameAs": [
       "https://t.me/fullfocusdev",
       "https://instagram.com/fullfocus.dev",

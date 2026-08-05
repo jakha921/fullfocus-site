@@ -204,7 +204,8 @@
     "integration_service": "System Integration",
     "roi_calculator": "Automation ROI Calculator",
     "location": "Tashkent, Uzbekistan",
-    "privacy": "Privacy Policy"
+    "privacy": "Privacy Policy",
+    "built_by": "Built by"
   },
   "form": {
     "name": "Your Name",
